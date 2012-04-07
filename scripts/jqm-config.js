@@ -13,6 +13,14 @@ $(document).on('mobileinit', function() {
   $.mobile.linkBindingEnabled = false;
   $.mobile.hashListeningEnabled = false;
   $.mobile.pushStateEnabled = false;
+
+  // Transitions are really slow on Android, so turn them off.
+  // I know user agent sniffing is suboptimal, but Android does support
+  // the feature, just not very well..
+  var userAgent = navigator.userAgent.toLowerCase();
+  if (userAgent.indexOf('android') > -1) { // this is Android
+    $.mobile.defaultPageTransition = 'none';
+  }
 });
 
 $(document).on('pagehide', 'div[data-role="page"]', function(event, ui) {
