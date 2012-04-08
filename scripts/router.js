@@ -8,6 +8,9 @@ hubbub.Router = Backbone.Router.extend({
     "feed-items": "feedItems"
   },
 
+  /**
+   * Initialize the router. Start off with some stub feed items.
+   */
   initialize: function() {
     this.feedItems = hubbub.stubFeedItems();    
   }
