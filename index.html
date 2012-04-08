@@ -27,6 +27,8 @@
     <!-- TODO Decide how to organize templates. Should we use require.js? -->
     <script id="feedPageTemplate" type="text/template">
       <div data-role="header">
+        <!-- TODO Use Backbone to route this URL -->
+        <a href="filter.html">Filter</a>
         <h1>Hubbub</h1>
       </div>
 
@@ -37,11 +39,19 @@
     </script>
 
     <script id="feedItemTemplate" type="text/template">
-      <p><%= source %></p>
-      <p><%= body %></p>
-      <input type="button" value="Tag" />
-      <input type="button" value="Share" />
-      <input type="button" value="Save" />
+      <div class="ui-grid-a"> <!-- Two-column grid -->
+        <div class="ui-block-a"> <!-- First column -->
+          <h1><%= source %></h1>
+          <p><%= body %></p>
+        </div>
+        <div class="ui-block-b"> <!-- Second column -->
+          <div data-role="controlgroup">
+            <input type="button" value="Tag" />
+            <input type="button" value="Share" />
+            <input type="button" value="Save" />
+          </div>
+        </div>
+      </div>
     </script>
   </body>
 </html>
