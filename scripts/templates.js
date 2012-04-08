@@ -3,7 +3,7 @@
  * Inspiration:
  * https://github.com/ccoenraets/backbone-directory/blob/master/jquerymobile/js/utils.js
  */
-templates = {
+hubbub.templates = {
 
   // Hash of preloaded templates for the app
   templates: {},
