@@ -1,6 +1,6 @@
 hubbub.FeedPageView = Backbone.View.extend({
   initialize: function() {
-    this.template = _.template(hubbub.feedPageTemplate);
+    this.template = _.template($('#feedPageTemplate').html());
   },
 
   render: function(eventName) {
@@ -14,15 +14,6 @@ hubbub.FeedPageView = Backbone.View.extend({
     return this;
   }
 });
-
-// FIXME Load these templates from an external file!
-hubbub.feedPageTemplate = '<div data-role="header">\n' +
-    '<h1>Hubbub</h1>\n' +
-  '</div>\n' +
-
-  '<div data-role="content">\n' +
-    '<ul data-role="listview" id="feedList"></ul>\n' +
-  '</div>\n';
 
 hubbub.FeedListView = Backbone.View.extend({
   initialize: function() {
@@ -46,7 +37,7 @@ hubbub.FeedItemView = Backbone.View.extend({
   className: 'feedItem',
 
   initialize: function() {
-    this.template = _.template(hubbub.feedItemTemplate);
+    this.template = _.template($('#feedItemTemplate').html());
   },
 
   render: function() {
@@ -54,10 +45,3 @@ hubbub.FeedItemView = Backbone.View.extend({
     return this;
   }
 })
-
-// Ditto for this template
-hubbub.feedItemTemplate = '<p><%= source %></p>\n' +
-  '<p><%= body %></p>\n' +
-  '<input type="button" value="Tag" />\n' +
-  '<input type="button" value="Share" />\n' +
-  '<input type="button" value="Save" />\n';

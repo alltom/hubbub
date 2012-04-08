@@ -24,5 +24,24 @@
     <!--
       Populated by JavaScript at runtime.
     -->
+    <!-- TODO Decide how to organize templates. Should we use require.js? -->
+    <script id="feedPageTemplate" type="text/template">
+      <div data-role="header">
+        <h1>Hubbub</h1>
+      </div>
+
+      <div data-role="content">
+        <!--  FeedItems go inside this list -->
+        <ul data-role="listview" id="feedList"></ul>
+      </div>
+    </script>
+
+    <script id="feedItemTemplate" type="text/template">
+      <p><%= source %></p>
+      <p><%= body %></p>
+      <input type="button" value="Tag" />
+      <input type="button" value="Share" />
+      <input type="button" value="Save" />
+    </script>
   </body>
 </html>
