@@ -1,0 +1,25 @@
+/* 
+ * Align the New Tag text input and button in a single row.
+ * jQuery Mobile's grid doesn't properly align them, but this CSS does it.
+ * http://stackoverflow.com/questions/8606298/jquery-mobile-display-an-html-form-inline
+ */
+#newTagFields .ui-input-text {
+  display: inline-block;
+  width: 60%;
+  vertical-align: middle;
+}
+
+#newTagFields > .ui-btn {
+  display: inline-block;
+  width: 25%;
+  vertical-align: middle;
+}
+
+@media all and (max-width: 480px) {
+  #newTagFields .ui-input-text {
+    width: 100%;
+  }
+  #newTagFields > .ui-btn {
+    width: 100%;
+  }
+}

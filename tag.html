@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- TODO Replace the stylesheet with a custom style -->
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
+    <link rel="stylesheet" href="style/main.css" />
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="scripts/jqm-config.js"></script>
     <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
@@ -33,12 +34,14 @@
       </div>
 
       <div data-role="content">
-        <form>
-          <fieldset data-role="fieldcontain">
-            <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
-            <input type="text" name="tagName" placeholder="Tag Name" />
-            <input type="button" value="New Tag" />
-          </fieldset>
+        <form action="tag.html" method="post"> <!-- TODO Route with Backbone -->
+          <!--<fieldset data-role="fieldcontain">-->
+            <fieldset id="newTagFields">
+              <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
+              <input type="text" name="tagName" placeholder="Tag Name" />
+              <input type="button" value="New Tag" data-mini="true" />
+            </fieldset>
+          <!--</fieldset>-->
 
           <!-- 
             jQuery Mobile's checkboxes expand the clickable area to improve
@@ -52,7 +55,7 @@
       </div>
 
       <div data-role="footer">
-        <form>
+        <form action="index.html" method="post"> <!-- Route this too -->
           <input type="button" value="OK" />
           <input type="button" value="cancel" />
         </form>
