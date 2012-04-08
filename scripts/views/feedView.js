@@ -4,6 +4,7 @@ hubbub.FeedPageView = Backbone.View.extend({
   },
 
   render: function(eventName) {
+    $('#welcome').remove();
     $(this.el).html(this.template(this.model.toJSON()));
     this.listView = new hubbub.FeedListView({
       el: $('ul', this.el),
@@ -16,18 +17,12 @@ hubbub.FeedPageView = Backbone.View.extend({
 
 // FIXME Load these templates from an external file!
 hubbub.feedPageTemplate = '<div data-role="header">\n' +
-  '<h1>Hubbub</h1>\n' +
-'</div>\n' +
+    '<h1>Hubbub</h1>\n' +
+  '</div>\n' +
 
-'<div id="welcome">\n' +
-  '<h2>Welcome to Hubbub!</h2>\n' +
-
-  '<p>This app aggregates items from all your information sources.</p>\n' +
-'</div>\n' +
-
-'<div data-role="content">\n' +
-  '<ul data-role="listview" id="feedList"></ul>\n' +
-'</div>\n';
+  '<div data-role="content">\n' +
+    '<ul data-role="listview" id="feedList"></ul>\n' +
+  '</div>\n';
 
 hubbub.FeedListView = Backbone.View.extend({
   initialize: function() {
@@ -36,7 +31,7 @@ hubbub.FeedListView = Backbone.View.extend({
 
   render: function(eventName) {
     $(this.el).empty();
-    _.each(this.model.models, function(feedItem) {
+    this.model.each(function(feedItem) {
       var item = new hubbub.FeedItemView({model: feedItem}).render().el 
       $(this.el).append(item)
     }, this);
@@ -46,6 +41,10 @@ hubbub.FeedListView = Backbone.View.extend({
 });
 
 hubbub.FeedItemView = Backbone.View.extend({
+
+  tagName: 'li',
+  className: 'feedItem',
+
   initialize: function() {
     this.template = _.template(hubbub.feedItemTemplate);
   },
@@ -57,7 +56,5 @@ hubbub.FeedItemView = Backbone.View.extend({
 })
 
 // Ditto for this template
-hubbub.feedItemTemplate = '<div class="feedItem">\n' +
-  '<p><%= source %></p>\n' +
-  '<p><%= body %></p>\n' +
-'</div>\n';
+hubbub.feedItemTemplate = '<p><%= source %></p>\n' +
+  '<p><%= body %></p>\n';
