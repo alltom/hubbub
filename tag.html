@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="ui-mobile" lang="en">
+  <head> 
+    <title>Hubbub</title> 
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- TODO Replace the stylesheet with a custom style -->
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.css" />
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="scripts/jqm-config.js"></script>
+    <script src="http://code.jquery.com/mobile/1.1.0-rc.2/jquery.mobile-1.1.0-rc.2.min.js"></script>
+    <script src="lib/underscore-min.js"></script>
+    <script src="lib/backbone-min.js"></script>
+
+    <!--
+    <script src="scripts/hubbub.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/models/feedItem.js"></script>
+    <script src="scripts/stubs.js"></script>
+    <script src="scripts/views/feedView.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/main.js"></script>
+    -->
+  </head> 
+  <body> 
+    <!-- 
+      HTML Mockup of the tagging interface. Should eventually be replaced
+      by JavaScript population at runtime.
+    -->
+    <div data-role="page">
+      <div data-role="header">
+        <h1>Tag</h1>
+      </div>
+
+      <div data-role="content">
+        <form>
+          <fieldset>
+            <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
+            <input type="text" name="tagName" placeholder="Tag Name" />
+            <input type="button" value="New Tag" />
+          </fieldset>
+
+          <fieldset>
+            <div data-role="fieldcontain">
+              <label for="important">Important</label>
+              <input type="checkbox" name="important" class="custom" />
+            </div>
+
+            <div data-role="fieldcontain">
+              <label for="fun">Fun</label>
+              <input type="checkbox" name="fun" />
+            </div>
+
+            <div data-role="fieldcontain">
+              <label for="codeStuff">Code Stuff</label>
+              <input type="checkbox" name="codeStuff" />
+            </div>
+
+            <div data-role="fieldcontain">
+              <label for="sillyPics">Silly Pics</label>
+              <input type="checkbox" name="sillyPics" />
+            </div>
+          <fieldset>
+        </form>
+      </div>
+
+      <div data-role="footer">
+        <form>
+          <input type="button" value="OK" />
+          <input type="button" value="cancel" />
+        </form>
+      </div>
+
+    </div>
+
+  </body>
+</html>
