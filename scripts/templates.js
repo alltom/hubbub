@@ -2,6 +2,8 @@
  * Helper object to load templates from files.
  * Inspiration:
  * https://github.com/ccoenraets/backbone-directory/blob/master/jquerymobile/js/utils.js
+ *
+ * Weird, this seems to be loading Document objects, not strings!
  */
 hubbub.templates = {
 
