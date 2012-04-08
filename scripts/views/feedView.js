@@ -57,4 +57,7 @@ hubbub.FeedItemView = Backbone.View.extend({
 
 // Ditto for this template
 hubbub.feedItemTemplate = '<p><%= source %></p>\n' +
-  '<p><%= body %></p>\n';
+  '<p><%= body %></p>\n' +
+  '<input type="button" value="Tag" />\n' +
+  '<input type="button" value="Share" />\n' +
+  '<input type="button" value="Save" />\n';
