@@ -34,33 +34,20 @@
 
       <div data-role="content">
         <form>
-          <fieldset>
+          <fieldset data-role="fieldcontain">
             <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
             <input type="text" name="tagName" placeholder="Tag Name" />
             <input type="button" value="New Tag" />
           </fieldset>
 
-          <fieldset>
-            <div data-role="fieldcontain">
-              <label for="important">Important</label>
-              <input type="checkbox" name="important" class="custom" />
-            </div>
-
-            <div data-role="fieldcontain">
-              <label for="fun">Fun</label>
-              <input type="checkbox" name="fun" />
-            </div>
-
-            <div data-role="fieldcontain">
-              <label for="codeStuff">Code Stuff</label>
-              <input type="checkbox" name="codeStuff" />
-            </div>
-
-            <div data-role="fieldcontain">
-              <label for="sillyPics">Silly Pics</label>
-              <input type="checkbox" name="sillyPics" />
-            </div>
-          <fieldset>
+          <!-- 
+            jQuery Mobile's checkboxes expand the clickable area to improve
+            usability on touch screens.
+          -->
+          <label><input type="checkbox" name="important" />Important</label>
+          <label><input type="checkbox" name="fun" />Fun</label>
+          <label><input type="checkbox" name="codeStuff" />Code Stuff</label>
+          <label><input type="checkbox" name="sillyPics" />Silly Pics</label>
         </form>
       </div>
 
