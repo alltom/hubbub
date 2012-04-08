@@ -34,6 +34,11 @@
 
       <div data-role="content">
         <!--  FeedItems go inside this list -->
+        <!-- 
+          jQuery Mobile provides search facilities for lists (and we can
+          hook in our own code to pick out items. See
+          http://jquerymobile.com/demos/1.1.0-rc.2/docs/lists/docs-lists.html
+        -->
         <ul data-role="listview" id="feedList"></ul>
       </div>
     </script>
@@ -43,9 +48,15 @@
         <div class="ui-block-a"> <!-- First column -->
           <h1><%= source %></h1>
           <p><%= body %></p>
+          <!-- 
+            TODO If body is large enough, collapse it. We'll need code to
+            detect size and compare it with a threshold. See
+            http://jquerymobile.com/demos/1.1.0-rc.2/docs/content/content-collapsible.html
+            which explains how to write template code that does this.
+          -->
         </div>
         <div class="ui-block-b"> <!-- Second column -->
-          <div data-role="controlgroup">
+          <div data-role="controlgroup"> <!-- groups the buttons together -->
             <input type="button" value="Tag" />
             <input type="button" value="Share" />
             <input type="button" value="Save" />
