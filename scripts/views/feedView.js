@@ -7,7 +7,7 @@ hubbub.FeedPageView = Backbone.View.extend({
     $('#welcome').remove();
     $(this.el).html(this.template(this.model.toJSON()));
     this.listView = new hubbub.FeedListView({
-      el: $('ul', this.el),
+      el: $('#feedList', this.el),
       model: this.model
     });
     this.listView.render();
@@ -33,7 +33,7 @@ hubbub.FeedListView = Backbone.View.extend({
 
 hubbub.FeedItemView = Backbone.View.extend({
 
-  tagName: 'li',
+  tagName: 'div',
   className: 'feedItem',
 
   initialize: function() {
