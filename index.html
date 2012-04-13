@@ -77,11 +77,16 @@
       -->
       <div data-role="header" data-theme="d">
         <h1>Filter</h1>
-        <!-- TODO Align these buttons on the right of the header. -->
-        <div class="ui-bar" data-inline="true">
-          <a href="#" data-role="button">Execute</a>
-          <a href="#" data-role="button">Reset</a>
-          <a href="#" data-role="button">Save Filter</a>
+        <!-- 
+          TODO Align these buttons on the right of the header.
+          Seems to be tricky in jQuery Mobile, but a navbar looks OK too.
+        -->
+        <div data-role="navbar">
+          <ul>
+            <li><a href="#" data-role="button">Execute</a></li>
+            <li><a href="#" data-role="button">Reset</a></li>
+            <li><a href="#" data-role="button">Save Filter</a></li>
+          </ul>
         </div>
       </div>
 
