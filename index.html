@@ -93,41 +93,56 @@
       <div data-role="content">
         <h2>Services</h2> 
         <div class="ui-grid-d">
-          <!-- TODO Replace this text with images -->
-          <p class="ui-block-a">Twitter</p>
-          <p class="ui-block-b">Facebook</p>
-          <p class="ui-block-c">Imgur</p>
-          <p class="ui-block-d">Gmail</p>
+          <!-- 
+            TODO Make these images look nicer, and size them beforehand
+            instead of doing it in the browser.
+          -->
+          <p class="ui-block-a">
+            <img alt="Twitter logo" src="images/twitter-logo8.jpg"
+                 width="50" height="50" />
+          </p>
+          <p class="ui-block-b">
+            <img alt="Facebook logo" src="images/facebook-logo.png"
+                 width="50" height="50" />
+          </p>
+          <p class="ui-block-c">
+            <img alt="Imgur logo" src="images/Imgur_Logo_Icon.png"
+                 width="50" height="50" />
+          </p>
+          <p class="ui-block-d">
+            <img alt="Gmail logo" src="images/gmail-logo.jpg"
+                 width="50" height="50" />
+          </p>
         </div>
-      </div>
 
-      <form action="filter.html" method="post">
-        <label for="search" class="ui-hidden-accessible">Search</label>
-        <input type="text" name="search" placeholder="Search" />
-      </form>
-
-      <div data-role="collapsible">
-        <h3>More Options</h3>
         <form action="filter.html" method="post">
-          <legend>Tags</legend>
-          <label><input type="checkbox" name="important" />Important</label>
-          <label><input type="checkbox" name="fun" />Fun</label>
-          <label><input type="checkbox" name="codeStuff" />Code Stuff</label>
-          <label><input type="checkbox" name="sillyPics" />Silly Pics</label>
+          <label for="search" class="ui-hidden-accessible">Search</label>
+          <input type="text" name="search" placeholder="Search" />
+        </form>
 
-          <legend>Other</legend>
-          <label>
-            <input type="checkbox" name="hyperlink" />Has a Hyperlink
-          </label>
+        <div data-role="collapsible">
+          <h3>More Options</h3>
+          <form action="filter.html" method="post">
+            <legend>Tags</legend>
+            <label><input type="checkbox" name="important" />Important</label>
+            <label><input type="checkbox" name="fun" />Fun</label>
+            <label><input type="checkbox" name="codeStuff" />Code Stuff</label>
+            <label><input type="checkbox" name="sillyPics" />Silly Pics</label>
+
+            <legend>Other</legend>
+            <label>
+              <input type="checkbox" name="hyperlink" />Has a Hyperlink
+            </label>
+          </form>
+        </div>
+
+        <h3>Saved Filters</h3>
+        <form action="filter.html" method="post">
+          <label><input type="checkbox" name="kitties" />Kitties!</label>
+          <label><input type="checkbox" name="school" />School</label>
+          <label><input type="checkbox" name="cplusplus" />C++</label>
         </form>
       </div>
-
-      <h3>Saved Filters</h3>
-      <ul data-role="listview">
-        <li>Kitties!</li>
-        <li>School</li>
-        <li>C++</li>
-      </ul>
     </script>
   </body>
 </html>
