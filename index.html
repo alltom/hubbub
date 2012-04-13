@@ -17,6 +17,7 @@
     <script src="scripts/models/feedItem.js"></script>
     <script src="scripts/stubs.js"></script>
     <script src="scripts/views/feedView.js"></script>
+    <script src="scripts/views/tagView.js"></script>
     <script src="scripts/views/filterView.js"></script>
     <script src="scripts/router.js"></script>
     <script src="scripts/main.js"></script>
@@ -58,7 +59,7 @@
             </div>
             <div class="ui-block-b"> <!-- Second column -->
               <div data-role="controlgroup"> <!-- groups the buttons together -->
-                <input type="button" value="Tag" />
+                <a data-role="button" href="#tag">Tag</a>
                 <input type="button" value="Share" />
                 <input type="button" value="Save" />
               </div>
@@ -140,6 +141,40 @@
           <label><input type="checkbox" name="kitties" />Kitties!</label>
           <label><input type="checkbox" name="school" />School</label>
           <label><input type="checkbox" name="cplusplus" />C++</label>
+        </form>
+      </div>
+    </script>
+
+    <script id="tagTemplate" type="text/template">
+      <div data-role="header">
+        <h1>Tag</h1>
+      </div>
+
+      <div data-role="content">
+        <form action="tag.html" method="post"> <!-- TODO Route with Backbone -->
+          <!--<fieldset data-role="fieldcontain">-->
+            <fieldset id="newTagFields">
+              <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
+              <input type="text" name="tagName" placeholder="Tag Name" />
+              <input type="button" value="New Tag" data-mini="true" />
+            </fieldset>
+          <!--</fieldset>-->
+
+          <!-- 
+            jQuery Mobile's checkboxes expand the clickable area to improve
+            usability on touch screens.
+          -->
+          <label><input type="checkbox" name="important" />Important</label>
+          <label><input type="checkbox" name="fun" />Fun</label>
+          <label><input type="checkbox" name="codeStuff" />Code Stuff</label>
+          <label><input type="checkbox" name="sillyPics" />Silly Pics</label>
+        </form>
+      </div>
+
+      <div data-role="footer">
+        <form action="index.html" method="post"> <!-- Route this too -->
+          <a data-role="button" href="#">OK</a>
+          <a data-role="button" href="#">Cancel</a>
         </form>
       </div>
     </script>

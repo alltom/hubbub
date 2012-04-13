@@ -16,7 +16,8 @@ hubbub.Router = Backbone.Router.extend({
   routes: {
     '': 'listFeedItems',
     'feed-items': 'listFeedItems',
-    'filter': 'filter'
+    'filter': 'filter',
+    'tag': 'tag'
   },
 
   /**
@@ -31,6 +32,7 @@ hubbub.Router = Backbone.Router.extend({
     this.feedPageTemplate = $('#feedPageTemplate');
     this.feedItemTemplate = $('#feedItemTemplate');
     this.filterTemplate = $('#filterTemplate');
+    this.tagTemplate = $('#tagTemplate');
   },
 
   /**
@@ -50,6 +52,15 @@ hubbub.Router = Backbone.Router.extend({
   filter: function() {
     this.changePage(new hubbub.FilterView({
       filterTemplate: this.filterTemplate
+    }));
+  },
+
+  /**
+   * Show the tag page (maybe make it a dialog)
+   */
+  tag: function() {
+    this.changePage(new hubbub.TagView({
+      tagTemplate: this.tagTemplate
     }));
   },
 
