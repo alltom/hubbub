@@ -33,6 +33,10 @@ hubbub.FeedPageView = Backbone.View.extend({
  * View class for a list of feed items.
  */
 hubbub.FeedListView = Backbone.View.extend({
+  /**
+   * Additional parameters in options:
+   * feedItemTemplate - a template for feed items
+   */
   initialize: function(options) {
     this.feedItemTemplate = options.feedItemTemplate;
     this.model.bind('reset', this.render, this);
@@ -64,6 +68,10 @@ hubbub.FeedItemView = Backbone.View.extend({
   tagName: 'div',
   className: 'feedItem',
 
+  /**
+   * Additional parameters in options:
+   * feedItemTemplate - the template to use.
+   */
   initialize: function(options) {
     this.template = _.template(options.feedItemTemplate.html());
   },

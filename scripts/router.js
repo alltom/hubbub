@@ -32,7 +32,9 @@ hubbub.Router = Backbone.Router.extend({
   },
 
   filter: function() {
-    this.changePage(new hubbub.FilterView());
+    this.changePage(new hubbub.FilterView({
+      filterTemplate: this.filterTemplate
+    }));
   },
 
   /**
