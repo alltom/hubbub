@@ -2,19 +2,27 @@
  * View class for the whole feed page. Uses the template feedPageTemplate.
  */
 hubbub.FeedPageView = Backbone.View.extend({
-  initialize: function() {
-    this.template = _.template($('#feedPageTemplate').html());
+  /**
+   * Views take constructor parameters as named arguments inside the options
+   * dictionary.
+   * This view expects two additional parameters:
+   * pageTemplate - a template for the feed page
+   * feedItemTemplate - a template for a single feed item.
+   */
+  initialize: function(options) {
+    this.feedItemTemplate = options.feedItemTemplate;
+    this.template = _.template(options.pageTemplate.html());
   },
 
   /*
    * Renders a header div, and a content div which is handled by FeedListView.
    */
   render: function(eventName) {
-    $('#welcome').remove();
     $(this.el).html(this.template(this.model.toJSON()));
     this.listView = new hubbub.FeedListView({
       el: $('#feedList', this.el),
-      model: this.model
+      model: this.model,
+      feedItemTemplate: this.feedItemTemplate
     });
     this.listView.render();
     return this;
@@ -25,7 +33,8 @@ hubbub.FeedPageView = Backbone.View.extend({
  * View class for a list of feed items.
  */
 hubbub.FeedListView = Backbone.View.extend({
-  initialize: function() {
+  initialize: function(options) {
+    this.feedItemTemplate = options.feedItemTemplate;
     this.model.bind('reset', this.render, this);
   },
 
@@ -36,7 +45,10 @@ hubbub.FeedListView = Backbone.View.extend({
   render: function(eventName) {
     $(this.el).empty();
     this.model.each(function(feedItem) {
-      var item = new hubbub.FeedItemView({model: feedItem}).render().el 
+      var item = new hubbub.FeedItemView({
+        model: feedItem,
+        feedItemTemplate: this.feedItemTemplate
+      }).render().el 
       $(this.el).append(item)
     }, this);
     $('#feedList').listview('refresh');
@@ -52,8 +64,8 @@ hubbub.FeedItemView = Backbone.View.extend({
   tagName: 'div',
   className: 'feedItem',
 
-  initialize: function() {
-    this.template = _.template($('#feedItemTemplate').html());
+  initialize: function(options) {
+    this.template = _.template(options.feedItemTemplate.html());
   },
 
   render: function() {

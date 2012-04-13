@@ -6,7 +6,8 @@ hubbub.Router = Backbone.Router.extend({
 
   routes: {
     '': 'listFeedItems',
-    'feed-items': 'listFeedItems'
+    'feed-items': 'listFeedItems',
+    'filter': 'filter'
   },
 
   /**
@@ -15,12 +16,30 @@ hubbub.Router = Backbone.Router.extend({
   initialize: function() {
     this.feedItems = hubbub.stubFeedItems();    
     this.firstPage = true;
+
+    // Load all templates, since changePage gets rid of them
+    this.feedPageTemplate = $('#feedPageTemplate');
+    this.feedItemTemplate = $('#feedItemTemplate');
+    this.filterTemplate = $('#filterTemplate');
   },
 
   listFeedItems: function() {
-    this.changePage(new hubbub.FeedPageView({model: this.feedItems}));
+    this.changePage(new hubbub.FeedPageView({
+      model: this.feedItems,
+      pageTemplate: this.feedPageTemplate,
+      feedItemTemplate: this.feedItemTemplate
+    }));
   },
 
+  filter: function() {
+    this.changePage(new hubbub.FilterView());
+  },
+
+  /**
+   * Change the page displayed.
+   * Given a View, calls render() on that view, then appends that view's
+   * element to the <body> element.
+   */
   changePage: function(page) {
     $(page.el).attr('data-role', 'page');
     page.render();
