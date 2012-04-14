@@ -51,7 +51,8 @@ hubbub.FeedListView = Backbone.View.extend({
     this.model.each(function(feedItem) {
       var item = new hubbub.FeedItemView({
         model: feedItem,
-        feedItemTemplate: this.feedItemTemplate
+        feedItemTemplate: this.feedItemTemplate,
+		collectionRef: this.model
       }).render().el 
       $(this.el).append(item)
     }, this);
@@ -74,10 +75,17 @@ hubbub.FeedItemView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.template = _.template(options.feedItemTemplate.html());
+	this.collectionRef = options.collectionRef; //reference to the feed list
   },
 
+  /*
+  this render function updates the tag button's link to pass the index for
+  this particular feed item in the feed list
+  */
   render: function() {
     $(this.el).html(this.template(this.model.toJSON()));
+	$('.hubbub-feeditem-tag-button',this.el)
+	  .attr('href',"#tag/"+this.collectionRef.indexOf(this.model));
     return this;
   }
 })

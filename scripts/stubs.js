@@ -9,11 +9,13 @@ hubbub.stubFeedItems = function() {
             '<h2>Subject: Hey Dude</h2>\n</hgroup>\n' +
             '<p>You are an even better player of basketball than me.</p>' +
             '<p>We should play more sometime.</p>',
-      source: 'Gmail'
+      source: 'Gmail',
+	  tags: ['important','fun']
     }),
     new hubbub.FeedItem({
       body: '@alltom: I wish I a Google+ account!',
-      source: 'Twitter'
+      source: 'Twitter',
+	  tags: ['codeStuff']
     }),
     new hubbub.FeedItem({
       body: '<img src="http://theawesomer.com/photos/2011/04/041911_nyan_pop_tart_cat_t.jpg" />',

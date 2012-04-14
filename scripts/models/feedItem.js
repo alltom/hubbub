@@ -11,7 +11,11 @@
  */
 hubbub.FeedItem = Backbone.Model.extend({
 
-  urlRoot: '../feed-items'
+  urlRoot: '../feed-items',
+  
+  updateTags: function(newtagarr) {
+    this.set({tags: newtagarr});
+  }
 
 });
 

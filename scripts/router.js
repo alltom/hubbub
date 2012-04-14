@@ -17,7 +17,7 @@ hubbub.Router = Backbone.Router.extend({
     '': 'listFeedItems',
     'feed-items': 'listFeedItems',
     'filter': 'filter',
-    'tag': 'tag'
+    'tag/:feedItemIndex': 'tag'
   },
 
   /**
@@ -58,8 +58,9 @@ hubbub.Router = Backbone.Router.extend({
   /**
    * Show the tag page (maybe make it a dialog)
    */
-  tag: function() {
+  tag: function(feedItemIndex) {
     this.changePage(new hubbub.TagView({
+	  model: this.feedItems.at(feedItemIndex),
       tagTemplate: this.tagTemplate
     }));
   },

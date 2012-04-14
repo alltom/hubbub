@@ -60,7 +60,7 @@
             </div>
             <div class="ui-block-b"> <!-- Second column -->
               <div data-role="controlgroup"> <!-- groups the buttons together -->
-                <a data-role="button" href="#tag">Tag</a>
+                <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
                 <input type="button" value="Share" />
                 <input type="button" value="Save" />
               </div>
@@ -163,16 +163,16 @@
             jQuery Mobile's checkboxes expand the clickable area to improve
             usability on touch screens.
           -->
-          <label><input type="checkbox" name="important" />Important</label>
-          <label><input type="checkbox" name="fun" />Fun</label>
-          <label><input type="checkbox" name="codeStuff" />Code Stuff</label>
-          <label><input type="checkbox" name="sillyPics" />Silly Pics</label>
+          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="important" />Important</label>
+          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="fun" />Fun</label>
+          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="codeStuff" />Code Stuff</label>
+          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="sillyPics" />Silly Pics</label>
         </form>
       </div>
 
       <div data-role="footer">
         <form action="index.html" method="post"> <!-- Route this too -->
-          <a data-role="button" href="#">OK</a>
+          <a data-role="button" class="hubbub-tag-ok-button" href="#">OK</a>
           <a data-role="button" href="#">Cancel</a>
         </form>
       </div>
