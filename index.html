@@ -16,10 +16,12 @@
 
     <script src="scripts/hubbub.js"></script>
     <script src="scripts/models/feedItem.js"></script>
+    <script src="scripts/models/tagItem.js"></script>
     <script src="scripts/stubs.js"></script>
     <script src="scripts/views/feedView.js"></script>
     <script src="scripts/views/tagView.js"></script>
     <script src="scripts/views/filterView.js"></script>
+    <script src="scripts/views/tagPageView.js"></script>
     <script src="scripts/router.js"></script>
     <script src="scripts/main.js"></script>
   </head> 
@@ -163,7 +165,7 @@
             jQuery Mobile's checkboxes expand the clickable area to improve
             usability on touch screens.
           -->
-          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="important" />Important</label>
+          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="important" /><span>Important</span></label>
           <label><input type="checkbox" class ="hubbub-user-defined-tag" name="fun" />Fun</label>
           <label><input type="checkbox" class ="hubbub-user-defined-tag" name="codeStuff" />Code Stuff</label>
           <label><input type="checkbox" class ="hubbub-user-defined-tag" name="sillyPics" />Silly Pics</label>
@@ -176,6 +178,41 @@
           <a data-role="button" href="#">Cancel</a>
         </form>
       </div>
+	  
+    </script>
+	
+	<script id="tagPageTemplate" type="text/template">
+      <div data-role="header">
+        <h1>Tag</h1>
+      </div>
+
+      <div data-role="content">
+        <form action="#tag/0" id="hubbub-tag-form" method="post"> <!-- TODO Route with Backbone -->
+          <fieldset id="newTagFields">
+            <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
+            <input type="text" name="tagName" id="hubbub-new-tag-text" placeholder="Tag Name" />
+            <input type="submit" id="hubbub-new-tag-submit" value="New Tag" data-mini="true" />
+          </fieldset>
+
+          <!-- 
+            jQuery Mobile's checkboxes expand the clickable area to improve
+            usability on touch screens.
+          -->
+		  <fieldset id="tagList">
+          </fieldset>
+		</form>
+      </div>
+
+      <div data-role="footer">
+        <form action="index.html" method="post"> <!-- Route this too -->
+          <a data-role="button" id="hubbub-tag-ok-button" href="#">OK</a>
+          <a data-role="button" href="#">Cancel</a>
+        </form>
+      </div>
+    </script>
+	
+	<script id="tagItemTemplate" type="text/template">
+      <input type="checkbox" class ="hubbub-user-defined-tag"/><%= tagname %>
     </script>
   </body>
 </html>

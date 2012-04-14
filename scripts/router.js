@@ -17,7 +17,8 @@ hubbub.Router = Backbone.Router.extend({
     '': 'listFeedItems',
     'feed-items': 'listFeedItems',
     'filter': 'filter',
-    'tag/:feedItemIndex': 'tag'
+    'tag/:feedItemIndex': 'listTagItems'
+	//'tag/:feedItemIndex': 'tag'
   },
 
   /**
@@ -26,6 +27,7 @@ hubbub.Router = Backbone.Router.extend({
    */
   initialize: function() {
     this.feedItems = hubbub.stubFeedItems();    
+	this.tagItems = hubbub.stubTagItems();
     this.firstPage = true;
 
     // Eagerly load all templates, since changePage gets rid of them
@@ -33,6 +35,8 @@ hubbub.Router = Backbone.Router.extend({
     this.feedItemTemplate = $('#feedItemTemplate');
     this.filterTemplate = $('#filterTemplate');
     this.tagTemplate = $('#tagTemplate');
+	this.tagPageTemplate = $('#tagPageTemplate');
+	this.tagItemTemplate = $('#tagItemTemplate');
   },
 
   /**
@@ -62,6 +66,16 @@ hubbub.Router = Backbone.Router.extend({
     this.changePage(new hubbub.TagView({
 	  model: this.feedItems.at(feedItemIndex),
       tagTemplate: this.tagTemplate
+    }));
+  },
+  
+  listTagItems: function(feedItemIndex) {
+    this.changePage(new hubbub.TagPageView({
+      model: this.tagItems,
+      pageTemplate: this.tagPageTemplate,
+      tagItemTemplate: this.tagItemTemplate,
+	  feedItem: this.feedItems.at(feedItemIndex),
+	  feedItemIndex: feedItemIndex
     }));
   },
 

@@ -27,3 +27,20 @@ hubbub.stubFeedItems = function() {
     })
   ]);
 }
+
+hubbub.stubTagItems = function() {
+  return new hubbub.TagItemCollection([
+    new hubbub.TagItem({
+      tagname: 'Important'
+    }),
+    new hubbub.TagItem({
+      tagname: 'Fun'
+    }),
+    new hubbub.TagItem({
+      tagname: 'codeStuff'
+    }),
+    new hubbub.TagItem({
+      tagname: 'sillyPics'
+    })
+  ]);
+}
