@@ -41,7 +41,32 @@ hubbub.ContainsTextFilter = hubbub.Filter.extend({
   // fields: name, text
   
   accepts: function(item) {
-    return item.get('body').indexOf(this.get('text'))  !== -1; 
+    return item.get('body').indexOf(this.get('text')) !== -1; 
+  }
+});
+
+/**
+ * Filter that accepts items tagged with a given tag.
+ */
+hubbub.HasTagFilter = hubbub.Filter.extend({
+  // fields: name, tag
+  
+  accepts: function(item) {
+    var tags = item.get('tags');
+    return _(tags).include(this.get('tag'));
+  }
+});
+
+/**
+ * Filter that accepts items with a hyperlink.
+ */
+hubbub.HasHyperlinkFilter = hubbub.Filter.extend({
+  // fields: name
+  
+  accepts: function(item) {
+    // HACK - just looks for the existence of the string "href"
+    // TODO avoid false positives with this.
+    return item.get('body').indexOf('href') !== -1;
   }
 });
 
