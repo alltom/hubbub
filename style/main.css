@@ -63,3 +63,9 @@ body {
   top: 10px;
   right: 16px;
 }
+
+/* Filter page styles */
+.selectedService img {
+  /* TODO Change this color to something better, and prettify it */
+  border: 2px solid orange;  
+}
