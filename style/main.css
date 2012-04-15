@@ -5,7 +5,7 @@ body {
 }
 
 /* 
- * Align the New Tag text input and button in a single row.
+ * Align the "New Tag" text input and button from the Tag page in a single row.
  * jQuery Mobile's grid doesn't properly align them, but this CSS does it.
  * http://stackoverflow.com/questions/8606298/jquery-mobile-display-an-html-form-inline
  */
@@ -19,6 +19,14 @@ body {
   display: inline-block;
   width: 25%;
   vertical-align: middle;
+
+  /* right-align the button */
+  margin-left: 17.7px; /* any more and it goes to the next line */
+}
+
+/* Put some space between the new tag form and the existing tags */
+#newTagFields {
+  padding-bottom: 20px;
 }
 
 @media all and (max-width: 480px) {
@@ -28,7 +36,6 @@ body {
   #newTagFields > .ui-btn {
     width: 100%;
   }
-}
 
 /* item action buttons */
 
