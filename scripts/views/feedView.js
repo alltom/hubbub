@@ -68,7 +68,10 @@ hubbub.FeedListView = Backbone.View.extend({
  */
 hubbub.FeedItemView = Backbone.View.extend({
 
-  tagName: 'div',
+  events: {
+    'click input': 'onButtonClick'
+  },
+
   className: 'feedItem',
 
   /**
@@ -90,5 +93,20 @@ hubbub.FeedItemView = Backbone.View.extend({
     $('.hubbub-feeditem-tag-button',this.el)
       .attr('href',"#tag/"+this.collectionRef.indexOf(this.model));
     return this;
+  },
+
+  onButtonClick: function(event) {
+    var button = $(event.currentTarget);
+    if(button.attr('value') === 'Save') {
+      this.onSaveButtonClick(button); 
+    }
+  },
+
+  onSaveButtonClick: function(button) {
+    // We can't simply write
+    // button.attr('value', 'Saved!');
+    // because jQuery Mobile hides the <input> element and actually displays
+    // nested <span>s. Change the span for the button text instead.
+    button.parent().find('.ui-btn-text').text('Saved!');
   }
-})
+});
