@@ -5,7 +5,7 @@ hubbub.TagPageView = Backbone.View.extend({
 
   events: {
      'click #hubbub-tag-ok-button': 'updateTags',
-	 'click #hubbub-new-tag-submit': 'addTag'
+     'click #hubbub-new-tag-submit': 'addTag'
    },
   /**
    * Views take constructor parameters as named arguments inside the options
@@ -17,8 +17,8 @@ hubbub.TagPageView = Backbone.View.extend({
   initialize: function(options) {
     this.tagItemTemplate = options.tagItemTemplate;
     this.template = _.template(options.pageTemplate.html());
-	this.feedItem = options.feedItem;
-	this.feedItemIndex = options.feedItemIndex;
+    this.feedItem = options.feedItem;
+    this.feedItemIndex = options.feedItemIndex;
   },
 
   /*
@@ -30,7 +30,7 @@ hubbub.TagPageView = Backbone.View.extend({
       el: $('#tagList', this.el),
       model: this.model,
       tagItemTemplate: this.tagItemTemplate,
-	  feedItem: this.feedItem
+      feedItem: this.feedItem
     });
     this.listView.render();
     return this;
@@ -42,22 +42,26 @@ hubbub.TagPageView = Backbone.View.extend({
   */
   updateTags: function() {
     var tags = [];
-	$('.hubbub-user-defined-tag',this.el)
-	  .each(function() {
-		if($(this).attr("checked")) {
-	      tags.push($(this).attr("name"));
-		}
-	  });
-	this.feedItem.set("tags",tags);
+    $('.hubbub-user-defined-tag',this.el)
+      .each(function() {
+        if($(this).attr("checked")) {
+          tags.push($(this).attr("name"));
+        }
+      });
+    this.feedItem.set("tags",tags);
   },
   
   addTag: function(){
     var newtagname = $('input#hubbub-new-tag-text').val();
-	console.log("adding new tag: "+newtagname);
-	var newTagItem = new hubbub.TagItem({tagname: newtagname});
-	this.model.add(newTagItem);
-	this.listView.addTag(newTagItem);
-	return false;
+    //console.log("adding new tag: "+newtagname);
+    if(this.model.filter(function(tagitem) {return tagitem.get("tagname") === newtagname;}).length == 0) {
+      var newTagItem = new hubbub.TagItem({tagname: newtagname});
+      this.model.add(newTagItem);
+      this.listView.addTag(newTagItem);
+    } else {
+      alert('Tag name "'+newtagname+'" already exists.');
+    }
+    return false;
   }
 });
 
@@ -72,7 +76,7 @@ hubbub.TagListView = Backbone.View.extend({
   initialize: function(options) {
     this.tagItemTemplate = options.tagItemTemplate;
     this.model.bind('reset', this.render, this);
-	this.feedItem = options.feedItem;
+    this.feedItem = options.feedItem;
   },
   
   renderNoFeedItem: function() {
@@ -94,24 +98,24 @@ hubbub.TagListView = Backbone.View.extend({
    */
   render: function(eventName) {
     if(!this.feedItem) {
-	  return this.renderNoFeedItem();
-	}
+      return this.renderNoFeedItem();
+    }
     var tags = [];
-	if(this.feedItem.has("tags")){
-	  tags= this.feedItem.get("tags");
-	}
+    if(this.feedItem.has("tags")){
+      tags= this.feedItem.get("tags");
+    }
     $(this.el).empty();
     this.model.each(function(tagItem) {
       var item = new hubbub.TagItemView({
         model: tagItem,
         tagItemTemplate: this.tagItemTemplate
       }).render().el;
-	  for(var i = 0; i < tags.length; i++){
-		$('.hubbub-user-defined-tag',item)
-		.filter(function(index){
-		  return $(this).attr("name") === tags[i];
-		}).prop("checked",true);
-	  }
+      for(var i = 0; i < tags.length; i++){
+        $('.hubbub-user-defined-tag',item)
+        .filter(function(index){
+          return $(this).attr("name") === tags[i];
+        }).prop("checked",true);
+      }
       $(this.el).append(item);
     }, this);
     $('#tagList').listview('refresh');
@@ -122,8 +126,8 @@ hubbub.TagListView = Backbone.View.extend({
     var newTagItemView = new hubbub.TagItemView({
         model: newTagItem,
         tagItemTemplate: this.tagItemTemplate
-	}).render().el;
-	$(this.el).append(newTagItemView).trigger('create');
+    }).render().el;
+    $(this.el).append(newTagItemView).trigger('create');
   }
 });
 
@@ -145,7 +149,7 @@ hubbub.TagItemView = Backbone.View.extend({
   
   render: function() {
     $(this.el).html(this.template(this.model.toJSON()));
-	$('.hubbub-user-defined-tag',this.el).attr('name',this.model.get("tagname"));
+    $('.hubbub-user-defined-tag',this.el).attr('name',this.model.get("tagname"));
     return this;
   }
 })
