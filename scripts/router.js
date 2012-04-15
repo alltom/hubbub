@@ -55,7 +55,9 @@ hubbub.Router = Backbone.Router.extend({
    */
   filter: function() {
     this.changePage(new hubbub.FilterView({
-      filterTemplate: this.filterTemplate
+      filterTemplate: this.filterTemplate,
+	  tagItems: this.tagItems,
+	  tagItemTemplate: this.tagItemTemplate
     }));
   },
 
