@@ -9,7 +9,7 @@ hubbub.FilterView = Backbone.View.extend({
    * Events to handle in the filter page
    */
   events: {
-    'click .serviceLogo': 'onServiceLogoClick'
+    'vclick .serviceLogo': 'onServiceLogoClick'
   },
 
   /**
