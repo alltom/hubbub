@@ -10,20 +10,22 @@ hubbub.stubFeedItems = function() {
       subject: "Hey Dude",
       body: "<p>You are an even better player of basketball than me.</p>" +
             "<p>We should play more sometime.</p>",
-      tags: ['important','fun']
+      tags: ['important', 'fun']
     }),
     new hubbub.FeedItem({
-      body: '@alltom: I wish I a Google+ account!',
       source: 'Twitter',
-	  tags: ['codeStuff']
+      username: "alltom",
+      body: "I wish I a Google+ account!",
+      tags: ['codeStuff']
     }),
     new hubbub.FeedItem({
-      body: '<img src="http://theawesomer.com/photos/2011/04/041911_nyan_pop_tart_cat_t.jpg" />',
-      source: 'Imgur'
+      source: 'Imgur',
+      url: 'http://theawesomer.com/photos/2011/04/041911_nyan_pop_tart_cat_t.jpg',
     }),
     new hubbub.FeedItem({
-      body: '@leibatt: zomg is this thing on?',
-      source: 'Twitter'
+      source: 'Twitter',
+      username: "leibatt",
+      body: "zomg is this thing on?"
     })
   ]);
 }
