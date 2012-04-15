@@ -35,6 +35,7 @@ hubbub.Router = Backbone.Router.extend({
     this.gmailItemTemplate = $('#gmailItemTemplate');
     this.twitterItemTemplate = $('#twitterItemTemplate');
     this.imgurItemTemplate = $('#imgurItemTemplate');
+    this.facebookItemTemplate = $('#facebookItemTemplate');
     this.filterTemplate = $('#filterTemplate');
     this.tagPageTemplate = $('#tagPageTemplate');
     this.tagItemTemplate = $('#tagItemTemplate');
@@ -51,6 +52,7 @@ hubbub.Router = Backbone.Router.extend({
         Gmail: this.gmailItemTemplate,
         Twitter: this.twitterItemTemplate,
         Imgur: this.imgurItemTemplate,
+        Facebook: this.facebookItemTemplate,
         generic: this.feedItemTemplate
       }
     }));

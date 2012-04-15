@@ -90,7 +90,7 @@
       </div>
       <span class="source twitter"><%= source %></span>
       <div class="item-body">
-        <div><b>@<%= username %></b>: <%= body %></div>
+        <div><strong>@<%= username %></strong>: <%= body %></div>
       </div>
     </script>
 
@@ -103,6 +103,18 @@
       <span class="source imgur"><%= source %></span>
       <div class="item-body">
         <img src="<%= url %>" />
+      </div>
+    </script>
+
+    <script id="facebookItemTemplate" type="text/template">
+      <div data-role="controlgroup" class="item-actions float">
+        <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
+        <input type="button" value="Share" />
+        <input type="button" value="Save" />
+      </div>
+      <span class="source facebook"><%= source %></span>
+      <div class="item-body">
+        <div><strong><%= username %></strong>: <%= body %></div>
       </div>
     </script>
 

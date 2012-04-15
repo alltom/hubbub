@@ -25,6 +25,11 @@ hubbub.stubFeedItems = function() {
       tags: ['codeStuff']
     }),
     new hubbub.FeedItem({
+      source: 'Facebook',
+      username: 'Ben Bitdiddle',
+      body: 'I now have exactly 3333 friends!'
+    }),
+    new hubbub.FeedItem({
       source: 'Imgur',
       url: 'http://theawesomer.com/photos/2011/04/041911_nyan_pop_tart_cat_t.jpg',
     }),
@@ -45,6 +50,11 @@ hubbub.stubFeedItems = function() {
     new hubbub.FeedItem({
       source: 'Imgur',
       url: 'http://icanhascheezburger.files.wordpress.com/2008/01/funny-pictures-lolspeak-jaws-shark.jpg',
+    }),
+    new hubbub.FeedItem({
+      source: 'Facebook' ,
+      username: 'Mark Zuckerberg',
+      body: 'The venture Rahul proposed is great! We will be implementing it shortly!'
     }),
     new hubbub.FeedItem({
       source: 'Gmail',
