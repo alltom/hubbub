@@ -19,6 +19,7 @@
     <script src="scripts/hubbub.js"></script>
     <script src="scripts/models/feedItem.js"></script>
     <script src="scripts/models/tagItem.js"></script>
+    <script src="scripts/models/service.js"></script>
     <script src="scripts/stubs.js"></script>
     <script src="scripts/views/feedView.js"></script>
     <script src="scripts/views/tagView.js"></script>
@@ -106,12 +107,12 @@
 
     <script id="filterTemplate" type="text/template">
       <!--
-        You don't need to provide a top-level div with data-role="page"
+        You do need to provide a top-level div with data-role="page"
         jQuery Mobile autogenerates one (wrapping all of this stuff in it),
         and if your div has data-role="page" too, then it gets hidden because
         there can only be one page displayed at a time.
       -->
-      <div data-role="header" data-theme="d">
+      <div data-role="header">
         <h1>Filter</h1>
         <!-- 
           TODO Align these buttons on the right of the header.
@@ -128,39 +129,39 @@
 
       <div data-role="content">
         <h2>Services</h2> 
-        <div class="ui-grid-d">
+        <div class="ui-grid-d" id="services">
           <!-- 
             TODO Make these images look nicer, and size them beforehand
             instead of doing it in the browser.
           -->
-          <p class="ui-block-a">
+          <p class="ui-block-a serviceLogo">
             <img alt="Twitter logo" src="images/twitter-logo8.jpg"
-                 width="50" height="50" />
+                 width="50" height="50" data-name="Twitter" />
           </p>
-          <p class="ui-block-b">
+          <p class="ui-block-b serviceLogo">
             <img alt="Facebook logo" src="images/facebook-logo.png"
-                 width="50" height="50" />
+                 width="50" height="50" data-name="Facebook" />
           </p>
-          <p class="ui-block-c">
+          <p class="ui-block-c serviceLogo">
             <img alt="Imgur logo" src="images/Imgur_Logo_Icon.png"
-                 width="50" height="50" />
+                 width="50" height="50" data-name="Imgur" />
           </p>
-          <p class="ui-block-d">
+          <p class="ui-block-d serviceLogo">
             <img alt="Gmail logo" src="images/gmail-logo.jpg"
-                 width="50" height="50" />
+                 width="50" height="50" data-name="Gmail" />
           </p>
         </div>
 
-        <form action="filter.html" method="post">
+        <form action="filter.html" method="post" id="filterSearch">
           <label for="search" class="ui-hidden-accessible">Search</label>
-          <input type="text" name="search" placeholder="Search" />
+          <input type="search" name="search" placeholder="Search" />
         </form>
 
         <div data-role="collapsible">
           <h3>More Options</h3>
           <form action="filter.html" method="post">
             <legend>Tags</legend>
-			<fieldset id="tagList"></fieldset>
+            <fieldset id="tagList"></fieldset>
             <legend>Other</legend>
             <label>
               <input type="checkbox" name="hyperlink" />Has a Hyperlink

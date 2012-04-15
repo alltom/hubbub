@@ -114,3 +114,18 @@ body {
   background: #ff0003;
   color: white;
 }
+
+/* Filter page styles */
+
+#services {
+  padding-bottom: 30px;
+}
+
+#filterSearch {
+  padding-bottom: 20px;
+}
+
+.selectedService img {
+  /* TODO Change this color to something better, and prettify it */
+  border: 2px solid orange;  
+}
