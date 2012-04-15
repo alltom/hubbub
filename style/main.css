@@ -19,7 +19,9 @@ body {
   display: inline-block;
   width: 25%;
   vertical-align: middle;
-  margin-left: 17px; /* right-align the button */
+
+  /* right-align the button */
+  margin-left: 17.7px; /* any more and it goes to the next line */
 }
 
 @media all and (max-width: 480px) {
