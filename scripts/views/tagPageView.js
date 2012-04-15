@@ -54,12 +54,15 @@ hubbub.TagPageView = Backbone.View.extend({
   addTag: function(){
     var newtagname = $('input#hubbub-new-tag-text').val();
     //console.log("adding new tag: "+newtagname);
-    if(this.model.filter(function(tagitem) {return tagitem.get("tagname") === newtagname;}).length == 0) {
-      var newTagItem = new hubbub.TagItem({tagname: newtagname});
-      this.model.add(newTagItem);
-      this.listView.addTag(newTagItem);
-    } else {
-      alert('Tag name "'+newtagname+'" already exists.');
+    if(newtagname !== "") {
+      if(this.model.filter(function(tagitem) {return tagitem.get("tagname") === newtagname;}).length == 0) {
+        var newTagItem = new hubbub.TagItem({tagname: newtagname});
+        this.model.add(newTagItem);
+        this.listView.addTag(newTagItem);
+        $('input#hubbub-new-tag-text').val("");
+      } else {
+        alert('Tag name "'+newtagname+'" already exists.');
+      }
     }
     return false;
   }
