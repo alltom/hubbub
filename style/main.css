@@ -125,6 +125,10 @@ body {
   padding-bottom: 30px;
 }
 
+#filterSearch {
+  padding-bottom: 20px;
+}
+
 .selectedService img {
   /* TODO Change this color to something better, and prettify it */
   border: 2px solid orange;  
