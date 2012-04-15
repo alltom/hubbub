@@ -177,39 +177,6 @@
         </form>
       </div>
     </script>
-
-    <script id="tagTemplate" type="text/template">
-      <div data-role="header">
-        <h1>Tag</h1>
-      </div>
-
-      <div data-role="content">
-        <form action="tag.html" method="post"> <!-- TODO Route with Backbone -->
-          <fieldset id="newTagFields">
-            <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
-            <input type="text" name="tagName" placeholder="Tag Name" />
-            <input type="button" value="New Tag" data-mini="true" />
-          </fieldset>
-
-          <!-- 
-            jQuery Mobile's checkboxes expand the clickable area to improve
-            usability on touch screens.
-          -->
-          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="important" /><span>Important</span></label>
-          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="fun" />Fun</label>
-          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="codeStuff" />Code Stuff</label>
-          <label><input type="checkbox" class ="hubbub-user-defined-tag" name="sillyPics" />Silly Pics</label>
-        </form>
-      </div>
-
-      <div data-role="footer">
-        <form action="index.html" method="post"> <!-- Route this too -->
-          <a data-role="button" class="hubbub-tag-ok-button" href="#">OK</a>
-          <a data-role="button" href="#">Cancel</a>
-        </form>
-      </div>
-    
-    </script>
   
     <script id="tagPageTemplate" type="text/template">
       <div data-role="header">
