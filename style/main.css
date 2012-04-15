@@ -4,6 +4,14 @@ body {
   max-width: 320px;
 }
 
+h1, h2, h3 {
+  font-family: "Droid Serif", Georgia, "Times New Roman", serif;
+}
+
+span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
+  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+}
+
 /* 
  * Align the "New Tag" text input and button from the Tag page in a single row.
  * jQuery Mobile's grid doesn't properly align them, but this CSS does it.
@@ -13,6 +21,7 @@ body {
   display: inline-block;
   width: 60%;
   vertical-align: middle;
+  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
 }
 
 #newTagFields > .ui-btn {
