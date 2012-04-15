@@ -41,6 +41,9 @@ body {
 }
 .feedItem div.ui-collapsible-content {
   position: relative;
+  max-height: 115px;
+  overflow: hidden;
+  margin-bottom: 10px;
 }
 .item-actions.float {
   display: inline-block;
