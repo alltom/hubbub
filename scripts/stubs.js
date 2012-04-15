@@ -9,8 +9,10 @@ hubbub.stubFeedItems = function() {
       from: "Michael Jordan",
       subject: "Hey Dude",
       body: "<p>You are an even better player of basketball than me.</p>" +
-            "<p>We should play more sometime.</p>",
-      tags: ['important', 'fun']
+            '<p>We ought to play sometime.</p>' +
+            '<p>Here, just call me next time you&#39;re at the space station. 999-DUDE</p>' +
+            '<p>-The Jord</p>',
+      tags: ['Important', 'Fun']
     }),
     new hubbub.FeedItem({
       source: 'Twitter',
@@ -26,6 +28,30 @@ hubbub.stubFeedItems = function() {
       source: 'Twitter',
       username: "leibatt",
       body: "zomg is this thing on?"
+    }),
+    new hubbub.FeedItem({
+      source: 'Gmail',
+      from: "Bill Gates",
+      subject: "Hello",
+      body: '<p>I see you\'re follwing me on twitter. I\'m honored!</p>' +
+            '<p>Look me up if you\'re ever in Bellevue. We\'ll hang out at my pad. It\'s pretty sweet.</p>' +
+            '<p>-Bill.com</p>',
+      tags: ['Fun']
+    }),
+    new hubbub.FeedItem({
+      source: 'Imgur',
+      url: 'http://icanhascheezburger.files.wordpress.com/2008/01/funny-pictures-lolspeak-jaws-shark.jpg',
+    }),
+    new hubbub.FeedItem({
+      source: 'Gmail',
+      from: 'Your Mom',
+      subject: 'Your Mom',
+      body: '<p>I heard she is so fat...</p>' +
+            '<p>Her joke can\'t fit in the preview.</p>' +
+            '<a href="http://www.yomamma.com">www.yomamma.com</a>' +
+            '<p>-Anonymous</p>',
+      source: 'Gmail',
+      tags: ['Fun']
     })
   ]);
 }
