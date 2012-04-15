@@ -59,8 +59,8 @@ body {
   text-shadow: none;
 }
 .feedItem .item-body {
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 13px;
+  line-height: 18px;
   padding: 4px 15px;
 }
 .feedItem img {
