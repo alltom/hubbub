@@ -184,8 +184,13 @@ hubbub.FeedItemView = Backbone.View.extend({
   expand: function() {
     $(this.el).css({ "max-height" : "none" });
     var realHeight = $(this.el).outerHeight();
-    $(this.el).css({ "height" : this.collapseHeight });
-    $(this.el).animate({ height: realHeight + this.expandButton.innerHeight() });
+    
+    if(this.animateCollapse) {
+      $(this.el).css({ "height" : this.collapseHeight });
+      $(this.el).animate({ height: realHeight + this.expandButton.innerHeight() });
+    } else {
+      $(this.el).css({ "height" : realHeight + this.expandButton.innerHeight() });
+    }
     
     this.expandButton.html("Shrink")
     
@@ -193,11 +198,15 @@ hubbub.FeedItemView = Backbone.View.extend({
   },
   
   collapse: function() {
-    $(this.el).animate({ height: this.collapseHeight }, {
-      complete: _.bind(function() {
-        $(this.el).css({ "height" : "auto", "max-height" : this.collapseHeight });
-      }, this)
-    })
+    if(this.animateCollapse) {
+      $(this.el).animate({ height: this.collapseHeight }, {
+        complete: _.bind(function() {
+          $(this.el).css({ "height" : "auto", "max-height" : this.collapseHeight });
+        }, this)
+      })
+    } else {
+      $(this.el).css({ "height" : "auto", "max-height" : this.collapseHeight });
+    }
     
     this.expandButton.html("Expand")
     
