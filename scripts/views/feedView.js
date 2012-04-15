@@ -73,6 +73,7 @@ hubbub.FeedItemView = Backbone.View.extend({
   },
 
   className: 'feedItem',
+  collapseHeight: 115,
 
   /**
    * Additional parameters in options:
@@ -92,6 +93,11 @@ hubbub.FeedItemView = Backbone.View.extend({
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
     $('.hubbub-feeditem-tag-button',this.el)
       .attr('href',"#tag/"+this.collectionRef.indexOf(this.model));
+    
+    // XXX: we're not yet in the DOM, so wait a bit,
+    //      then check the height to see whether we should collapse
+    setTimeout(this.checkShouldCollapse.bind(this), 10);
+    
     return this;
   },
 
@@ -108,5 +114,63 @@ hubbub.FeedItemView = Backbone.View.extend({
     // because jQuery Mobile hides the <input> element and actually displays
     // nested <span>s. Change the span for the button text instead.
     button.parent().find('.ui-btn-text').text('Saved!');
-  }
+  },
+  
+  checkShouldCollapse: function() {
+    var shouldCollapse = $(this.el).outerHeight() > this.collapseHeight;
+    
+    // HACK: images may not have loaded yet; assume imgur will need to collapse
+    if(this.model.get("source") == "Imgur") {
+      shouldCollapse = true;
+    }
+    
+    if(shouldCollapse) {
+      this.makeCollapsible();
+    }
+  },
+  
+  makeCollapsible: function() {
+    $(this.el).css("max-height", this.collapseHeight)
+    this.collapsed = true;
+    
+    this.expandButton = $("<button>Expand</button>")
+      .css({
+        position: "absolute",
+        height: 20,
+        bottom: 0,
+        width: "100%",
+      })
+      .appendTo($(this.el));
+    
+    this.expandButton.click(function() {
+      if(this.collapsed) {
+        this.expand();
+      } else {
+        this.collapse();
+      }
+    }.bind(this))
+  },
+  
+  expand: function() {
+    $(this.el).css({ "max-height" : "none" });
+    var realHeight = $(this.el).outerHeight();
+    $(this.el).css({ "height" : this.collapseHeight });
+    $(this.el).animate({ height: realHeight + this.expandButton.innerHeight() });
+    
+    this.expandButton.html("Shrink")
+    
+    this.collapsed = false;
+  },
+  
+  collapse: function() {
+    $(this.el).animate({ height: this.collapseHeight }, {
+      complete: function() {
+        $(this.el).css({ "height" : "auto", "max-height" : this.collapseHeight });
+      }.bind(this)
+    })
+    
+    this.expandButton.html("Expand")
+    
+    this.collapsed = true;
+  },
 });

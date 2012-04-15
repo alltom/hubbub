@@ -48,6 +48,8 @@ body {
   
   /* break out of ui-content's 15px padding */
   margin: 0 -15px;
+  
+  overflow: hidden;
 }
 .feedItem span.source {
   float: left;
@@ -57,15 +59,9 @@ body {
   text-shadow: none;
 }
 .feedItem .item-body {
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 13px;
+  line-height: 18px;
   padding: 4px 15px;
-}
-.feedItem div.ui-collapsible-content {
-  position: relative;
-  max-height: 115px;
-  overflow: hidden;
-  margin-bottom: 10px;
 }
 .feedItem img {
   max-width: 100%;
