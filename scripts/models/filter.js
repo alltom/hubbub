@@ -1,0 +1,58 @@
+/**
+ * Abstract class formalizing the interface all filters must implement.
+ */
+hubbub.Filter = Backbone.Model.extend({
+  initialize: function() {
+    throw new Error(
+        'hubbub.Filter is abstract, construct one of its subclasses instead.');
+  },
+
+  // fiters should have a name field (if it was possible to enforce that here)
+
+  /**
+   * Given a FeedItem, returns true if that item passes the filter, false otherwise.
+   */
+  accepts: function (unused_item) {
+    throw new Error('Abstract!');
+  },
+
+  /**
+   * Given a FeedItemCollection, returns a FeedItemCollection with
+   * only the accepted items.
+   */
+   apply: function(items){
+     return items.filter(function(item) {
+       return this.accepts(item);
+     }, this);
+   },
+});
+
+/**
+ * Filter that accepts FeedItems only from a specific source.
+ * (Imgur, Twitter, Gmail, ...)
+ */
+hubbub.SourceFilter = hubbub.Filter.extend({
+  // fields: name, source
+
+  accepts: function(item) {
+    return item.source === this.get('source');
+  }
+});
+
+/**
+ * Filter containing a FilterCollection, set in the constructor.
+ * Accepts only items that all of the internal filters accept.
+ */
+hubbub.AndFilter = hubbub.Filter.extend({
+  // fields: name, filters
+
+  accepts: function(item) {
+    return filters.all(function(filter) {
+      return filter.accepts(item);
+    });
+  }
+});
+
+hubbub.FilterCollection = Backbone.Collection.extend({
+  model: hubbub.Filter 
+});
