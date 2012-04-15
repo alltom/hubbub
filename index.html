@@ -7,27 +7,18 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
-    <link rel="stylesheet" href="style/themes/testtheme.css" />
+    <link rel="stylesheet" href="style/themes/testtheme.min.css" />
+    <!--
+     minified stylesheet doesn't work (even though it's equivalent,
+     I checked on the w3c validator, maybe b/c we add inline styles with javascript??
+    -->
     <link rel="stylesheet" href="style/main.css" />
 
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="scripts/jqm-config.js"></script>
     <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
-    <script src="lib/underscore-min.js"></script>
-    <script src="lib/backbone-min.js"></script>
 
-    <script src="scripts/hubbub.js"></script>
-    <script src="scripts/models/feedItem.js"></script>
-    <script src="scripts/models/tagItem.js"></script>
-    <script src="scripts/models/service.js"></script>
-    <script src="scripts/models/filter.js"></script>
-    <script src="scripts/stubs.js"></script>
-    <script src="scripts/views/feedView.js"></script>
-    <script src="scripts/views/tagView.js"></script>
-    <script src="scripts/views/filterView.js"></script>
-    <script src="scripts/views/tagPageView.js"></script>
-    <script src="scripts/router.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="hubbub_compiled.js"></script>
   </head> 
   <body> 
     <!--
@@ -54,8 +45,8 @@
     <script id="genericFeedItemTemplate" type="text/template">
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-        <input type="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Share" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <div class="item-body">
         <div class="feedTagSet"></div>
@@ -72,8 +63,8 @@
     <script id="gmailItemTemplate" type="text/template">
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-        <input type="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Share" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source gmail"><%= source %></span>
       <div class="item-body">
@@ -87,21 +78,21 @@
     <script id="twitterItemTemplate" type="text/template">
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-        <input type="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Share" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source twitter"><%= source %></span>
       <div class="item-body">
         <div class="feedTagSet"></div>
-        <div><b>@<%= username %></b>: <%= body %></div>
+        <div><strong>@<%= username %></strong>: <%= body %></div>
       </div>
     </script>
 
     <script id="imgurItemTemplate" type="text/template">
       <div data-role="controlgroup" class="item-actions over">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-        <input type="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Share" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source imgur"><%= source %></span>
       <div class="item-body">
@@ -113,13 +104,13 @@
     <script id="facebookItemTemplate" type="text/template">
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-        <input type="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Share" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source facebook"><%= source %></span>
       <div class="item-body">
         <div class="feedTagSet"></div>
-        <div><b><%= username %></b>: <%= body %></div>
+        <div><strong><%= username %></strong>: <%= body %></div>
       </div>
     </script>
 
