@@ -97,31 +97,37 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 
 /* styles specific to the source of a feed item */
 
+/*
+ * Color key:
+ * Twitter - (blue) #80e5ff
+ * Gmail - (red) #d56d50
+ * Imgur - (yellow) #ffe373
+ */
+
 .feedItem.twitter {
-  border-top-color: #00cdff;
+  border-top-color: #80e5ff;
 }
 .feedItem.twitter span.source {
-  background: #00cdff;
+  background: #80e5ff;
   color: black;
 }
 
 .feedItem.imgur {
-  border-top-color: #ffca00;
+  border-top-color: #ffe373;
 }
 .feedItem.imgur img {
   margin-top: 4px;
 }
 .feedItem.imgur span.source {
-  background: #ffca00;
+  background: #ffe373;
   color: black;
 }
 
 .feedItem.gmail {
-  border-top-color: #ff0003;
+  border-top-color: #d56d50;
 }
 .feedItem.gmail span.source {
-  background: #ff0003;
-  color: white;
+  background: #d56d50;
 }
 
 /* Filter page styles */
