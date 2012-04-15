@@ -54,7 +54,7 @@ hubbub.stubFeedItems = function() {
       tags: ['Fun']
     })
   ]);
-}
+};
 
 hubbub.stubTagItems = function() {
   return new hubbub.TagItemCollection([
@@ -71,4 +71,21 @@ hubbub.stubTagItems = function() {
       tagname: 'sillyPics'
     })
   ]);
-}
+};
+
+hubbub.stubServices = function() {
+  return new hubbub.ServiceCollection([
+    new hubbub.Service({
+      name: 'Twitter'
+    }),
+    new hubbub.Service({
+      name: 'Facebook'
+    }),
+    new hubbub.Service({
+      name: 'Imgur'
+    }),
+    new hubbub.Service({
+      name: 'Gmail'
+    })
+  ]);
+};
