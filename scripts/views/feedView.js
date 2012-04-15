@@ -84,6 +84,7 @@ hubbub.FeedItemView = Backbone.View.extend({
   this particular feed item in the feed list
   */
   render: function() {
+    $(this.el).addClass(this.model.get("source").toLowerCase())
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
     $('.hubbub-feeditem-tag-button',this.el)
       .attr('href',"#tag/"+this.collectionRef.indexOf(this.model));
