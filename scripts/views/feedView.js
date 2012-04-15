@@ -1,4 +1,18 @@
 /**
+ * Helper method to change the text of a button.
+ * newText - the text to change it to.
+ * button - the <input> element written in HTML to represent the button.
+ */
+hubbub.changeButtonText = function(newText, button) {
+  // We can't simply write
+  // button.attr('value', newText);
+  // because jQuery Mobile hides the <input> element and actually displays
+  // nested <span>s. Change the span for the button text instead.
+  // http://stackoverflow.com/questions/4009524/change-button-text-jquery-mobile 
+  button.parent().find('.ui-btn-text').text(newText);
+};
+
+/**
  * View class for the whole feed page. Uses the template feedPageTemplate.
  */
 hubbub.FeedPageView = Backbone.View.extend({
@@ -105,16 +119,14 @@ hubbub.FeedItemView = Backbone.View.extend({
     var button = $(event.currentTarget);
     if(button.attr('value') === 'Save') {
       this.onSaveButtonClick(button); 
+    } else if (button.attr('value') === 'Share') {
+      this.onShareButtonClick(button);
     }
   },
 
-  onSaveButtonClick: function(button) {
-    // We can't simply write
-    // button.attr('value', 'Saved!');
-    // because jQuery Mobile hides the <input> element and actually displays
-    // nested <span>s. Change the span for the button text instead.
-    button.parent().find('.ui-btn-text').text('Saved!');
-  },
+  onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
+
+  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
   
   checkShouldCollapse: function() {
     var shouldCollapse = $(this.el).outerHeight() > this.collapseHeight;
