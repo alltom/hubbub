@@ -52,80 +52,64 @@
     <script id="genericFeedItemTemplate" type="text/template">
       <div data-role="collapsible" data-collapsed="false">
         <h1><%= source %></h1>
-          <div class="ui-grid-a"> <!-- Two-column grid -->
-            <div class="ui-block-a"> <!-- First column -->
-              <p><%= body %></p>
-              <!-- 
-                TODO If body is large enough, collapse it. We will need code to
-                detect size and compare it with a threshold. See
-                http://jquerymobile.com/demos/1.1.0-rc.2/docs/content/content-collapsible.html
-                which explains how to write template code that does this.
-              -->
-            </div>
-            <div class="ui-block-b"> <!-- Second column -->
-              <div data-role="controlgroup"> <!-- groups the buttons together -->
-                <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-                <input type="button" value="Share" />
-                <input type="button" value="Save" />
-              </div>
-            </div>
+        <div class="contents">
+          <div data-role="controlgroup" class="item-actions float">
+            <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
+            <input type="button" value="Share" />
+            <input type="button" value="Save" />
           </div>
+          <p><%= body %></p>
+          <!-- 
+            TODO If body is large enough, collapse it. We will need code to
+            detect size and compare it with a threshold. See
+            http://jquerymobile.com/demos/1.1.0-rc.2/docs/content/content-collapsible.html
+            which explains how to write template code that does this.
+          -->
+        </div>
       </div>
     </script>
 
     <script id="gmailItemTemplate" type="text/template">
       <div data-role="collapsible" data-collapsed="false">
         <h1><%= source %></h1>
-          <div class="ui-grid-a"> <!-- Two-column grid -->
-            <div class="ui-block-a"> <!-- First column -->
-              <p>From: <%= from %></p>
-              <p>Subject: <%= subject %></p>
-              <%= body %>
-            </div>
-            <div class="ui-block-b"> <!-- Second column -->
-              <div data-role="controlgroup"> <!-- groups the buttons together -->
-                <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-                <input type="button" value="Share" />
-                <input type="button" value="Save" />
-              </div>
-            </div>
-          </div>
+        <div data-role="controlgroup" class="item-actions float">
+          <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
+          <input type="button" value="Share" />
+          <input type="button" value="Save" />
+        </div>
+        <div class="item-body">
+          <p>From: <%= from %></p>
+          <p>Subject: <%= subject %></p>
+          <%= body %>
+        </div>
       </div>
     </script>
 
     <script id="twitterItemTemplate" type="text/template">
       <div data-role="collapsible" data-collapsed="false">
         <h1><%= source %></h1>
-          <div class="ui-grid-a"> <!-- Two-column grid -->
-            <div class="ui-block-a"> <!-- First column -->
-              <p>@<%= username %>: <%= body %></p>
-            </div>
-            <div class="ui-block-b"> <!-- Second column -->
-              <div data-role="controlgroup"> <!-- groups the buttons together -->
-                <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-                <input type="button" value="Share" />
-                <input type="button" value="Save" />
-              </div>
-            </div>
-          </div>
+        <div data-role="controlgroup" class="item-actions float">
+          <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
+          <input type="button" value="Share" />
+          <input type="button" value="Save" />
+        </div>
+        <div class="item-body">
+          <p>@<%= username %>: <%= body %></p>
+        </div>
       </div>
     </script>
 
     <script id="imgurItemTemplate" type="text/template">
       <div data-role="collapsible" data-collapsed="false">
         <h1><%= source %></h1>
-          <div class="ui-grid-a"> <!-- Two-column grid -->
-            <div class="ui-block-a"> <!-- First column -->
-              <p><img src="<%= url %>" /></p>
-            </div>
-            <div class="ui-block-b"> <!-- Second column -->
-              <div data-role="controlgroup"> <!-- groups the buttons together -->
-                <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-                <input type="button" value="Share" />
-                <input type="button" value="Save" />
-              </div>
-            </div>
-          </div>
+        <div data-role="controlgroup" class="item-actions over">
+          <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
+          <input type="button" value="Share" />
+          <input type="button" value="Save" />
+        </div>
+        <div class="item-body">
+          <p><img src="<%= url %>" /></p>
+        </div>
       </div>
     </script>
 
