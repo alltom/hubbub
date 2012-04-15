@@ -1,4 +1,6 @@
 java -jar compiler.jar \
+  --js lib/underscore-min.js \
+  --js lib/backbone-min.js \
   --js scripts/hubbub.js \
   --js scripts/models/feedItem.js \
   --js scripts/models/tagItem.js \
