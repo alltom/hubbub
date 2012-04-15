@@ -76,7 +76,7 @@ hubbub.FeedItemView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.template = _.template(options.feedItemTemplate.html());
-	this.collectionRef = options.collectionRef; //reference to the feed list
+    this.collectionRef = options.collectionRef; //reference to the feed list
   },
 
   /*
