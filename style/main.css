@@ -94,6 +94,18 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   right: 0;
 }
 
+/* styles for tag view items in a feed */
+
+.feedTagSet .feed-tag-set-item {
+  float: left;
+  background: gray;
+  color: black;
+  margin-right: 10px;
+}
+
+.feedTagSet .feed-tag-set-item.last {
+  float: none;
+}
 
 /* styles specific to the source of a feed item */
 

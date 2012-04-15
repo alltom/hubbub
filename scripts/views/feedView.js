@@ -108,13 +108,29 @@ hubbub.FeedItemView = Backbone.View.extend({
     $('.hubbub-feeditem-tag-button',this.el)
       .attr('href',"#tag/"+this.collectionRef.indexOf(this.model));
     
+    this.addTagView();
+    
     // XXX: we're not yet in the DOM, so wait a bit,
     //      then check the height to see whether we should collapse
     setTimeout(this.checkShouldCollapse.bind(this), 10);
-    
     return this;
   },
-
+  
+  addTagView: function() {
+    if(this.model.has("tags")) {
+      var tags = this.model.get("tags");
+      for(var i = 0; i < tags.length; i++) {
+        //console.log("tag: "+tags[i]);
+        var newtagbutton = $('<span class="feed-tag-set-item"></span>')
+        .appendTo($('.feedTagSet',this.el));
+        //$('.feed-tag-set-item',this.el).button();
+        newtagbutton.html(tags[i]);
+        if(i === tags.length -1) {
+          newtagbutton.addClass('last');
+        }
+      }
+    }
+  },
   onButtonClick: function(event) {
     var button = $(event.currentTarget);
     if(button.attr('value') === 'Save') {
