@@ -5,7 +5,6 @@ hubbub.TagPageView = Backbone.View.extend({
 
   events: {
      'click #hubbub-tag-ok-button': 'updateTags',
-	 //'submit #hubbub-tag-form': 'printInfo'
 	 'click #hubbub-new-tag-submit': 'addTag'
    },
   /**
@@ -34,7 +33,6 @@ hubbub.TagPageView = Backbone.View.extend({
 	  feedItem: this.feedItem
     });
     this.listView.render();
-	this.listViewRendered = true;
     return this;
   },
 
@@ -46,9 +44,7 @@ hubbub.TagPageView = Backbone.View.extend({
     var tags = [];
 	$('.hubbub-user-defined-tag',this.el)
 	  .each(function() {
-	    //console.log("got here in updateTags");
 		if($(this).attr("checked")) {
-		  //console.log("found a checked tag in updateTags");
 	      tags.push($(this).attr("name"));
 		}
 	  });
@@ -60,13 +56,7 @@ hubbub.TagPageView = Backbone.View.extend({
 	console.log("adding new tag: "+newtagname);
 	var newTagItem = new hubbub.TagItem({tagname: newtagname});
 	this.model.add(newTagItem);
-	if(this.listViewRendered) {
-	  var newTagItemView = new hubbub.TagItemView({
-        model: newTagItem,
-        tagItemTemplate: this.tagItemTemplate
-      })
-	  $(this.listView.el).append(newTagItemView.render().el);
-	}
+	this.listView.addTag(newTagItem);
 	return false;
   }
 });
@@ -82,7 +72,6 @@ hubbub.TagListView = Backbone.View.extend({
   initialize: function(options) {
     this.tagItemTemplate = options.tagItemTemplate;
     this.model.bind('reset', this.render, this);
-	//this.model.bind('add',this.render,this);
 	this.feedItem = options.feedItem;
   },
 
@@ -100,17 +89,27 @@ hubbub.TagListView = Backbone.View.extend({
       var item = new hubbub.TagItemView({
         model: tagItem,
         tagItemTemplate: this.tagItemTemplate
-      }).render().el
+      }).render().el;
 	  for(var i = 0; i < tags.length; i++){
 		$('.hubbub-user-defined-tag',item)
 		.filter(function(index){
 		  return $(this).attr("name") === tags[i];
 		}).prop("checked",true);
 	  }
-      $(this.el).append(item)
+      $(this.el).append(item);
     }, this);
     $('#tagList').listview('refresh');
     return this;
+  },
+  
+  addTag: function(newTagItem){
+    var newTagItemView = new hubbub.TagItemView({
+        model: newTagItem,
+        tagItemTemplate: this.tagItemTemplate
+	}).render().el;
+	console.log("new tag: "+$(newTagItemView).html());
+	$(this.el).append(newTagItemView).trigger('create');
+	console.log("taglist el: "+$(this.el).html());
   }
 });
 
@@ -119,7 +118,7 @@ hubbub.TagListView = Backbone.View.extend({
  */
 hubbub.TagItemView = Backbone.View.extend({
 
-  tagName: 'label',
+  tagName: 'div',
   className: 'tagItem',
 
   /**
