@@ -2,11 +2,6 @@
  * Abstract class formalizing the interface all filters must implement.
  */
 hubbub.Filter = Backbone.Model.extend({
-  initialize: function() {
-    throw new Error(
-        'hubbub.Filter is abstract, construct one of its subclasses instead.');
-  },
-
   // fiters should have a name field (if it was possible to enforce that here)
 
   /**
@@ -21,9 +16,9 @@ hubbub.Filter = Backbone.Model.extend({
    * only the accepted items.
    */
    apply: function(items){
-     return items.filter(function(item) {
+     return new hubbub.FeedItemCollection(items.filter(function(item) {
        return this.accepts(item);
-     }, this);
+     }, this));
    },
 });
 
@@ -35,7 +30,7 @@ hubbub.SourceFilter = hubbub.Filter.extend({
   // fields: name, source
 
   accepts: function(item) {
-    return item.source === this.get('source');
+    return item.get('source') === this.get('source');
   }
 });
 
@@ -47,7 +42,7 @@ hubbub.AndFilter = hubbub.Filter.extend({
   // fields: name, filters
 
   accepts: function(item) {
-    return filters.all(function(filter) {
+    return this.get('filters').all(function(filter) {
       return filter.accepts(item);
     });
   }

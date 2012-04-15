@@ -7,13 +7,43 @@ describe('SourceFilter', function() {
   	filter = new hubbub.SourceFilter({
       name: 'Gmail',
       source: 'Gmail'
-  	})
+  	});
   });
 
   it('should accept only items from Gmail', function() {
   	var result = filter.apply(items);
-  	items.each(function(item) {
+  	result.each(function(item) {
   		expect(item.get('source')).toBe('Gmail');
   	});
+  });
+});
+
+describe('AndFilter', function() {
+  var items;
+  var filter;
+
+  beforeEach(function() {
+    items = hubbub.stubFeedItems();   
+    var gmailFilter = new hubbub.SourceFilter({
+      name: 'Gmail',
+      source: 'Gmail'
+    });
+    var imgurFilter = new hubbub.SourceFilter({
+      name: 'Imgur',
+      source: 'Imgur'
+    });
+    filter = new hubbub.AndFilter({
+      name: 'GmailAndImgur',
+      filters: new hubbub.FilterCollection([
+        gmailFilter,
+        imgurFilter
+      ])
+    });
+  });
+
+  it('should reject all items since none are from both Gmail and Imgur',
+      function() {
+    var result = filter.apply(items);
+    expect(result.length).toBe(0);
   });
 });
