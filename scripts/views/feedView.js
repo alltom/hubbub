@@ -137,7 +137,7 @@ hubbub.FeedItemView = Backbone.View.extend({
     $(this.el).css({ "max-height" : "none" });
     var realHeight = $(this.el).outerHeight();
     $(this.el).css({ "height" : this.collapseHeight });
-    $(this.el).animate({ height: realHeight });
+    $(this.el).animate({ height: realHeight + this.expandButton.innerHeight() });
     
     this.expandButton.html("Shrink")
     
