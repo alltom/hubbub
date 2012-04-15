@@ -36,7 +36,6 @@ hubbub.Router = Backbone.Router.extend({
     this.twitterItemTemplate = $('#twitterItemTemplate');
     this.imgurItemTemplate = $('#imgurItemTemplate');
     this.filterTemplate = $('#filterTemplate');
-    this.tagTemplate = $('#tagTemplate');
     this.tagPageTemplate = $('#tagPageTemplate');
     this.tagItemTemplate = $('#tagItemTemplate');
   },
@@ -69,16 +68,6 @@ hubbub.Router = Backbone.Router.extend({
     }));
   },
 
-  /**
-   * Show the tag page (maybe make it a dialog)
-   */
-  tag: function(feedItemIndex) {
-    this.changePage(new hubbub.TagView({
-  	  model: this.feedItems.at(feedItemIndex),
-        tagTemplate: this.tagTemplate
-      }));
-  },
-  
   listTagItems: function(feedItemIndex) {
     this.changePage(new hubbub.TagPageView({
       model: this.tagItems,
