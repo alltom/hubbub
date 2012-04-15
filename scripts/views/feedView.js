@@ -145,15 +145,16 @@ hubbub.FeedItemView = Backbone.View.extend({
     $(this.el).css("max-height", this.collapseHeight)
     this.collapsed = true;
     
-    this.expandButton = $('<a class="feeditem-expand-button">Expand</a>')
+    this.expandButton = $('<a class="feeditem-expand-button"></a>')
       .css({
         position: "absolute",
         height: 20,
         bottom: 0,
-        width: "100%",
+        width: "100",
       })
       .appendTo($(this.el));
       $('.feeditem-expand-button',this.el).button();
+	  this.expandButton.html("Expand");
     
     this.expandButton.click(function() {
       if(this.collapsed) {
