@@ -52,10 +52,11 @@ hubbub.FeedListView = Backbone.View.extend({
     this.model.each(function(feedItem) {
       var item = new hubbub.FeedItemView({
         model: feedItem,
-        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] || this.feedItemTemplates["generic"],
+        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] ||
+            this.feedItemTemplates["generic"],
         collectionRef: this.model
-      }).render().el 
-      $(this.el).append(item)
+      }).render().el;
+      $(this.el).append(item);
     }, this);
     $('#feedList').listview('refresh');
     return this;
