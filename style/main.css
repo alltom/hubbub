@@ -24,6 +24,10 @@ body {
   margin-left: 17.7px; /* any more and it goes to the next line */
 }
 
+#newTagFields {
+  padding-bottom: 20px;
+}
+
 @media all and (max-width: 480px) {
   #newTagFields .ui-input-text {
     width: 100%;
