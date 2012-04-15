@@ -45,7 +45,7 @@ hubbub.FeedPageView = Backbone.View.extend({
     });
     this.listView.render();
     return this;
-  }
+  },
 
   onButtonClick: function(event) {
     var button = $(event.currentTarget);
@@ -58,7 +58,7 @@ hubbub.FeedPageView = Backbone.View.extend({
 
   onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
 
-  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
+  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!')
 });
 
 /**
