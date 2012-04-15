@@ -35,6 +35,17 @@ hubbub.SourceFilter = hubbub.Filter.extend({
 });
 
 /**
+ * Filter accepting items containing given text in the body.
+ */
+hubbub.ContainsTextFilter = hubbub.Filter.extend({
+  // fields: name, text
+  
+  accepts: function(item) {
+    return item.get('body').indexOf(this.get('text'))  !== -1; 
+  }
+});
+
+/**
  * Filter containing a FilterCollection, set in the constructor.
  * Accepts only items that all of the internal filters accept.
  */
