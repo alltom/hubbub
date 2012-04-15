@@ -87,7 +87,7 @@ hubbub.FeedItemView = Backbone.View.extend({
   },
 
   className: 'feedItem',
-  collapseHeight: 115,
+  collapseHeight: 125,
 
   /**
    * Additional parameters in options:
