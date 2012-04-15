@@ -101,13 +101,13 @@ body {
 }
 
 .feedItem.imgur {
-  border-top-color: #c2ff00;
+  border-top-color: #ffca00;
 }
 .feedItem.imgur img {
   margin-top: 4px;
 }
 .feedItem.imgur span.source {
-  background: #c2ff00;
+  background: #ffca00;
   color: black;
 }
 
