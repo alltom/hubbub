@@ -18,7 +18,6 @@ hubbub.Router = Backbone.Router.extend({
     'feed-items': 'listFeedItems',
     'filter': 'filter',
     'tag/:feedItemIndex': 'listTagItems'
-	//'tag/:feedItemIndex': 'tag'
   },
 
   /**
