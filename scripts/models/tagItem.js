@@ -11,7 +11,7 @@
  */
 hubbub.TagItem = Backbone.Model.extend({
 
-  urlRoot: '../tag-items',
+  urlRoot: '../tag-items'
 
 });
 

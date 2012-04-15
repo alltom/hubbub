@@ -31,7 +31,7 @@ hubbub.stubFeedItems = function() {
     }),
     new hubbub.FeedItem({
       source: 'Imgur',
-      url: 'http://theawesomer.com/photos/2011/04/041911_nyan_pop_tart_cat_t.jpg',
+      url: 'http://theawesomer.com/photos/2011/04/041911_nyan_pop_tart_cat_t.jpg'
     }),
     new hubbub.FeedItem({
       source: 'Twitter',
@@ -49,7 +49,7 @@ hubbub.stubFeedItems = function() {
     }),
     new hubbub.FeedItem({
       source: 'Imgur',
-      url: 'http://icanhascheezburger.files.wordpress.com/2008/01/funny-pictures-lolspeak-jaws-shark.jpg',
+      url: 'http://icanhascheezburger.files.wordpress.com/2008/01/funny-pictures-lolspeak-jaws-shark.jpg'
     }),
     new hubbub.FeedItem({
       source: 'Facebook' ,

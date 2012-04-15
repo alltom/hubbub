@@ -166,7 +166,7 @@ hubbub.FeedItemView = Backbone.View.extend({
         position: "absolute",
         height: 20,
         bottom: 0,
-        width: "100%",
+        width: "100%"
       })
       .appendTo($(this.el));
       $('.feeditem-expand-button',this.el).button();
@@ -202,5 +202,5 @@ hubbub.FeedItemView = Backbone.View.extend({
     this.expandButton.html("Expand")
     
     this.collapsed = true;
-  },
+  }
 });
