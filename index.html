@@ -71,6 +71,26 @@
       </div>
     </script>
 
+    <script id="gmailItemTemplate" type="text/template">
+      <div data-role="collapsible">
+        <h1><%= source %></h1>
+          <div class="ui-grid-a"> <!-- Two-column grid -->
+            <div class="ui-block-a"> <!-- First column -->
+              <p>From: <%= from %></p>
+              <p>Subject: <%= subject %></p>
+              <%= body %>
+            </div>
+            <div class="ui-block-b"> <!-- Second column -->
+              <div data-role="controlgroup"> <!-- groups the buttons together -->
+                <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
+                <input type="button" value="Share" />
+                <input type="button" value="Save" />
+              </div>
+            </div>
+          </div>
+      </div>
+    </script>
+
     <script id="filterTemplate" type="text/template">
       <!--
         You don't need to provide a top-level div with data-role="page"

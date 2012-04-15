@@ -33,6 +33,7 @@ hubbub.Router = Backbone.Router.extend({
     // Eagerly load all templates, since changePage gets rid of them
     this.feedPageTemplate = $('#feedPageTemplate');
     this.feedItemTemplate = $('#feedItemTemplate');
+    this.gmailItemTemplate = $('#gmailItemTemplate');
     this.filterTemplate = $('#filterTemplate');
     this.tagTemplate = $('#tagTemplate');
 	this.tagPageTemplate = $('#tagPageTemplate');
@@ -46,7 +47,10 @@ hubbub.Router = Backbone.Router.extend({
     this.changePage(new hubbub.FeedPageView({
       model: this.feedItems,
       pageTemplate: this.feedPageTemplate,
-      feedItemTemplate: this.feedItemTemplate
+      feedItemTemplates: {
+        Gmail: this.gmailItemTemplate,
+        generic: this.feedItemTemplate
+      }
     }));
   },
 

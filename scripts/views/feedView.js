@@ -7,10 +7,11 @@ hubbub.FeedPageView = Backbone.View.extend({
    * dictionary.
    * This view expects two additional parameters:
    * pageTemplate - a template for the feed page
-   * feedItemTemplate - a template for a single feed item.
+   * feedItemTemplates - an object whose keys are item sources (Gmail, Twitter,
+   *                     etc) and values are templates for individual items
    */
   initialize: function(options) {
-    this.feedItemTemplate = options.feedItemTemplate;
+    this.feedItemTemplates = options.feedItemTemplates;
     this.template = _.template(options.pageTemplate.html());
   },
 
@@ -22,7 +23,7 @@ hubbub.FeedPageView = Backbone.View.extend({
     this.listView = new hubbub.FeedListView({
       el: $('#feedList', this.el),
       model: this.model,
-      feedItemTemplate: this.feedItemTemplate
+      feedItemTemplates: this.feedItemTemplates
     });
     this.listView.render();
     return this;
@@ -35,10 +36,10 @@ hubbub.FeedPageView = Backbone.View.extend({
 hubbub.FeedListView = Backbone.View.extend({
   /**
    * Additional parameters in options:
-   * feedItemTemplate - a template for feed items
+   * feedItemTemplates - the hash table of item templates (see FeedPageView)
    */
   initialize: function(options) {
-    this.feedItemTemplate = options.feedItemTemplate;
+    this.feedItemTemplates = options.feedItemTemplates;
     this.model.bind('reset', this.render, this);
   },
 
@@ -51,8 +52,8 @@ hubbub.FeedListView = Backbone.View.extend({
     this.model.each(function(feedItem) {
       var item = new hubbub.FeedItemView({
         model: feedItem,
-        feedItemTemplate: this.feedItemTemplate,
-		collectionRef: this.model
+        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] || this.feedItemTemplates["generic"],
+        collectionRef: this.model
       }).render().el 
       $(this.el).append(item)
     }, this);
