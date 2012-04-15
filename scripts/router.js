@@ -18,7 +18,6 @@ hubbub.Router = Backbone.Router.extend({
     'feed-items': 'listFeedItems',
     'filter': 'filter',
     'tag/:feedItemIndex': 'listTagItems'
-	//'tag/:feedItemIndex': 'tag'
   },
 
   /**
@@ -74,9 +73,9 @@ hubbub.Router = Backbone.Router.extend({
    */
   tag: function(feedItemIndex) {
     this.changePage(new hubbub.TagView({
-	  model: this.feedItems.at(feedItemIndex),
-      tagTemplate: this.tagTemplate
-    }));
+  	  model: this.feedItems.at(feedItemIndex),
+        tagTemplate: this.tagTemplate
+      }));
   },
   
   listTagItems: function(feedItemIndex) {
@@ -84,8 +83,8 @@ hubbub.Router = Backbone.Router.extend({
       model: this.tagItems,
       pageTemplate: this.tagPageTemplate,
       tagItemTemplate: this.tagItemTemplate,
-	  feedItem: this.feedItems.at(feedItemIndex),
-	  feedItemIndex: feedItemIndex
+  	  feedItem: this.feedItems.at(feedItemIndex),
+  	  feedItemIndex: feedItemIndex
     }));
   },
 
