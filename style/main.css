@@ -1,3 +1,9 @@
+/* for during desktop development only */
+body {
+  position: relative;
+  max-width: 320px;
+}
+
 /* 
  * Align the New Tag text input and button in a single row.
  * jQuery Mobile's grid doesn't properly align them, but this CSS does it.
