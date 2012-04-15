@@ -25,7 +25,7 @@ hubbub.TagPageView = Backbone.View.extend({
    * Renders a header div, and a content div which is handled by FeedListView.
    */
   render: function(eventName) {
-    $(this.el).html(this.template(this.model.toJSON()));
+    $(this.el).html(this.template());
     this.listView = new hubbub.TagListView({
       el: $('#tagList', this.el),
       model: this.model,
@@ -62,24 +62,40 @@ hubbub.TagPageView = Backbone.View.extend({
 });
 
 /**
- * View class for a list of feed items.
+ * View class for a list of tag items.
  */
 hubbub.TagListView = Backbone.View.extend({
   /**
    * Additional parameters in options:
-   * feedItemTemplate - a template for feed items
+   * tagItemTemplate - a template for tag items
    */
   initialize: function(options) {
     this.tagItemTemplate = options.tagItemTemplate;
     this.model.bind('reset', this.render, this);
 	this.feedItem = options.feedItem;
   },
+  
+  renderNoFeedItem: function() {
+    $(this.el).empty();
+    this.model.each(function(tagItem) {
+      var item = new hubbub.TagItemView({
+        model: tagItem,
+        tagItemTemplate: this.tagItemTemplate
+      }).render().el;
+      $(this.el).append(item);
+    }, this);
+    $('#tagList').listview('refresh');
+    return this;
+  },
 
   /*
-   * Creates a FeedItemView for each item in the model, and has it
+   * Creates a tagItemView for each item in the model, and has it
    * render that item.
    */
   render: function(eventName) {
+    if(!this.feedItem) {
+	  return this.renderNoFeedItem();
+	}
     var tags = [];
 	if(this.feedItem.has("tags")){
 	  tags= this.feedItem.get("tags");
@@ -107,14 +123,12 @@ hubbub.TagListView = Backbone.View.extend({
         model: newTagItem,
         tagItemTemplate: this.tagItemTemplate
 	}).render().el;
-	console.log("new tag: "+$(newTagItemView).html());
 	$(this.el).append(newTagItemView).trigger('create');
-	console.log("taglist el: "+$(this.el).html());
   }
 });
 
 /**
- * View class for a single feed item.
+ * View class for a single tag item.
  */
 hubbub.TagItemView = Backbone.View.extend({
 
@@ -123,16 +137,12 @@ hubbub.TagItemView = Backbone.View.extend({
 
   /**
    * Additional parameters in options:
-   * feedItemTemplate - the template to use.
+   * tagItemTemplate - the template to use.
    */
   initialize: function(options) {
     this.template = _.template(options.tagItemTemplate.html());
   },
-
-  /*
-  this render function updates the tag button's link to pass the index for
-  this particular feed item in the feed list
-  */
+  
   render: function() {
     $(this.el).html(this.template(this.model.toJSON()));
 	$('.hubbub-user-defined-tag',this.el).attr('name',this.model.get("tagname"));
