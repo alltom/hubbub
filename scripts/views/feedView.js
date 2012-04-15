@@ -16,6 +16,10 @@ hubbub.changeButtonText = function(newText, button) {
  * View class for the whole feed page. Uses the template feedPageTemplate.
  */
 hubbub.FeedPageView = Backbone.View.extend({
+  events: {
+    'vclick input': 'onButtonClick'
+  },
+
   /**
    * Views take constructor parameters as named arguments inside the options
    * dictionary.
@@ -42,6 +46,19 @@ hubbub.FeedPageView = Backbone.View.extend({
     this.listView.render();
     return this;
   }
+
+  onButtonClick: function(event) {
+    var button = $(event.currentTarget);
+    if(button.attr('value') === 'Save') {
+      this.onSaveButtonClick(button); 
+    } else if (button.attr('value') === 'Share') {
+      this.onShareButtonClick(button);
+    }
+  },
+
+  onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
+
+  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
 });
 
 /**
@@ -82,9 +99,6 @@ hubbub.FeedListView = Backbone.View.extend({
  */
 hubbub.FeedItemView = Backbone.View.extend({
 
-  events: {
-    'click input': 'onButtonClick'
-  },
 
   className: 'feedItem',
   collapseHeight: 125,
@@ -131,18 +145,6 @@ hubbub.FeedItemView = Backbone.View.extend({
       }
     }
   },
-  onButtonClick: function(event) {
-    var button = $(event.currentTarget);
-    if(button.attr('value') === 'Save') {
-      this.onSaveButtonClick(button); 
-    } else if (button.attr('value') === 'Share') {
-      this.onShareButtonClick(button);
-    }
-  },
-
-  onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
-
-  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
   
   checkShouldCollapse: function() {
     var shouldCollapse = $(this.el).outerHeight() > this.collapseHeight;
