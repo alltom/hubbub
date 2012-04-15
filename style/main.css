@@ -24,6 +24,7 @@ body {
   margin-left: 17.7px; /* any more and it goes to the next line */
 }
 
+/* Put some space between the new tag form and the existing tags */
 #newTagFields {
   padding-bottom: 20px;
 }
@@ -35,4 +36,26 @@ body {
   #newTagFields > .ui-btn {
     width: 100%;
   }
+
+/* item action buttons */
+
+.feedItem {
+  clear: both;
+  position: relative;
+}
+.feedItem img {
+  max-width: 100%;
+}
+.feedItem div.ui-collapsible-content {
+  position: relative;
+}
+.item-actions.float {
+  display: inline-block;
+  float: right;
+}
+.item-actions.over {
+  display: inline-block;
+  position: absolute;
+  top: 10px;
+  right: 16px;
 }

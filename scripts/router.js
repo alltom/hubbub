@@ -27,12 +27,12 @@ hubbub.Router = Backbone.Router.extend({
    */
   initialize: function() {
     this.feedItems = hubbub.stubFeedItems();    
-	this.tagItems = hubbub.stubTagItems();
+    this.tagItems = hubbub.stubTagItems();
     this.firstPage = true;
 
     // Eagerly load all templates, since changePage gets rid of them
     this.feedPageTemplate = $('#feedPageTemplate');
-    this.feedItemTemplate = $('#feedItemTemplate');
+    this.feedItemTemplate = $('#genericFeedItemTemplate');
     this.gmailItemTemplate = $('#gmailItemTemplate');
     this.twitterItemTemplate = $('#twitterItemTemplate');
     this.imgurItemTemplate = $('#imgurItemTemplate');
