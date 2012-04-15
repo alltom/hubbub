@@ -43,10 +43,13 @@ hubbub.Router = Backbone.Router.extend({
 
   /**
    * Show the news feed.
+   * opt_feedItems - optional argument - a collection of feed items
+   *     if not provided, all the items in this.feedItems will be shown.
    */
-  listFeedItems: function() {
+  listFeedItems: function(opt_feedItems) {
+    var feedItems = opt_feedItems || this.feedItems;
     this.changePage(new hubbub.FeedPageView({
-      model: this.feedItems,
+      model: feedItems,
       pageTemplate: this.feedPageTemplate,
       feedItemTemplates: {
         Gmail: this.gmailItemTemplate,
@@ -66,7 +69,8 @@ hubbub.Router = Backbone.Router.extend({
       filterTemplate: this.filterTemplate,
       tagItems: this.tagItems,
       tagItemTemplate: this.tagItemTemplate,
-      services: hubbub.stubServices()
+      services: hubbub.stubServices(),
+      router: this
     }));
   },
 

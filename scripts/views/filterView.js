@@ -9,7 +9,8 @@ hubbub.FilterView = Backbone.View.extend({
    * Events to handle in the filter page
    */
   events: {
-    'vclick .serviceLogo': 'onServiceLogoClick'
+    'vclick .serviceLogo': 'onServiceLogoClick',
+    'vclick #executeFilter': 'onExecute'
   },
 
   /**
@@ -18,12 +19,14 @@ hubbub.FilterView = Backbone.View.extend({
    * tagItemTemplate - a template for tag items.
    * tagItems - a collection of tag items.
    * services - a collection of services that data can be pulled from.
+   * router - the router, whose method to call when going back to the Feed view
    */
   initialize: function(options) {
     this.template = _.template(options.filterTemplate.html());
     this.tagItemTemplate = options.tagItemTemplate;
     this.tagItems = options.tagItems;
     this.services = options.services;
+    this.router = options.router;
   },
 
   render: function(eventName) {
@@ -61,5 +64,36 @@ hubbub.FilterView = Backbone.View.extend({
       service.select();
       target.addClass(this.selectedServiceClass);
     }
+  },
+
+  /*
+   * Build a filter from all inputs to the form.
+   */
+  buildFilter: function() {
+    var allItems = this.get('router').get('feedItems');
+    var selectedServices = this.get('services').where({selected: true});
+    var filters = selectedServices.map(function(service) {
+      return new hubbub.SourceFilter({
+        name: service.get('name'),
+        source: service.get('name')
+      }); 
+    });
+
+    var searchText = $('#filterSearch input').val();
+    if (searchText.trim().length > 0) {
+      filters.push(new hubbub.ContainsTextFilter({
+        name: 'ContainsText',
+        test: searchText
+      }));
+    }
+    
+  },
+
+  /**
+   * Callback fired when the user tries to execute a filter.
+   * Builds a filter from the form and executes it.
+   */
+  onExecute: function(event) {
+    var filter = this.buildFilter();
   }
 });
