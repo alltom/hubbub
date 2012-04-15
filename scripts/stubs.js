@@ -107,13 +107,31 @@ hubbub.stubFeedItems = function() {
       source: 'Twitter',
       username: 'BillGates',
       body: 'How do #naturalgas prices affect energy innovation? Part 1 of my chat w Daniel Yergin. Video: <a href="http://b-gat.es/IM5wj5">http://b-gat.es/IM5wj5</a>',
-      tags: ['codeStuff']
+      tags: ['Fun']
     }),
     new hubbub.FeedItem({
       source: 'Twitter',
       username: 'BillGates',
       body: 'Great interest in my recent trip to Africa. We learned a lot, came back energized. Gallery from the trip: <a href="http://b-gat.es/IvdwDz">http://b-gat.es/IvdwDz</a>',
-      tags: ['codeStuff']
+      tags: ['Fun']
+    }),
+    new hubbub.FeedItem({
+      source: 'Gmail',
+      from: 'Rahul Rajagopalan',
+      subject: 'RE: GR4',
+      body: '<p>I heard that too.<br/><br/>-Rahul</p>'+
+            '<p>On Sun, April 15, 2012 at 10:13pm, Leilani Battle &lt;leibatt@mit.edu&gt; wrote:<br/>' +
+            '&gt;Hey,<br/>' +
+            '&gt;Heard through the grape vine that we can get extensions if we email Katrina! XD<br/>><br/>' +
+            '>--Leilani</p>'
+    }),
+    new hubbub.FeedItem({
+      source: 'Gmail',
+      from: 'Leilani Battle',
+      subject: 'GR4',
+      body: '<p>Hey,<br/>' +
+            'Heard through the grape vine that we can get extensions if we email Katrina! XD<br/><br/>' +
+            '--Leilani</p>'
     }),
     new hubbub.FeedItem({
       source: 'Imgur',
