@@ -27,10 +27,12 @@ hubbub.FeedPageView = Backbone.View.extend({
    * pageTemplate - a template for the feed page
    * feedItemTemplates - an object whose keys are item sources (Gmail, Twitter,
    *                     etc) and values are templates for individual items
+   * router - the router, whose method to call when going back to the Feed view
    */
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
     this.template = _.template(options.pageTemplate.html());
+    this.router = options.router;
   },
 
   /*
@@ -38,6 +40,14 @@ hubbub.FeedPageView = Backbone.View.extend({
    */
   render: function(eventName) {
     $(this.el).html(this.template(this.model.toJSON()));
+    
+    var header = $(this.el).find(".header");
+    if(this.router.isCustomFilter) {
+      header.append("<a href='#filter'>Change Filter</a>");
+    } else {
+      header.append("<a href='#filter'>Filter</a>");
+    }
+    
     this.listView = new hubbub.FeedListView({
       el: $('#feedList', this.el),
       model: this.model,

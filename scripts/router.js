@@ -80,7 +80,8 @@ hubbub.Router = Backbone.Router.extend({
         Imgur: this.imgurItemTemplate,
         Facebook: this.facebookItemTemplate,
         generic: this.feedItemTemplate
-      }
+      },
+      router: this
     }));
   },
 
