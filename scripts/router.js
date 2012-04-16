@@ -27,7 +27,7 @@ hubbub.Router = Backbone.Router.extend({
   initialize: function() {
     this.feedItems = hubbub.stubFeedItems();    
     this.tagItems = hubbub.stubTagItems();
-    this.filters = [];
+    this.filters = new hubbub.FilterCollection([]);
     this.firstPage = true;
     this.resetFilter();
 
@@ -95,6 +95,7 @@ hubbub.Router = Backbone.Router.extend({
       tagItems: this.tagItems,
       tagItemTemplate: this.tagItemTemplate,
       services: hubbub.stubServices(),
+      filters: this.filters,
       router: this
     }));
   },
