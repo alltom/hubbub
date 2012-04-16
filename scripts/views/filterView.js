@@ -1,3 +1,13 @@
+hubbub.uncheckBox = function(input) {
+  input.attr('checked', false);
+  var label = input.parent().find('label');
+  label.attr('checked', false);
+  label.removeClass('ui-btn-active').removeClass('ui-checkbox-on').
+      addClass('ui-checkbox-off');
+  label.find('span.ui-icon-checkbox-on').addClass('ui-icon-checkbox-off');
+  label.find('span.ui-icon-checkbox-on').removeClass('ui-icon-checkbox-on');
+};
+
 /**
  * View class for the whole filter page.
  */
@@ -10,7 +20,8 @@ hubbub.FilterView = Backbone.View.extend({
    */
   events: {
     'vclick .serviceLogo': 'onServiceLogoClick',
-    'vclick #executeFilter': 'onExecute'
+    'vclick #executeFilter': 'onExecute',
+    'vclick #resetFilter': 'onReset'
   },
 
   /**
@@ -166,5 +177,29 @@ hubbub.FilterView = Backbone.View.extend({
 
     this.router.currentFilter = filter;
     this.router.listFeedItems();
+  },
+
+  onReset: function(event) {
+    event.preventDefault();
+
+    this.services.each(function(service) {
+      service.unselect();
+    });
+    var selectedServiceClass = this.selectedServiceClass;
+    $('.serviceLogo').each(function(index) {
+      $(this).removeClass(selectedServiceClass);
+    });
+
+    $('#filterSearch input').val('');
+
+    this.listView.$el.find('input').each(function(index) {
+      hubbub.uncheckBox($(this));
+    });
+
+    hubbub.uncheckBox($('#hasHyperlink'));
+
+    $('#savedFilters').find('input').each(function(index) {
+      hubbub.uncheckBox($(this));
+    });
   }
 });
