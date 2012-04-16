@@ -5,6 +5,7 @@ java -jar compiler.jar \
   --js scripts/models/feedItem.js \
   --js scripts/models/tagItem.js \
   --js scripts/models/service.js \
+  --js scripts/models/filter.js \
   --js scripts/stubs.js \
   --js scripts/views/feedView.js \
   --js scripts/views/tagView.js \

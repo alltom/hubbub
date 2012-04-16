@@ -19,7 +19,7 @@ hubbub.Filter = Backbone.Model.extend({
      return new hubbub.FeedItemCollection(items.filter(function(item) {
        return this.accepts(item);
      }, this));
-   },
+   }
 });
 
 /**

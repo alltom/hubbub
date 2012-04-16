@@ -175,13 +175,14 @@
             <fieldset id="tagList"></fieldset>
             <legend>Other</legend>
             <label>
-              <input type="checkbox" name="hyperlink" />Has a Hyperlink
+              <input type="checkbox" name="hyperlink" id="hasHyperlink" />
+              Has a Hyperlink
             </label>
           </form>
         </div>
 
         <h3>Saved Filters</h3>
-        <form action="filter.html" method="post">
+        <form action="filter.html" method="post" id="savedFilters">
           <label><input type="checkbox" name="kitties" />Kitties!</label>
           <label><input type="checkbox" name="school" />School</label>
           <label><input type="checkbox" name="cplusplus" />C++</label>

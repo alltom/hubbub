@@ -66,19 +66,17 @@ hubbub.FilterView = Backbone.View.extend({
     }
   },
 
-  /*
-   * Build a filter from all inputs to the form.
-   */
-  buildFilter: function() {
-    var allItems = this.get('router').get('feedItems');
-    var selectedServices = this.get('services').where({selected: true});
-    var filters = selectedServices.map(function(service) {
-      return new hubbub.SourceFilter({
+  addSourceFilters: function(filters) {
+    var selectedServices = this.services.where({selected: true});
+    _(selectedServices).each(function(service) {
+      filters.push(new hubbub.SourceFilter({
         name: service.get('name'),
         source: service.get('name')
-      }); 
+      }));
     });
+  },
 
+  addSearchFilter: function(filters) {
     var searchText = $('#filterSearch input').val();
     if (searchText.trim().length > 0) {
       filters.push(new hubbub.ContainsTextFilter({
@@ -86,7 +84,52 @@ hubbub.FilterView = Backbone.View.extend({
         test: searchText
       }));
     }
-    
+  },
+
+  addTagFilters: function(filters) {
+    var tags = this.listView.$el.find('input');
+    var checkedTags = $(tags).filter(function(index) {
+      return $(this).attr('checked') === 'checked';
+    });
+    $(checkedTags).each(function(index) {
+      var name = $(this).attr('name');
+      filters.push(new hubbub.HasTagFilter({
+        name: 'HasTag' + name,
+        tag: name
+      }));
+    });
+  },
+
+  addHyperlinkFilter: function(filters) {
+    if ($('#hasHyperlink').attr('checked') === 'checked') {
+      filters.push(new hubbub.HasHyperlinkFilter({
+        name: 'HasHyperlink'
+      }));
+    }
+  },
+
+  addSelectedFilters: function(filters) {
+    $('#savedFilters').find('input').each(function(index) {
+      if ($(this).attr('checked') === 'checked') {
+        // TODO Implement adding of saved filters 
+      }
+    });
+  },
+
+  /*
+   * Build a filter from all inputs to the form.
+   */
+  buildFilter: function() {
+    var filters = [];
+    this.addSourceFilters(filters);
+    this.addSearchFilter(filters);
+    this.addTagFilters(filters);
+    this.addHyperlinkFilter(filters);
+    this.addSelectedFilters(filters);
+
+    return new hubbub.AndFilter({
+      filters: new hubbub.FilterCollection(filters)
+    });
   },
 
   /**
@@ -94,6 +137,10 @@ hubbub.FilterView = Backbone.View.extend({
    * Builds a filter from the form and executes it.
    */
   onExecute: function(event) {
+    var allItems = this.router.feedItems;
     var filter = this.buildFilter();
+
+    var filteredItems = filter.apply(allItems);
+    this.router.listFeedItems(filteredItems);
   }
 });
