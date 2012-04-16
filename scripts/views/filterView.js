@@ -1,3 +1,6 @@
+/**
+ * Uncheck a jQuery-enhanced checkbox.
+ */
 hubbub.uncheckBox = function(input) {
   input.attr('checked', false);
   var label = input.parent().find('label');
@@ -197,6 +200,10 @@ hubbub.FilterView = Backbone.View.extend({
     this.router.listFeedItems();
   },
 
+  /**
+   * Callback fired when the user hits reset.
+   * Clears the form.
+   */
   onReset: function(event) {
     event.preventDefault();
 
@@ -221,6 +228,11 @@ hubbub.FilterView = Backbone.View.extend({
     });
   },
 
+  /**
+   * Callback fired when the user hits "Save Filter"
+   * Right now, it does save them to a model class that the router
+   * has a reference to, but saved filters are not in the HTML.
+   */
   onSaveFilter: function(event) {
     event.preventDefault(); 
     var filter = this.buildFilter();
@@ -228,6 +240,9 @@ hubbub.FilterView = Backbone.View.extend({
   }
 });
 
+/**
+ * View class for the Save Filter page, which prompts the user for a name.
+ */
 hubbub.SaveFilterView = Backbone.View.extend({
 
   events: {
