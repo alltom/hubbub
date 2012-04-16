@@ -9,6 +9,20 @@ hubbub.uncheckBox = function(input) {
 };
 
 /**
+ * View class for a single saved filter
+ */
+hubbub.SavedFilterView = Backbone.View.extend({
+  initialize: function(options) {
+    this.template = _.template(options.savedFilterTemplate.html());
+    this.model = options.model;
+  },
+
+  render: function() {
+    $(this.el).html(this.template(this.model.toJSON()));
+  }
+});
+
+/**
  * View class for the whole filter page.
  */
 hubbub.FilterView = Backbone.View.extend({
@@ -21,7 +35,8 @@ hubbub.FilterView = Backbone.View.extend({
   events: {
     'vclick .serviceLogo': 'onServiceLogoClick',
     'vclick #executeFilter': 'onExecute',
-    'vclick #resetFilter': 'onReset'
+    'vclick #resetFilter': 'onReset',
+    'vclick #saveFilter': 'onSaveFilter'
   },
 
   /**
@@ -34,9 +49,11 @@ hubbub.FilterView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.template = _.template(options.filterTemplate.html());
+    this.savedFilterTemplate = options.savedFilterTemplate;
     this.tagItemTemplate = options.tagItemTemplate;
     this.tagItems = options.tagItems;
     this.services = options.services;
+    this.filters = options.filters;
     this.router = options.router;
   },
 
@@ -47,6 +64,7 @@ hubbub.FilterView = Backbone.View.extend({
       model: this.tagItems,
       tagItemTemplate: this.tagItemTemplate
     });
+    this.savedFilters = new 
     this.listView.render();
     return this;
   },
@@ -162,6 +180,7 @@ hubbub.FilterView = Backbone.View.extend({
     }
 
     return new hubbub.AndFilter({
+      name: 'ToBeGiven'
       filters: new hubbub.FilterCollection(filters)
     });
   },
@@ -201,5 +220,47 @@ hubbub.FilterView = Backbone.View.extend({
     $('#savedFilters').find('input').each(function(index) {
       hubbub.uncheckBox($(this));
     });
+  },
+
+  onSaveFilter: function(event) {
+    event.preventDefault(); 
+    var filter = this.buildFilter();
+    this.router.saveFilter(filter);
+  }
+});
+
+hubbub.SaveFilterView = Backbone.View.extend({
+
+  events: {
+    'vclick #doSaveFilter': 'onSaveFilter',
+    'vclick #cancelSaveFilter': 'onCancelSaveFilter'
+  },
+
+  initialize: function(options) {
+    this.template = _.template(options.saveFilterTemplate.html());
+    this.filter = options.filter;
+    this.router = options.router;
+  },
+
+  render: function() {
+    $(this.el).html(this.template());
+  },
+
+  onSaveFilter: function(event) {
+    event.preventDefault();
+    var input = $('#filterToSave');
+    var name = input.val().trim();
+    if (name === '') {
+      alert('Please input a name for the filter');
+    }
+
+    this.filter.set('name', name);
+    this.router.addFilter(this.filter);
+
+    this.router.filter();
+  },
+
+  onCancelSaveFilter: function(event) {
+    this.router.filter();
   }
 });

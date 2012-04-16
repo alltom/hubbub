@@ -27,6 +27,7 @@ hubbub.Router = Backbone.Router.extend({
   initialize: function() {
     this.feedItems = hubbub.stubFeedItems();    
     this.tagItems = hubbub.stubTagItems();
+    this.filters = [];
     this.firstPage = true;
     this.currentFilter = new hubbub.AndFilter({
       filters: new hubbub.FilterCollection([
@@ -42,9 +43,15 @@ hubbub.Router = Backbone.Router.extend({
     this.imgurItemTemplate = $('#imgurItemTemplate');
     this.facebookItemTemplate = $('#facebookItemTemplate');
     this.filterTemplate = $('#filterTemplate');
+    this.saveFilterTemplate = $('#saveFilterTemplate');
+    this.savedFilterTemplate = $('#savedFilterTemplate');
     this.tagPageTemplate = $('#tagPageTemplate');
     this.tagItemTemplate = $('#tagItemTemplate');
   },
+
+  addFilter: function(filter) {
+    this.filters.push(filter);
+  }
 
   /**
    * Show the news feed, filterd by this.currentFilter
@@ -70,9 +77,18 @@ hubbub.Router = Backbone.Router.extend({
   filter: function() {
     this.changePage(new hubbub.FilterView({
       filterTemplate: this.filterTemplate,
+      savedFilterTemplate: this.savedFilterTemplate
       tagItems: this.tagItems,
       tagItemTemplate: this.tagItemTemplate,
       services: hubbub.stubServices(),
+      router: this
+    }));
+  },
+
+  saveFilter: function(filter) {
+    this.changePage(new hubbub.SaveFilterView({
+      saveFilterTemplate: this.saveFilterTemplate,
+      filter: filter,
       router: this
     }));
   },

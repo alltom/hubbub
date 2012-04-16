@@ -194,6 +194,28 @@
         <a href="#" data-role="button" id="saveFilter">Save Filter</a>
       </div>
     </script>
+
+    <script id="savedFilterTemplate" type="text/template">
+      <label><input type="checkbox" name="filter" /><%= name %></label>
+    </script>
+
+    <script id="saveFilterTemplate" type="text/template">
+      <div data-role="header">
+        <h1>Save Filter</h1>
+      </div>
+
+      <div data-role="content">
+        <form action="index.html" method="post">
+          <label for="filterName" class="ui-hidden-accessible">Filter Name</label>
+          <input type="text" name="tagName" id="filterToSave"
+                 placeholder="Filter Name" required="required" />
+
+          <input type="submit" data-role="button" id="doSaveFilter" value="Create" />
+          <input type="button" data-role="button" id="cancelSaveFilter"
+                 value="Cancel" />
+        </form>
+      </div>
+    </script>
   
     <script id="tagPageTemplate" type="text/template">
       <div data-role="header">
