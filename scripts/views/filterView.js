@@ -189,10 +189,12 @@ hubbub.FilterView = Backbone.View.extend({
   },
 
   addSelectedFilters: function(filters) {
+    var existingFilters = this.filters;
     $('#savedFilters').find('input').each(function(index) {
       if ($(this).attr('checked') === 'checked') {
-        // TODO Implement adding of saved filters 
-        debugger;
+        var filterName = $(this).parent().find('.ui-btn-text').html().trim();
+        var matchingFilter = existingFilters.where({'name': filterName})[0];
+        filters.push(matchingFilter);
       }
     });
   },
