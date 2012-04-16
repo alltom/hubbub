@@ -102,7 +102,7 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 
 .feedTagSet .feed-tag-set-item {
   float: left;
-  background: gray;
+  background: #cccccc;
   color: black;
   margin-right: 10px;
 }
