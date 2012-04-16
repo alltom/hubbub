@@ -81,6 +81,9 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 .feedItem .feeditem-expand-button.ui-btn {
   margin: 0;
 }
+.feeditem-expand-button {
+  width: 99% !important;
+}
 .item-actions {
   font-size: 12px;
   line-height: 18px;
