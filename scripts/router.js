@@ -29,11 +29,7 @@ hubbub.Router = Backbone.Router.extend({
     this.tagItems = hubbub.stubTagItems();
     this.filters = new hubbub.FilterCollection([]);
     this.firstPage = true;
-    this.currentFilter = new hubbub.AndFilter({
-      filters: new hubbub.FilterCollection([
-        new hubbub.AllPassFilter({name: 'AllPass'})
-      ])
-    });
+    this.resetFilter();
 
     // Eagerly load all templates, since changePage gets rid of them
     this.feedPageTemplate = $('#feedPageTemplate');
@@ -51,6 +47,23 @@ hubbub.Router = Backbone.Router.extend({
 
   addFilter: function(filter) {
     this.filters.push(filter);
+  },
+  
+  /**
+   * Sets the filter used in the feed view.
+   */
+  setFilter: function(filter) {
+    this.currentFilter = filter;
+    this.isCustomFilter = true;
+  },
+  
+  resetFilter: function() {
+    this.setFilter(new hubbub.AndFilter({
+      filters: new hubbub.FilterCollection([
+        new hubbub.AllPassFilter({name: 'AllPass'})
+      ])
+    }));
+    this.isCustomFilter = false;
   },
 
   /**

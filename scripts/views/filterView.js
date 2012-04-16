@@ -224,7 +224,7 @@ hubbub.FilterView = Backbone.View.extend({
     var allItems = this.router.feedItems;
     var filter = this.buildFilter();
 
-    this.router.currentFilter = filter;
+    this.router.setFilter(filter);
     // tom: this next line was this.router.listFeedItems(); but that didn't update the URL
     this.router.navigate("#", true);
   },
@@ -255,6 +255,10 @@ hubbub.FilterView = Backbone.View.extend({
     $('#savedFilters').find('input').each(function(index) {
       hubbub.uncheckBox($(this));
     });
+    
+    // tom: apply immediately
+    this.router.resetFilter();
+    this.router.navigate("#", true);
   },
 
   /**
