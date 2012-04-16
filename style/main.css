@@ -209,3 +209,10 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   -o-box-shadow: none;
   -webkit-box-shadow: none;
 }
+
+
+/* filter screen footer */
+
+.ui-footer {
+  padding: 4px;
+}
