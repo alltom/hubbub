@@ -68,12 +68,20 @@ hubbub.FilterView = Backbone.View.extend({
 
   addSourceFilters: function(filters) {
     var selectedServices = this.services.where({selected: true});
+    var servicesFilters = [];
     _(selectedServices).each(function(service) {
-      filters.push(new hubbub.SourceFilter({
+      servicesFilters.push(new hubbub.SourceFilter({
         name: service.get('name'),
         source: service.get('name')
       }));
     });
+    if (servicesFilters.length > 0) {
+      var collection = new hubbub.FilterCollection(servicesFilters);
+      filters.push(new hubbub.OrFilter({
+        name: 'ServiceOrFilter',
+        filters: collection
+      }));
+    }
   },
 
   addSearchFilter: function(filters) {
@@ -91,13 +99,22 @@ hubbub.FilterView = Backbone.View.extend({
     var checkedTags = $(tags).filter(function(index) {
       return $(this).attr('checked') === 'checked';
     });
+    var tagFilters = [];
     $(checkedTags).each(function(index) {
       var name = $(this).attr('name');
-      filters.push(new hubbub.HasTagFilter({
+      tagFilters.push(new hubbub.HasTagFilter({
         name: 'HasTag' + name,
         tag: name
       }));
     });
+
+    if (tagFilters.length > 0) {
+      var collection = new hubbub.FilterCollection(tagFilters);
+      filters.push(new hubbub.OrFilter({
+        name: 'TagOrFilter',
+        filters: collection
+      }));
+    }
   },
 
   addHyperlinkFilter: function(filters) {
@@ -126,6 +143,12 @@ hubbub.FilterView = Backbone.View.extend({
     this.addTagFilters(filters);
     this.addHyperlinkFilter(filters);
     this.addSelectedFilters(filters);
+
+    if (filters.length === 0) {
+      filters.push(new hubbub.AllPassFilter({
+        name: 'AllPassFilter'
+      }));
+    }
 
     return new hubbub.AndFilter({
       filters: new hubbub.FilterCollection(filters)

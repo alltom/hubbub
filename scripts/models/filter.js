@@ -92,6 +92,19 @@ hubbub.AndFilter = hubbub.Filter.extend({
   }
 });
 
+/**
+ * Filter accepting any item that one of the internal filters accepts.
+ */
+hubbub.OrFilter = hubbub.Filter.extend({
+  // fields: name, filters
+  
+  accepts: function(item) {
+    return this.get('filters').any(function(filter) {
+      return filter.accepts(item);
+    });
+  }
+});
+
 hubbub.FilterCollection = Backbone.Collection.extend({
   model: hubbub.Filter 
 });

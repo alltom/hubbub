@@ -28,7 +28,11 @@ hubbub.Router = Backbone.Router.extend({
     this.feedItems = hubbub.stubFeedItems();    
     this.tagItems = hubbub.stubTagItems();
     this.firstPage = true;
-    this.currentFilter = new hubbub.AllPassFilter({name: 'AllPass'});
+    this.currentFilter = new hubbub.AndFilter({
+      filters: new hubbub.FilterCollection([
+        new hubbub.AllPassFilter({name: 'AllPass'})
+      ])
+    });
 
     // Eagerly load all templates, since changePage gets rid of them
     this.feedPageTemplate = $('#feedPageTemplate');
