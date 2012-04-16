@@ -251,16 +251,28 @@ hubbub.SaveFilterView = Backbone.View.extend({
     'vclick #cancelSaveFilter': 'onCancelSaveFilter'
   },
 
+  /**
+   * Arguments in options:
+   * template - the template for the save filter page
+   * filter - the filter being saved
+   * router - the router, with callbacks
+   */
   initialize: function(options) {
     this.template = _.template(options.saveFilterTemplate.html());
     this.filter = options.filter;
     this.router = options.router;
   },
 
+  /**
+   * Render the save filter page
+   */
   render: function() {
     $(this.el).html(this.template());
   },
 
+  /**
+   * Called whe the save filter button is clicked. Not fully implemeneted.
+   */
   onSaveFilter: function(event) {
     event.preventDefault();
     var input = $('#filterToSave');
@@ -275,6 +287,9 @@ hubbub.SaveFilterView = Backbone.View.extend({
     this.router.filter();
   },
 
+  /**
+   * Called when the user cancels the save. Returns to the filter page.
+   */
   onCancelSaveFilter: function(event) {
     this.router.filter();
   }
