@@ -102,13 +102,15 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 
 .feedTagSet .feed-tag-set-item {
   float: left;
-  background: gray;
+  background: #ccc;
+  padding: 0 4px;
   color: black;
   margin-right: 10px;
 }
 
 .feedTagSet .feed-tag-set-item.last {
   float: none;
+  display: inline-block;
 }
 
 /* styles specific to the source of a feed item */
