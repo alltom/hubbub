@@ -165,9 +165,15 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   padding-bottom: 20px;
 }
 
-.selectedService img {
+#services img {
+  opacity: 0.4;
+  border: 2px solid white;
+  padding: 4px;
+}
+#services .selectedService img {
+  opacity: 1;
   /* TODO Change this color to something better, and prettify it */
-  border: 2px solid orange;  
+  border: 2px solid orange;
 }
 
 /*
