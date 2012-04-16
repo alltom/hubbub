@@ -36,14 +36,18 @@ hubbub.SavedFilterListView = Backbone.View.extend({
 
   render: function() {
     $(this.el).empty();
-    this.model.each(function(filter) {
-      var view = new hubbub.SavedFilterView({
-        savedFilterTemplate: this.savedFilterTemplate,
-        model: filter 
-      });
-      view.render();
-      $(this.el).append(view.el);
-    }, this);
+    if (this.model.length === 0) {
+      $(this.el).append('<p>No filters created yet.</p>');
+    } else {
+      this.model.each(function(filter) {
+        var view = new hubbub.SavedFilterView({
+          savedFilterTemplate: this.savedFilterTemplate,
+          model: filter 
+        });
+        view.render();
+        $(this.el).append(view.el);
+      }, this);
+    }
   }
 });
 
@@ -188,6 +192,7 @@ hubbub.FilterView = Backbone.View.extend({
     $('#savedFilters').find('input').each(function(index) {
       if ($(this).attr('checked') === 'checked') {
         // TODO Implement adding of saved filters 
+        debugger;
       }
     });
   },
