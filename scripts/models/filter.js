@@ -74,7 +74,11 @@ hubbub.HasHyperlinkFilter = hubbub.Filter.extend({
   accepts: function(item) {
     // HACK - just looks for the existence of the string "href"
     // TODO avoid false positives with this.
-    return item.get('body').indexOf('href') !== -1;
+    if (item.get('body')) {
+      return item.get('body').indexOf('href') !== -1;
+    } else {
+      return false;
+    }
   }
 });
 
