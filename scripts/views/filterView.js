@@ -197,7 +197,8 @@ hubbub.FilterView = Backbone.View.extend({
     var filter = this.buildFilter();
 
     this.router.currentFilter = filter;
-    this.router.listFeedItems();
+    // tom: this next line was this.router.listFeedItems(); but that didn't update the URL
+    this.router.navigate("#", true);
   },
 
   /**
