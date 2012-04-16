@@ -227,6 +227,10 @@ hubbub.FilterView = Backbone.View.extend({
     $('#savedFilters').find('input').each(function(index) {
       hubbub.uncheckBox($(this));
     });
+    
+    // tom: apply immediately
+    this.router.resetFilter();
+    this.router.navigate("#", true);
   },
 
   /**
