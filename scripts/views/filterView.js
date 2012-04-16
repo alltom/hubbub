@@ -15,6 +15,9 @@ hubbub.uncheckBox = function(input) {
  * View class for a single saved filter
  */
 hubbub.SavedFilterView = Backbone.View.extend({
+
+  tagName: 'label',
+
   initialize: function(options) {
     this.template = _.template(options.savedFilterTemplate.html());
     this.model = options.model;
@@ -22,6 +25,25 @@ hubbub.SavedFilterView = Backbone.View.extend({
 
   render: function() {
     $(this.el).html(this.template(this.model.toJSON()));
+  }
+});
+
+hubbub.SavedFilterListView = Backbone.View.extend({
+  initialize: function(options) {
+    this.savedFilterTemplate = options.savedFilterTemplate;
+    this.model = options.model; // a Collection of filters
+  },
+
+  render: function() {
+    $(this.el).empty();
+    this.model.each(function(filter) {
+      var view = new hubbub.SavedFilterView({
+        savedFilterTemplate: this.savedFilterTemplate,
+        model: filter 
+      });
+      view.render();
+      $(this.el).append(view.el);
+    }, this);
   }
 });
 
@@ -67,7 +89,13 @@ hubbub.FilterView = Backbone.View.extend({
       model: this.tagItems,
       tagItemTemplate: this.tagItemTemplate
     });
+    this.savedFilterListView = new hubbub.SavedFilterListView({
+      el: $('#savedFilters', this.el),
+      model: this.filters,
+      savedFilterTemplate: this.savedFilterTemplate
+    });
     this.listView.render();
+    this.savedFilterListView.render();
     return this;
   },
 
