@@ -28,6 +28,7 @@ hubbub.Router = Backbone.Router.extend({
     this.feedItems = hubbub.stubFeedItems();    
     this.tagItems = hubbub.stubTagItems();
     this.firstPage = true;
+    this.currentFilter = new hubbub.AllPassFilter({name: 'AllPass'});
 
     // Eagerly load all templates, since changePage gets rid of them
     this.feedPageTemplate = $('#feedPageTemplate');
@@ -42,12 +43,10 @@ hubbub.Router = Backbone.Router.extend({
   },
 
   /**
-   * Show the news feed.
-   * opt_feedItems - optional argument - a collection of feed items
-   *     if not provided, all the items in this.feedItems will be shown.
+   * Show the news feed, filterd by this.currentFilter
    */
-  listFeedItems: function(opt_feedItems) {
-    var feedItems = opt_feedItems || this.feedItems;
+  listFeedItems: function() {
+    var feedItems = this.currentFilter.apply(this.feedItems);
     this.changePage(new hubbub.FeedPageView({
       model: feedItems,
       pageTemplate: this.feedPageTemplate,

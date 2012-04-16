@@ -137,10 +137,11 @@ hubbub.FilterView = Backbone.View.extend({
    * Builds a filter from the form and executes it.
    */
   onExecute: function(event) {
+    event.preventDefault();
     var allItems = this.router.feedItems;
     var filter = this.buildFilter();
 
-    var filteredItems = filter.apply(allItems);
-    this.router.listFeedItems(filteredItems);
+    this.router.currentFilter = filter;
+    this.router.listFeedItems();
   }
 });

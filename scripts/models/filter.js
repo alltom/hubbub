@@ -22,6 +22,14 @@ hubbub.Filter = Backbone.Model.extend({
    }
 });
 
+hubbub.AllPassFilter = hubbub.Filter.extend({
+  // fields: name
+
+  accepts: function(item) {
+    return true;   
+  }
+});
+
 /**
  * Filter that accepts FeedItems only from a specific source.
  * (Imgur, Twitter, Gmail, ...)
