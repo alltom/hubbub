@@ -51,7 +51,7 @@ hubbub.Router = Backbone.Router.extend({
 
   addFilter: function(filter) {
     this.filters.push(filter);
-  }
+  },
 
   /**
    * Show the news feed, filterd by this.currentFilter
@@ -77,7 +77,7 @@ hubbub.Router = Backbone.Router.extend({
   filter: function() {
     this.changePage(new hubbub.FilterView({
       filterTemplate: this.filterTemplate,
-      savedFilterTemplate: this.savedFilterTemplate
+      savedFilterTemplate: this.savedFilterTemplate,
       tagItems: this.tagItems,
       tagItemTemplate: this.tagItemTemplate,
       services: hubbub.stubServices(),

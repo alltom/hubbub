@@ -64,7 +64,6 @@ hubbub.FilterView = Backbone.View.extend({
       model: this.tagItems,
       tagItemTemplate: this.tagItemTemplate
     });
-    this.savedFilters = new 
     this.listView.render();
     return this;
   },
@@ -180,7 +179,7 @@ hubbub.FilterView = Backbone.View.extend({
     }
 
     return new hubbub.AndFilter({
-      name: 'ToBeGiven'
+      name: 'ToBeGiven',
       filters: new hubbub.FilterCollection(filters)
     });
   },
