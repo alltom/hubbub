@@ -7,27 +7,18 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif" />
     <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />
-    <link rel="stylesheet" href="style/themes/testtheme.css" />
+    <link rel="stylesheet" href="style/themes/testtheme.min.css" />
+    <!--
+     minified stylesheet doesn't work (even though it's equivalent,
+     I checked on the w3c validator, maybe b/c we add inline styles with javascript??
+    -->
     <link rel="stylesheet" href="style/main.css" />
 
     <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <script src="scripts/jqm-config.js"></script>
     <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>
-    <script src="lib/underscore-min.js"></script>
-    <script src="lib/backbone-min.js"></script>
 
-    <script src="scripts/hubbub.js"></script>
-    <script src="scripts/models/feedItem.js"></script>
-    <script src="scripts/models/tagItem.js"></script>
-    <script src="scripts/models/service.js"></script>
-    <script src="scripts/models/filter.js"></script>
-    <script src="scripts/stubs.js"></script>
-    <script src="scripts/views/feedView.js"></script>
-    <script src="scripts/views/tagView.js"></script>
-    <script src="scripts/views/filterView.js"></script>
-    <script src="scripts/views/tagPageView.js"></script>
-    <script src="scripts/router.js"></script>
-    <script src="scripts/main.js"></script>
+    <script src="hubbub_compiled.js"></script>
   </head> 
   <body> 
     <!--
@@ -35,7 +26,8 @@
     -->
     <!-- TODO Decide how to organize templates. Should we use require.js? -->
     <script id="feedPageTemplate" type="text/template">
-      <div data-role="header" class="header">
+      <div data-role="header">
+        <a href="#filter">Filter</a>
         <h1>Hubbub</h1>
       </div>
 
@@ -54,7 +46,7 @@
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
         <input type="button" data-role="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <div class="item-body">
         <div class="feedTagSet"></div>
@@ -72,7 +64,7 @@
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
         <input type="button" data-role="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source gmail"><%= source %></span>
       <div class="item-body">
@@ -87,12 +79,12 @@
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
         <input type="button" data-role="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source twitter"><%= source %></span>
       <div class="item-body">
         <div class="feedTagSet"></div>
-        <div><b>@<%= username %></b>: <%= body %></div>
+        <div><strong>@<%= username %></strong>: <%= body %></div>
       </div>
     </script>
 
@@ -100,7 +92,7 @@
       <div data-role="controlgroup" class="item-actions over">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
         <input type="button" data-role="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source imgur"><%= source %></span>
       <div class="item-body">
@@ -113,12 +105,12 @@
       <div data-role="controlgroup" class="item-actions float">
         <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
         <input type="button" data-role="button" value="Share" />
-        <input type="button" value="Save" />
+        <input type="button" data-role="button" value="Save" />
       </div>
       <span class="source facebook"><%= source %></span>
       <div class="item-body">
         <div class="feedTagSet"></div>
-        <div><b><%= username %></b>: <%= body %></div>
+        <div><strong><%= username %></strong>: <%= body %></div>
       </div>
     </script>
 
@@ -130,7 +122,6 @@
         there can only be one page displayed at a time.
       -->
       <div data-role="header">
-        <a href="#">Back</a>
         <h1>Filter</h1>
         <!-- 
           TODO Align these buttons on the right of the header.
@@ -146,19 +137,19 @@
             instead of doing it in the browser.
           -->
           <p class="ui-block-a serviceLogo">
-            <img alt="Twitter logo" src="images/twitter-logo8.png"
+            <img alt="Twitter logo" src="/assets/twitter-logo8.jpg"
                  width="50" height="50" data-name="Twitter" />
           </p>
           <p class="ui-block-b serviceLogo">
-            <img alt="Facebook logo" src="images/facebook-logo.png"
+            <img alt="Facebook logo" src="/assets/facebook-logo.png"
                  width="50" height="50" data-name="Facebook" />
           </p>
           <p class="ui-block-c serviceLogo">
-            <img alt="Imgur logo" src="images/Imgur_Logo_Icon.png"
+            <img alt="Imgur logo" src="/assets/Imgur_Logo_Icon.png"
                  width="50" height="50" data-name="Imgur" />
           </p>
           <p class="ui-block-d serviceLogo">
-            <img alt="Gmail logo" src="images/gmail-logo.png"
+            <img alt="Gmail logo" src="/assets/gmail-logo.jpg"
                  width="50" height="50" data-name="Gmail" />
           </p>
         </div>
@@ -175,47 +166,22 @@
             <fieldset id="tagList"></fieldset>
             <legend>Other</legend>
             <label>
-              <input type="checkbox" name="hyperlink" id="hasHyperlink" />
-              Has a Hyperlink
+              <input type="checkbox" name="hyperlink" />Has a Hyperlink
             </label>
           </form>
         </div>
 
         <h3>Saved Filters</h3>
-        <form action="filter.html" method="post" id="savedFilters">
-          <!--
+        <form action="filter.html" method="post">
           <label><input type="checkbox" name="kitties" />Kitties!</label>
           <label><input type="checkbox" name="school" />School</label>
           <label><input type="checkbox" name="cplusplus" />C++</label>
-          -->
         </form>
       </div>
       <div data-role="footer">
-        <a href="#" data-role="button" id="executeFilter">Execute</a>
-        <a href="#" data-role="button" id="resetFilter">Reset</a>
-        <a href="#" data-role="button" id="saveFilter">Save Filter</a>
-      </div>
-    </script>
-
-    <script id="savedFilterTemplate" type="text/template">
-      <input type="checkbox" name="filter" /><%= name %>
-    </script>
-
-    <script id="saveFilterTemplate" type="text/template">
-      <div data-role="header">
-        <h1>Save Filter</h1>
-      </div>
-
-      <div data-role="content">
-        <form action="index.html" method="post">
-          <label for="filterName" class="ui-hidden-accessible">Filter Name</label>
-          <input type="text" name="tagName" id="filterToSave"
-                 placeholder="Filter Name" required="required" />
-
-          <input type="submit" data-role="button" id="doSaveFilter" value="Create" />
-          <input type="button" data-role="button" id="cancelSaveFilter"
-                 value="Cancel" />
-        </form>
+        <a href="#" data-role="button">Execute</a>
+        <a href="#" data-role="button">Reset</a>
+        <a href="#" data-role="button">Save Filter</a>
       </div>
     </script>
   
@@ -229,11 +195,11 @@
           <fieldset id="newTagFields">
             <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
             <input type="text" name="tagName" id="hubbub-new-tag-text" placeholder="Tag Name" />
-            <input type="submit" data-role="button" id="hubbub-new-tag-submit" value="New" data-mini="true" />
+            <input type="submit" id="hubbub-new-tag-submit" value="New" data-mini="true" />
           </fieldset>
 
           <!-- 
-            jQuery Mobile checkboxes expand the clickable area to improve
+            jQuery Mobile's checkboxes expand the clickable area to improve
             usability on touch screens.
           -->
           <fieldset id="tagList">
