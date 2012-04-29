@@ -124,6 +124,10 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 
 .feedItemControls .btn {
   height: 30px;
+
+  position: relative;
+  right: 40%;
+  width: 140% !important;
 }
 
 /* styles for tag view items in a feed */
