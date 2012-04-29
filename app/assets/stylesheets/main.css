@@ -130,6 +130,7 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   padding: 0 4px;
   color: black;
   margin-right: 10px;
+  margin-top: 3px;
 }
 
 .feedTagSet .feed-tag-set-item.last {
