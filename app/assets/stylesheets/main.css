@@ -4,9 +4,8 @@
   body {
     position: relative;
     max-width: 320px;
-    margin-left: auto;
-    margin-right: auto;
   }
+}
 
 header {
   background-color: #4e184d;
@@ -75,9 +74,6 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   clear: both;
   position: relative;
   border-top: 1px solid #ccc;
-  
-  /* break out of ui-content's 15px padding */
-  margin: 0 -15px;
   
   overflow: hidden;
 }

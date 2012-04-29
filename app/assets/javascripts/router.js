@@ -72,6 +72,8 @@ hubbub.Router = Backbone.Router.extend({
   listFeedItems: function() {
     var feedItems = this.currentFilter.apply(this.feedItems);
     this.changePage(new hubbub.FeedPageView({
+      // wrap the page in a fluid container
+      el: $('<div>', {'class': 'container-fluid'}),
       model: feedItems,
       pageTemplate: this.feedPageTemplate,
       feedItemTemplates: {
@@ -129,9 +131,6 @@ hubbub.Router = Backbone.Router.extend({
    */
   changePage: function(pageView) {
     pageView.render();
-    // Wrap everything in a container-fluid
-    var containerDiv = $('<div>', {'class': 'container-fluid'});
-    containerDiv.append(pageView.$el);
-    $('body').empty().append(containerDiv);
+    $('body').empty().append(pageView.$el);
   }
 });
