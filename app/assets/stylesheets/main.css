@@ -8,6 +8,10 @@
     margin-right: auto;
   }
 
+header {
+  background-color: #4e184d;
+}
+
 h1 {
   text-align: center;
 }
