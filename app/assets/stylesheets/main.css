@@ -4,7 +4,12 @@
   body {
     position: relative;
     max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
+
+h1 {
+  text-align: center;
 }
 
 h1, h2, h3 {
@@ -183,47 +188,6 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   /* TODO Change this color to something better, and prettify it */
   border: 2px solid orange;
 }
-
-/*
- * Box shadows slow things down a lot, get rid of them
- * https://forum.jquery.com/topic/a-fix-for-low-android-performance-remove-box-shadow
- */
-.ui-shadow,
-.ui-btn-up-a,
-.ui-btn-hover-a,
-.ui-btn-down-a,
-.ui-body-b,
-.ui-btn-up-b,
-.ui-btn-hover-b,
-.ui-btn-down-b,
-.ui-bar-c,
-.ui-body-c,
-.ui-btn-up-c,
-.ui-btn-hover-c,
-.ui-btn-down-c,
-.ui-bar-c,
-.ui-body-d,
-.ui-btn-up-d,
-.ui-btn-hover-d,
-.ui-btn-down-d,
-.ui-bar-d,
-.ui-body-e,
-.ui-btn-up-e,
-.ui-btn-hover-e,
-.ui-btn-down-e,
-.ui-bar-e,
-.ui-overlay-shadow,
-.ui-shadow,
-.ui-btn-active,
-.ui-body-a,
-.ui-bar-a {
-  text-shadow: none;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -o-box-shadow: none;
-  -webkit-box-shadow: none;
-}
-
 
 /* filter screen footer */
 
