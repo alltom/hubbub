@@ -99,7 +99,6 @@ hubbub.FeedListView = Backbone.View.extend({
       }).render().el;
       $(this.el).append(item);
     }, this);
-    $('#feedList').listview('refresh');
     return this;
   }
 });
@@ -181,7 +180,7 @@ hubbub.FeedItemView = Backbone.View.extend({
         width: "100%"
       })
       .appendTo($(this.el));
-      $('.feeditem-expand-button',this.el).button();
+    //  $('.feeditem-expand-button',this.el).button();
 	  this.expandButton.html("Expand");
     
     this.expandButton.click(_.bind(function() {

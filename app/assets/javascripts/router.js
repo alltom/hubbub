@@ -128,18 +128,7 @@ hubbub.Router = Backbone.Router.extend({
    *    all page changes except the very first one.
    */
   changePage: function(pageView) {
-    $(pageView.el).attr('data-role', 'page');
     pageView.render();
     $('body').append($(pageView.el));
-    var transition = $.mobile.defaultPageTransition;
-    // Don't transition for the first page
-    if (this.firstPage) {
-      transition = 'none';
-      this.firstPage = false;
-    }
-    $.mobile.changePage($(pageView.el), {
-      changeHash: false,
-      transition: transition
-    });
   }
 });
