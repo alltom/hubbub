@@ -91,7 +91,9 @@ hubbub.Router = Backbone.Router.extend({
    * Show the filter page.
    */
   filter: function() {
+    console.log('filter router');
     this.changePage(new hubbub.FilterView({
+      el: $('<div>', {'class': 'container-fluid'}),
       filterTemplate: this.filterTemplate,
       savedFilterTemplate: this.savedFilterTemplate,
       tagItems: this.tagItems,
@@ -124,10 +126,8 @@ hubbub.Router = Backbone.Router.extend({
    * Helper method to change the page displayed.
    * Given a View, 
    * 1. calls render() on that View
+   * 2. Empties <body>
    * 2. appends that view's element to the <body> element
-   * 3. calls $.mobile.changePage, passing in the new View's element, which
-   *    removes the HTML for the previous page, and shows an animation on
-   *    all page changes except the very first one.
    */
   changePage: function(pageView) {
     pageView.render();

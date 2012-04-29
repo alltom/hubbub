@@ -91,7 +91,7 @@ hubbub.TagListView = Backbone.View.extend({
       }).render().el;
       $(this.el).append(item);
     }, this);
-    $('#tagList').listview('refresh');
+    //$('#tagList').listview('refresh');
     return this;
   },
 
@@ -121,7 +121,7 @@ hubbub.TagListView = Backbone.View.extend({
       }
       $(this.el).append(item);
     }, this);
-    $('#tagList').listview('refresh');
+    //$('#tagList').listview('refresh');
     return this;
   },
   

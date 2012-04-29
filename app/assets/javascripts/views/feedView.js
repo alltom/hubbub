@@ -12,7 +12,8 @@ hubbub.changeButtonText = function(newText, button) {
  */
 hubbub.FeedPageView = Backbone.View.extend({
   events: {
-    'click input': 'onButtonClick'
+    'click input': 'onButtonClick',
+    'click #filterLink': 'onFilterLinkClick'
   },
 
   /**
@@ -66,7 +67,11 @@ hubbub.FeedPageView = Backbone.View.extend({
 
   onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
 
-  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!')
+  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
+
+  onFilterLinkClick: function(event) {
+    this.router.navigate('#filter', {trigger: true});
+  }
 });
 
 /**
