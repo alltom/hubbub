@@ -4,12 +4,7 @@
  * button - the <input> element written in HTML to represent the button.
  */
 hubbub.changeButtonText = function(newText, button) {
-  // We can't simply write
-  // button.attr('value', newText);
-  // because jQuery Mobile hides the <input> element and actually displays
-  // nested <span>s. Change the span for the button text instead.
-  // http://stackoverflow.com/questions/4009524/change-button-text-jquery-mobile 
-  button.parent().find('.ui-btn-text').text(newText);
+  button.attr('value', newText);
 };
 
 /**
@@ -58,7 +53,6 @@ hubbub.FeedPageView = Backbone.View.extend({
   },
 
   onButtonClick: function(event) {
-    console.log('onButtonClick');
     var button = $(event.currentTarget);
     var value = button.attr('value');
     if(value === 'Save') {
