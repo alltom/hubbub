@@ -79,16 +79,26 @@
     </script>
 
     <script id="imgurItemTemplate" type="text/template">
-      <div data-role="controlgroup" class="item-actions over">
-        <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-        <input type="button" data-role="button" value="Share" />
-        <input type="button" value="Save" />
+
+      <div class="row-fluid">
+        <div class="source imgur"><%= source %></div>
       </div>
-      <span class="source imgur"><%= source %></span>
-      <div class="item-body">
-        <div class="feedTagSet"></div>
-        <img src="<%= url %>" />
+
+      <div class="row-fluid">
+        <div class="item-body span10">
+          <div class="feedTagSet"></div>
+          <img src="<%= url %>" />
+        </div>
+        <div class="span2">
+          <div class="btn-group-vertical">
+            <input type="button" class="btn hubbub-feeditem-tag-button"
+                   value="Tag" />
+            <input type="button" class="btn" value="Share" />
+            <input type="button" class="btn" value="Save" />
+          </div>
+        </div>
       </div>
+
     </script>
 
     <script id="facebookItemTemplate" type="text/template">
