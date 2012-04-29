@@ -124,16 +124,26 @@
     </script>
 
     <script id="facebookItemTemplate" type="text/template">
-      <div data-role="controlgroup" class="item-actions float">
-        <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-        <input type="button" data-role="button" value="Share" />
-        <input type="button" value="Save" />
-      </div>
-      <span class="source facebook"><%= source %></span>
-      <div class="item-body">
+
+      <div class="row-fluid">
+        <div class="source facebook"><%= source %></div>
         <div class="feedTagSet"></div>
-        <div><b><%= username %></b>: <%= body %></div>
       </div>
+
+      <div class="row-fluid">
+        <div class="item-body span10">
+          <div><b><%= username %></b>: <%= body %></div>
+        </div>
+        <div class="span2">
+          <div class="btn-group-vertical">
+            <input type="button" class="btn hubbub-feeditem-tag-button"
+                   value="Tag" />
+            <input type="button" class="btn" value="Share" />
+            <input type="button" class="btn" value="Save" />
+          </div>
+        </div>
+      </div>
+
     </script>
 
     <script id="filterTemplate" type="text/template">
