@@ -234,9 +234,15 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 }
 /* Set corners individual because sometimes a single button can be in a .btn-group-vertical and we need :first-child and :last-child to both match */
 .btn-group-vertical .btn:first-child {
-  margin-top: 0;
+  /*margin-top: 0;*/ /* Replaced by the HACK (sorry!) */
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
+
+  /**
+   * HACK: Make the buttons flush with the top of the feed item
+   * TODO Do this elegantly
+   */
+  margin-top: -20px;
 }
 .btn-group-vertical .btn:last-child {
   border-bottom-left-radius: 4px;
