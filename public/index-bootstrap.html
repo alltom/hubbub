@@ -17,19 +17,18 @@
       Populated by JavaScript at runtime.
     -->
     <!-- TODO Decide how to organize templates. Should we use require.js? -->
+    <!-- All templates will be wrapped in a container-fluid. -->
     <script id="feedPageTemplate" type="text/template">
-      <header>
-        <h1>Hubbub</h1>
+      <header class="row-fluid">
+        <div class="span12">
+          <a class="btn" id="filterLink" href="#filter">Filter</a>
+          <h1>Hubbub</h1>
+        </div>
       </header>
 
-      <div data-role="content">
+      <div id="content">
         <!--  FeedItems go inside this list -->
-        <!-- 
-          jQuery Mobile provides search facilities for lists (and we can
-          hook in our own code to pick out items. See
-          http://jquerymobile.com/demos/1.1.0-rc.2/docs/lists/docs-lists.html
-        -->
-        <div data-role="collapsible-set" id="feedList"></div>
+        <div id="feedList"></div>
       </div>
     </script>
 

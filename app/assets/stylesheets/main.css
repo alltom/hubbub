@@ -13,9 +13,15 @@ header {
 }
 
 h1 {
-  text-align: center;
   color: #ffffff;
   font-size: 16px;
+  display: inline;
+  padding-left: 20%;
+}
+
+#filterLink {
+  margin-bottom: 5px;
+  margin-left: 5px;
 }
 
 h1, h2, h3 {

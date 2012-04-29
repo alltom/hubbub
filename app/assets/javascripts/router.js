@@ -129,6 +129,9 @@ hubbub.Router = Backbone.Router.extend({
    */
   changePage: function(pageView) {
     pageView.render();
-    $('body').append($(pageView.el));
+    // Wrap everything in a container-fluid
+    var containerDiv = $('<div>', {'class': 'container-fluid'});
+    containerDiv.append(pageView.$el);
+    $('body').empty().append(containerDiv);
   }
 });
