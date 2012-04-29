@@ -17,7 +17,7 @@ hubbub.changeButtonText = function(newText, button) {
  */
 hubbub.FeedPageView = Backbone.View.extend({
   events: {
-    'vclick input': 'onButtonClick'
+    'click input': 'onButtonClick'
   },
 
   /**
@@ -58,10 +58,12 @@ hubbub.FeedPageView = Backbone.View.extend({
   },
 
   onButtonClick: function(event) {
+    console.log('onButtonClick');
     var button = $(event.currentTarget);
-    if(button.attr('value') === 'Save') {
+    var value = button.attr('value');
+    if(value === 'Save') {
       this.onSaveButtonClick(button); 
-    } else if (button.attr('value') === 'Share') {
+    } else if (value === 'Share') {
       this.onShareButtonClick(button);
     }
   },
