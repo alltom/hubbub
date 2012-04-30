@@ -7,7 +7,8 @@
   }
 }
 
-header, footer {
+header,
+footer {
   background-color: #4e184d;
 }
 
@@ -36,11 +37,19 @@ h1 {
   margin-left: 5px;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: "Droid Serif", Georgia, "Times New Roman", serif;
 }
 
-span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
+span,
+div,
+label,
+p,
+input,
+.ui-btn-text,
+.ui-input-search input.ui-input-text {
   font-family: "Droid Sans", Helvetica, Arial, sans-serif;
 }
 
