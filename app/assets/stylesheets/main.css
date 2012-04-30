@@ -1,7 +1,10 @@
 /* for during desktop development only */
-body {
-  position: relative;
-  max-width: 320px;
+/* Media query so it doesn't leave empty space on phones */
+@media only screen and (min-width: 1025px) {
+  body {
+    position: relative;
+    max-width: 320px;
+  }
 }
 
 h1, h2, h3 {
