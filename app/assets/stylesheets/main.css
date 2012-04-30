@@ -7,6 +7,11 @@
   }
 }
 
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 header,
 footer {
   background-color: #4e184d;
