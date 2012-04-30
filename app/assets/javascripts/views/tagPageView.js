@@ -5,7 +5,8 @@ hubbub.TagPageView = Backbone.View.extend({
 
   events: {
      'click #hubbub-tag-ok-button': 'updateTags',
-     'click #hubbub-new-tag-submit': 'addTag'
+     'click #hubbub-new-tag-submit': 'addTag',
+     'click #hubbub-tag-cancel-button': 'cancelTagging'
    },
   /**
    * Views take constructor parameters as named arguments inside the options
@@ -13,12 +14,14 @@ hubbub.TagPageView = Backbone.View.extend({
    * This view expects two additional parameters:
    * pageTemplate - a template for the feed page
    * feedItemTemplate - a template for a single feed item.
+   * router - the router (used to go back after the user is done with tagging)
    */
   initialize: function(options) {
     this.tagItemTemplate = options.tagItemTemplate;
     this.template = _.template(options.pageTemplate.html());
     this.feedItem = options.feedItem;
     this.feedItemIndex = options.feedItemIndex;
+    this.router = options.router;
   },
 
   /*
@@ -49,6 +52,7 @@ hubbub.TagPageView = Backbone.View.extend({
         }
       });
     this.feedItem.set("tags",tags);
+    this.router.navigate('#', {trigger: true});
   },
   
   addTag: function(){
@@ -65,6 +69,10 @@ hubbub.TagPageView = Backbone.View.extend({
       }
     }
     return false;
+  },
+
+  cancelTagging: function() {
+    this.router.navigate('#', {trigger: true});
   }
 });
 

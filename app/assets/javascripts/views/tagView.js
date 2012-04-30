@@ -7,7 +7,7 @@ hubbub.TagView = Backbone.View.extend({
    * tagTemplate - a template for tag pages.
    */
    events: {
-     'click .hubbub-tag-ok-button': 'updateTags'
+     'click #hubbub-tag-ok-button': 'updateTags'
    },
    
   initialize: function(options) {

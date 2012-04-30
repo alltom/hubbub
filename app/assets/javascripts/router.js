@@ -120,7 +120,8 @@ hubbub.Router = Backbone.Router.extend({
       pageTemplate: this.tagPageTemplate,
       tagItemTemplate: this.tagItemTemplate,
   	  feedItem: this.feedItems.at(feedItemIndex),
-  	  feedItemIndex: feedItemIndex
+  	  feedItemIndex: feedItemIndex,
+      router: this
     }));
   },
 
