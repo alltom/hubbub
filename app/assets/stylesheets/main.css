@@ -213,6 +213,15 @@ input,
   display: inline;
 }
 
+.checkbox {
+  margin-left: 10px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #ccc;
+  border-radius: 4px 4px 4px 4px;
+}
+
 #filterSearch {
   padding-bottom: 20px;
 }
