@@ -106,6 +106,7 @@ hubbub.Router = Backbone.Router.extend({
 
   saveFilter: function(filter) {
     this.changePage(new hubbub.SaveFilterView({
+      el: $('<div>', {'class': 'container-fluid'}),
       saveFilterTemplate: this.saveFilterTemplate,
       filter: filter,
       router: this

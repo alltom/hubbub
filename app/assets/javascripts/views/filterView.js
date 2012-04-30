@@ -310,7 +310,7 @@ hubbub.SaveFilterView = Backbone.View.extend({
   },
 
   /**
-   * Called whe the save filter button is clicked. Not fully implemeneted.
+   * Called whe the save filter button is clicked.
    */
   onSaveFilter: function(event) {
     event.preventDefault();
