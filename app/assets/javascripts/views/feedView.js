@@ -57,12 +57,10 @@ hubbub.FeedPageView = Backbone.View.extend({
     var button = $(event.currentTarget);
     var value = button.attr('value');
     if(value === 'Save') {
-      this.onSaveButtonClick(button); 
+      this.onSaveButtonClick(button);
     } else if (value === 'Share') {
       this.onShareButtonClick(button);
-    } else {
-      console.log("some other button was clicked, it's " + value);
-    } 
+    }
   },
 
   onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
