@@ -7,9 +7,17 @@
   }
 }
 
-header {
+header, footer {
   background-color: #4e184d;
+}
+
+header {
   margin-bottom: 10px;
+}
+
+footer {
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 h1 {
@@ -196,6 +204,10 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   padding-bottom: 30px;
 }
 
+.serviceLogo {
+  display: inline;
+}
+
 #filterSearch {
   padding-bottom: 20px;
 }
@@ -211,10 +223,18 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   border: 2px solid orange;
 }
 
+#executeFilter {
+  margin-left: 5px;
+}
+
 /* filter screen footer */
 
 .ui-footer {
   padding: 4px;
+}
+
+.ui-hidden-accessible {
+  display: none;
 }
 
 /* Adapted from:

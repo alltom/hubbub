@@ -161,24 +161,24 @@
 
       <div data-role="content">
         <h2>Services</h2> 
-        <div class="ui-grid-d" id="services">
+        <div id="services">
           <!-- 
             TODO Make these images look nicer, and size them beforehand
             instead of doing it in the browser.
           -->
-          <p class="ui-block-a serviceLogo">
+          <p class="serviceLogo">
             <img alt="Twitter logo" src="/assets/twitter-logo8.png"
                  width="50" height="50" data-name="Twitter" />
           </p>
-          <p class="ui-block-b serviceLogo">
+          <p class="serviceLogo">
             <img alt="Facebook logo" src="/assets/facebook-logo.png"
                  width="50" height="50" data-name="Facebook" />
           </p>
-          <p class="ui-block-c serviceLogo">
+          <p class="serviceLogo">
             <img alt="Imgur logo" src="/assets/Imgur_Logo_Icon.png"
                  width="50" height="50" data-name="Imgur" />
           </p>
-          <p class="ui-block-d serviceLogo">
+          <p class="serviceLogo">
             <img alt="Gmail logo" src="/assets/gmail-logo.png"
                  width="50" height="50" data-name="Gmail" />
           </p>
@@ -186,40 +186,38 @@
 
         <form action="filter.html" method="post" id="filterSearch">
           <label for="search" class="ui-hidden-accessible">Search</label>
-          <input type="search" name="search" placeholder="Search" />
+          <input type="search" name="search" class="input-medium search-query"
+                 placeholder="Search" />
         </form>
 
-        <div data-role="collapsible">
-          <h3>More Options</h3>
-          <form action="filter.html" method="post">
-            <legend>Tags</legend>
-            <fieldset id="tagList"></fieldset>
-            <legend>Other</legend>
-            <label>
-              <input type="checkbox" name="hyperlink" id="hasHyperlink" />
-              Has a Hyperlink
-            </label>
-          </form>
-        </div>
+        <h3>More Options</h3>
+        <form action="filter.html" method="post">
+          <legend>Tags</legend>
+          <fieldset id="tagList"></fieldset>
+          <legend>Other</legend>
+          <label class="checkbox">
+            <input type="checkbox" name="hyperlink" id="hasHyperlink" />
+            Has a Hyperlink
+          </label>
+        </form>
 
         <h3>Saved Filters</h3>
         <form action="filter.html" method="post" id="savedFilters">
-          <!--
-          <label><input type="checkbox" name="kitties" />Kitties!</label>
-          <label><input type="checkbox" name="school" />School</label>
-          <label><input type="checkbox" name="cplusplus" />C++</label>
-          -->
         </form>
       </div>
-      <div data-role="footer">
-        <a href="#" data-role="button" id="executeFilter">Execute</a>
-        <a href="#" data-role="button" id="resetFilter">Reset</a>
-        <a href="#" data-role="button" id="saveFilter">Save Filter</a>
-      </div>
+      <footer class="row-fluid">
+        <div class="span12">
+          <input type="button" class="btn" id="executeFilter" value="Execute" />
+          <input type="button" class="btn" id="resetFilter" value="Reset" />
+          <input type="button" class="btn" id="saveFilter" value="Save Filter" />
+        </div>
+      </footer>
     </script>
 
     <script id="savedFilterTemplate" type="text/template">
-      <input type="checkbox" name="filter" /><%= name %>
+      <label class="checkbox">
+        <input type="checkbox" name="filter" /><%= name %>
+      </label>
     </script>
 
     <script id="saveFilterTemplate" type="text/template">
@@ -271,7 +269,9 @@
     </script>
   
     <script id="tagItemTemplate" type="text/template">
-      <label><input type="checkbox" class ="hubbub-user-defined-tag"/><%= tagname %></label>
+      <label class="checkbox">
+        <input type="checkbox" class ="hubbub-user-defined-tag"/><%= tagname %>
+      </label>
     </script>
   </body>
 </html>

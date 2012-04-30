@@ -91,7 +91,6 @@ hubbub.TagListView = Backbone.View.extend({
       }).render().el;
       $(this.el).append(item);
     }, this);
-    //$('#tagList').listview('refresh');
     return this;
   },
 
