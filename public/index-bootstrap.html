@@ -236,33 +236,28 @@
     </script>
   
     <script id="tagPageTemplate" type="text/template">
-      <div data-role="header">
-        <h1>Tag</h1>
-      </div>
+      <header class="row-fluid">
+        <h1 id="tagTitle">Tag</h1>
+      </header>
 
-      <div data-role="content">
-        <form action="#tag/0" id="hubbub-tag-form" method="post"> <!-- TODO Route with Backbone -->
-          <fieldset id="newTagFields">
-            <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
-            <input type="text" name="tagName" id="hubbub-new-tag-text" placeholder="Tag Name" />
-            <input type="submit" data-role="button" id="hubbub-new-tag-submit" value="New" data-mini="true" />
-          </fieldset>
+      <form action="#tag/0" id="hubbub-tag-form" method="post">
+        <fieldset class="control-group" id="newTagFields">
+          <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
+          <input type="text" class="input-large" name="tagName" id="hubbub-new-tag-text" placeholder="Tag Name" />
+          <input type="submit" class="btn" id="hubbub-new-tag-submit" value="New" />
+        </fieldset>
 
-          <!-- 
-            jQuery Mobile checkboxes expand the clickable area to improve
-            usability on touch screens.
-          -->
-          <fieldset id="tagList">
-          </fieldset>
-        </form>
-      </div>
+        <fieldset id="tagList">
+        </fieldset>
+      </form>
 
-      <div data-role="footer">
-        <form action="index.html" method="post"> <!-- Route this too -->
-          <a data-role="button" id="hubbub-tag-ok-button" href="#">OK</a>
-          <a data-role="button" href="#">Cancel</a>
-        </form>
-      </div>
+      <footer class="row-fluid">
+        <div class="span12">
+          <input type="button" class="btn" id="hubbub-tag-ok-button"
+                 value="OK" />
+          <input type="button" class="btn" value="Cancel" />
+        </div>
+      </footer>
     </script>
   
     <script id="tagItemTemplate" type="text/template">

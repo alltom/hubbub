@@ -115,6 +115,7 @@ hubbub.Router = Backbone.Router.extend({
 
   listTagItems: function(feedItemIndex) {
     this.changePage(new hubbub.TagPageView({
+      el: $('<div>', {'class': 'container-fluid'}),
       model: this.tagItems,
       pageTemplate: this.tagPageTemplate,
       tagItemTemplate: this.tagItemTemplate,

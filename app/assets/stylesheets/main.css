@@ -20,6 +20,10 @@ footer {
   padding-bottom: 5px;
 }
 
+footer form {
+  margin-bottom: 0px;
+}
+
 h1 {
   color: #ffffff;
   font-size: 16px;
@@ -40,25 +44,13 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   font-family: "Droid Sans", Helvetica, Arial, sans-serif;
 }
 
-/* 
- * Align the "New Tag" text input and button from the Tag page in a single row.
- * jQuery Mobile's grid doesn't properly align them, but this CSS does it.
- * http://stackoverflow.com/questions/8606298/jquery-mobile-display-an-html-form-inline
- */
-#newTagFields .ui-input-text {
-  display: inline-block;
-  width: 60%;
-  vertical-align: middle;
-  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+#tagTitle {
+  text-align: center;
 }
 
-#newTagFields > .ui-btn {
-  display: inline-block;
-  width: 25%;
-  vertical-align: middle;
-
-  /* right-align the button */
-  margin-left: 17.7px; /* any more and it goes to the next line */
+#hubbub-new-tag-submit {
+  position: relative;
+  bottom: 5px;
 }
 
 /* Put some space between the new tag form and the existing tags */
@@ -74,7 +66,6 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
     width: 100%;
   }
 }
-
 
 /* feed items */
 
@@ -223,7 +214,9 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   border: 2px solid orange;
 }
 
-#executeFilter {
+/* First button in the footer */
+#executeFilter,
+#hubbub-tag-ok-button {
   margin-left: 5px;
 }
 
