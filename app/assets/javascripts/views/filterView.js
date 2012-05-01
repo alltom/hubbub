@@ -62,10 +62,10 @@ hubbub.FilterView = Backbone.View.extend({
    * Events to handle in the filter page
    */
   events: {
-    'vclick .serviceLogo': 'onServiceLogoClick',
-    'vclick #executeFilter': 'onExecute',
-    'vclick #resetFilter': 'onReset',
-    'vclick #saveFilter': 'onSaveFilter'
+    'click .serviceLogo': 'onServiceLogoClick',
+    'click #executeFilter': 'onExecute',
+    'click #resetFilter': 'onReset',
+    'click #saveFilter': 'onSaveFilter'
   },
 
   /**
@@ -286,8 +286,8 @@ hubbub.FilterView = Backbone.View.extend({
 hubbub.SaveFilterView = Backbone.View.extend({
 
   events: {
-    'vclick #doSaveFilter': 'onSaveFilter',
-    'vclick #cancelSaveFilter': 'onCancelSaveFilter'
+    'click #doSaveFilter': 'onSaveFilter',
+    'click #cancelSaveFilter': 'onCancelSaveFilter'
   },
 
   /**
@@ -310,7 +310,7 @@ hubbub.SaveFilterView = Backbone.View.extend({
   },
 
   /**
-   * Called whe the save filter button is clicked. Not fully implemeneted.
+   * Called whe the save filter button is clicked.
    */
   onSaveFilter: function(event) {
     event.preventDefault();

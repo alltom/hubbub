@@ -1,36 +1,70 @@
 /* for during desktop development only */
-body {
-  position: relative;
-  max-width: 320px;
+/* Media query so it doesn't leave empty space on phones */
+@media only screen and (min-width: 1025px) {
+  body {
+    position: relative;
+    max-width: 320px;
+  }
 }
 
-h1, h2, h3 {
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+header,
+footer {
+  background-color: #4e184d;
+}
+
+header {
+  margin-bottom: 10px;
+}
+
+footer {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+footer form {
+  margin-bottom: 0px;
+}
+
+h1 {
+  color: #ffffff;
+  font-size: 16px;
+  display: inline;
+  padding-left: 20%;
+}
+
+#headerLeftLink {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+h1,
+h2,
+h3 {
   font-family: "Droid Serif", Georgia, "Times New Roman", serif;
 }
 
-span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
+span,
+div,
+label,
+p,
+input,
+.ui-btn-text,
+.ui-input-search input.ui-input-text {
   font-family: "Droid Sans", Helvetica, Arial, sans-serif;
 }
 
-/* 
- * Align the "New Tag" text input and button from the Tag page in a single row.
- * jQuery Mobile's grid doesn't properly align them, but this CSS does it.
- * http://stackoverflow.com/questions/8606298/jquery-mobile-display-an-html-form-inline
- */
-#newTagFields .ui-input-text {
-  display: inline-block;
-  width: 60%;
-  vertical-align: middle;
-  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
+#tagTitle {
+  padding-left: 40%;
 }
 
-#newTagFields > .ui-btn {
-  display: inline-block;
-  width: 25%;
-  vertical-align: middle;
-
-  /* right-align the button */
-  margin-left: 17.7px; /* any more and it goes to the next line */
+#hubbub-new-tag-submit {
+  position: relative;
+  bottom: 5px;
 }
 
 /* Put some space between the new tag form and the existing tags */
@@ -47,7 +81,6 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   }
 }
 
-
 /* feed items */
 
 .feedItem {
@@ -55,12 +88,9 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   position: relative;
   border-top: 1px solid #ccc;
   
-  /* break out of ui-content's 15px padding */
-  margin: 0 -15px;
-  
   overflow: hidden;
 }
-.feedItem span.source {
+.feedItem .source {
   float: left;
   font-size: 12px;
   padding: 2px;
@@ -77,12 +107,16 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 }
 .feedItem label {
   font-weight: bold;
+  display: inline;
+}
+.gmailHeader {
+  padding-bottom: 10px;
 }
 .feedItem .feeditem-expand-button.ui-btn {
   margin: 0;
 }
 .feeditem-expand-button {
-  width: 99% !important;
+  width: 92% !important;
 }
 .item-actions {
   font-size: 12px;
@@ -101,6 +135,14 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   right: 0;
 }
 
+.feedItemControls .btn {
+  height: 30px;
+
+  position: relative;
+  right: 43%;
+  width: 143% !important;
+}
+
 /* styles for tag view items in a feed */
 
 .feedTagSet .feed-tag-set-item {
@@ -109,6 +151,7 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   padding: 0 4px;
   color: black;
   margin-right: 10px;
+  margin-top: 3px;
 }
 
 .feedTagSet .feed-tag-set-item.last {
@@ -129,7 +172,7 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 .feedItem.twitter {
   border-top-color: #80e5ff;
 }
-.feedItem.twitter span.source {
+.feedItem.twitter .source {
   background: #80e5ff;
   color: black;
 }
@@ -140,7 +183,7 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 .feedItem.imgur img {
   margin-top: 4px;
 }
-.feedItem.imgur span.source {
+.feedItem.imgur .source {
   background: #ffe373;
   color: black;
 }
@@ -148,7 +191,7 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 .feedItem.gmail {
   border-top-color: #d56d50;
 }
-.feedItem.gmail span.source {
+.feedItem.gmail .source {
   background: #d56d50;
 }
 
@@ -156,7 +199,7 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   border-top-color: #7373ff;
 }
 
-.feedItem.facebook span.source {
+.feedItem.facebook .source {
   background: #7373ff;
 }
 
@@ -164,6 +207,19 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
 
 #services {
   padding-bottom: 30px;
+}
+
+.serviceLogo {
+  display: inline;
+}
+
+.checkbox {
+  margin-left: 10px;
+  padding-left: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background: #ccc;
+  border-radius: 4px 4px 4px 4px;
 }
 
 #filterSearch {
@@ -181,49 +237,83 @@ span, div, label, p, input, .ui-btn-text, .ui-input-search input.ui-input-text {
   border: 2px solid orange;
 }
 
-/*
- * Box shadows slow things down a lot, get rid of them
- * https://forum.jquery.com/topic/a-fix-for-low-android-performance-remove-box-shadow
- */
-.ui-shadow,
-.ui-btn-up-a,
-.ui-btn-hover-a,
-.ui-btn-down-a,
-.ui-body-b,
-.ui-btn-up-b,
-.ui-btn-hover-b,
-.ui-btn-down-b,
-.ui-bar-c,
-.ui-body-c,
-.ui-btn-up-c,
-.ui-btn-hover-c,
-.ui-btn-down-c,
-.ui-bar-c,
-.ui-body-d,
-.ui-btn-up-d,
-.ui-btn-hover-d,
-.ui-btn-down-d,
-.ui-bar-d,
-.ui-body-e,
-.ui-btn-up-e,
-.ui-btn-hover-e,
-.ui-btn-down-e,
-.ui-bar-e,
-.ui-overlay-shadow,
-.ui-shadow,
-.ui-btn-active,
-.ui-body-a,
-.ui-bar-a {
-  text-shadow: none;
-  box-shadow: none;
-  -moz-box-shadow: none;
-  -o-box-shadow: none;
-  -webkit-box-shadow: none;
+/* First button in the footer */
+#executeFilter,
+#hubbub-tag-ok-button {
+  margin-left: 5px;
 }
 
+#filterToSave {
+  margin-bottom: 20px;
+}
 
 /* filter screen footer */
 
 .ui-footer {
   padding: 4px;
+}
+
+.ui-hidden-accessible {
+  display: none;
+}
+
+/* Adapted from:
+ * https://github.com/twitter/bootstrap/issues/2351
+ */
+/* BUTTON GROUPS (VERTICAL) */
+/* ------------------------ */
+
+/* Make the div behave like a button */
+.btn-group-vertical {
+  display: block;
+}
+
+/* Space out series of button groups */
+.btn-group-vertical + .btn-group-vertical {
+  margin-top: 5px;
+}
+
+/* Float them, remove border radius, then re-add to first and last elements */
+.btn-group-vertical .btn {
+  display: block;
+  width: 100%;
+  margin-top: -1px;
+  padding-top: 5px;
+  border-radius: 0px 0px 0px 0px;
+}
+
+.btn-group-vertical .btn.btn-large {
+  padding-top: 10px;
+}
+/* Set corners individual because sometimes a single button can be in a .btn-group-vertical and we need :first-child and :last-child to both match */
+.btn-group-vertical .btn:first-child {
+  /*margin-top: 0;*/ /* Replaced by the HACK (sorry!) */
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+
+  height: 20px;
+  text-align: center;
+  position: relative;
+  right: 44%;
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 140% !important;
+
+  /**
+   * HACK: Make the buttons flush with the top of the feed item
+   * TODO Do this elegantly
+   */
+  margin-top: -20px;
+}
+.btn-group-vertical .btn:last-child {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+/* On hover/focus/active, bring the proper btn to front */
+.btn-group-vertical .btn:hover,
+.btn-group-vertical .btn:focus,
+.btn-group-vertical .btn:active,
+.btn-group-vertical .btn.active {
+  z-index: 2;
 }

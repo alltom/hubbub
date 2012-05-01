@@ -72,6 +72,8 @@ hubbub.Router = Backbone.Router.extend({
   listFeedItems: function() {
     var feedItems = this.currentFilter.apply(this.feedItems);
     this.changePage(new hubbub.FeedPageView({
+      // wrap the page in a fluid container
+      el: $('<div>', {'class': 'container-fluid'}),
       model: feedItems,
       pageTemplate: this.feedPageTemplate,
       feedItemTemplates: {
@@ -89,7 +91,9 @@ hubbub.Router = Backbone.Router.extend({
    * Show the filter page.
    */
   filter: function() {
+    console.log('filter router');
     this.changePage(new hubbub.FilterView({
+      el: $('<div>', {'class': 'container-fluid'}),
       filterTemplate: this.filterTemplate,
       savedFilterTemplate: this.savedFilterTemplate,
       tagItems: this.tagItems,
@@ -102,6 +106,7 @@ hubbub.Router = Backbone.Router.extend({
 
   saveFilter: function(filter) {
     this.changePage(new hubbub.SaveFilterView({
+      el: $('<div>', {'class': 'container-fluid'}),
       saveFilterTemplate: this.saveFilterTemplate,
       filter: filter,
       router: this
@@ -110,11 +115,13 @@ hubbub.Router = Backbone.Router.extend({
 
   listTagItems: function(feedItemIndex) {
     this.changePage(new hubbub.TagPageView({
+      el: $('<div>', {'class': 'container-fluid'}),
       model: this.tagItems,
       pageTemplate: this.tagPageTemplate,
       tagItemTemplate: this.tagItemTemplate,
   	  feedItem: this.feedItems.at(feedItemIndex),
-  	  feedItemIndex: feedItemIndex
+  	  feedItemIndex: feedItemIndex,
+      router: this
     }));
   },
 
@@ -122,24 +129,11 @@ hubbub.Router = Backbone.Router.extend({
    * Helper method to change the page displayed.
    * Given a View, 
    * 1. calls render() on that View
+   * 2. Empties <body>
    * 2. appends that view's element to the <body> element
-   * 3. calls $.mobile.changePage, passing in the new View's element, which
-   *    removes the HTML for the previous page, and shows an animation on
-   *    all page changes except the very first one.
    */
   changePage: function(pageView) {
-    $(pageView.el).attr('data-role', 'page');
     pageView.render();
-    $('body').append($(pageView.el));
-    var transition = $.mobile.defaultPageTransition;
-    // Don't transition for the first page
-    if (this.firstPage) {
-      transition = 'none';
-      this.firstPage = false;
-    }
-    $.mobile.changePage($(pageView.el), {
-      changeHash: false,
-      transition: transition
-    });
+    $('body').empty().append(pageView.$el);
   }
 });

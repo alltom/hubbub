@@ -4,12 +4,7 @@
  * button - the <input> element written in HTML to represent the button.
  */
 hubbub.changeButtonText = function(newText, button) {
-  // We can't simply write
-  // button.attr('value', newText);
-  // because jQuery Mobile hides the <input> element and actually displays
-  // nested <span>s. Change the span for the button text instead.
-  // http://stackoverflow.com/questions/4009524/change-button-text-jquery-mobile 
-  button.parent().find('.ui-btn-text').text(newText);
+  button.attr('value', newText);
 };
 
 /**
@@ -17,7 +12,8 @@ hubbub.changeButtonText = function(newText, button) {
  */
 hubbub.FeedPageView = Backbone.View.extend({
   events: {
-    'vclick input': 'onButtonClick'
+    'click input': 'onButtonClick',
+    'click #filterLink': 'onFilterLinkClick'
   },
 
   /**
@@ -59,16 +55,21 @@ hubbub.FeedPageView = Backbone.View.extend({
 
   onButtonClick: function(event) {
     var button = $(event.currentTarget);
-    if(button.attr('value') === 'Save') {
-      this.onSaveButtonClick(button); 
-    } else if (button.attr('value') === 'Share') {
+    var value = button.attr('value');
+    if(value === 'Save') {
+      this.onSaveButtonClick(button);
+    } else if (value === 'Share') {
       this.onShareButtonClick(button);
     }
   },
 
   onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
 
-  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!')
+  onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
+
+  onFilterLinkClick: function(event) {
+    this.router.navigate('#filter', {trigger: true});
+  }
 });
 
 /**
@@ -99,7 +100,6 @@ hubbub.FeedListView = Backbone.View.extend({
       }).render().el;
       $(this.el).append(item);
     }, this);
-    $('#feedList').listview('refresh');
     return this;
   }
 });
@@ -144,10 +144,8 @@ hubbub.FeedItemView = Backbone.View.extend({
     if(this.model.has("tags")) {
       var tags = this.model.get("tags");
       for(var i = 0; i < tags.length; i++) {
-        //console.log("tag: "+tags[i]);
         var newtagbutton = $('<span class="feed-tag-set-item"></span>')
         .appendTo($('.feedTagSet',this.el));
-        //$('.feed-tag-set-item',this.el).button();
         newtagbutton.html(tags[i]);
         if(i === tags.length -1) {
           newtagbutton.addClass('last');
@@ -173,7 +171,7 @@ hubbub.FeedItemView = Backbone.View.extend({
     $(this.el).css("max-height", this.collapseHeight)
     this.collapsed = true;
     
-    this.expandButton = $('<a class="feeditem-expand-button"></a>')
+    this.expandButton = $('<a class="btn feeditem-expand-button"></a>')
       .css({
         position: "absolute",
         height: 20,
@@ -181,7 +179,7 @@ hubbub.FeedItemView = Backbone.View.extend({
         width: "100%"
       })
       .appendTo($(this.el));
-      $('.feeditem-expand-button',this.el).button();
+    //  $('.feeditem-expand-button',this.el).button();
 	  this.expandButton.html("Expand");
     
     this.expandButton.click(_.bind(function() {
