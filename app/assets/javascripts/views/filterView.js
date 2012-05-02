@@ -19,7 +19,7 @@ hubbub.SavedFilterView = Backbone.View.extend({
   tagName: 'label',
 
   initialize: function(options) {
-    this.template = _.template(options.savedFilterTemplate.html());
+    this.template = _.template(options.savedFilterTemplate);
     this.model = options.model;
   },
 
@@ -77,7 +77,7 @@ hubbub.FilterView = Backbone.View.extend({
    * router - the router, whose method to call when going back to the Feed view
    */
   initialize: function(options) {
-    this.template = _.template(options.filterTemplate.html());
+    this.template = _.template(options.filterTemplate);
     this.savedFilterTemplate = options.savedFilterTemplate;
     this.tagItemTemplate = options.tagItemTemplate;
     this.tagItems = options.tagItems;
@@ -297,7 +297,7 @@ hubbub.SaveFilterView = Backbone.View.extend({
    * router - the router, with callbacks
    */
   initialize: function(options) {
-    this.template = _.template(options.saveFilterTemplate.html());
+    this.template = _.template(options.saveFilterTemplate);
     this.filter = options.filter;
     this.router = options.router;
   },

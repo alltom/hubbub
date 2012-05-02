@@ -11,7 +11,7 @@ hubbub.TagView = Backbone.View.extend({
    },
    
   initialize: function(options) {
-    this.template = _.template(options.tagTemplate.html());
+    this.template = _.template(options.tagTemplate);
   },
 
   /*

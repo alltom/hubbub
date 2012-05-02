@@ -18,7 +18,7 @@ hubbub.TagPageView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.tagItemTemplate = options.tagItemTemplate;
-    this.template = _.template(options.pageTemplate.html());
+    this.template = _.template(options.pageTemplate);
     this.feedItem = options.feedItem;
     this.feedItemIndex = options.feedItemIndex;
     this.router = options.router;
@@ -154,7 +154,7 @@ hubbub.TagItemView = Backbone.View.extend({
    * tagItemTemplate - the template to use.
    */
   initialize: function(options) {
-    this.template = _.template(options.tagItemTemplate.html());
+    this.template = _.template(options.tagItemTemplate);
   },
   
   render: function() {

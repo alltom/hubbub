@@ -32,17 +32,17 @@ hubbub.Router = Backbone.Router.extend({
     this.resetFilter();
 
     // Eagerly load all templates, since changePage gets rid of them
-    this.feedPageTemplate = $('#feedPageTemplate');
-    this.feedItemTemplate = $('#genericFeedItemTemplate');
-    this.gmailItemTemplate = $('#gmailItemTemplate');
-    this.twitterItemTemplate = $('#twitterItemTemplate');
-    this.imgurItemTemplate = $('#imgurItemTemplate');
-    this.facebookItemTemplate = $('#facebookItemTemplate');
-    this.filterTemplate = $('#filterTemplate');
-    this.saveFilterTemplate = $('#saveFilterTemplate');
-    this.savedFilterTemplate = $('#savedFilterTemplate');
-    this.tagPageTemplate = $('#tagPageTemplate');
-    this.tagItemTemplate = $('#tagItemTemplate');
+    this.feedPageTemplate = hubbub.feedPageTemplate
+    this.feedItemTemplate = hubbub.genericFeedItemTemplate
+    this.gmailItemTemplate = hubbub.gmailItemTemplate
+    this.twitterItemTemplate = hubbub.twitterItemTemplate
+    this.imgurItemTemplate = hubbub.imgurItemTemplate
+    this.facebookItemTemplate = hubbub.facebookItemTemplate
+    this.filterTemplate = hubbub.filterTemplate
+    this.saveFilterTemplate = hubbub.saveFilterTemplate
+    this.savedFilterTemplate = hubbub.savedFilterTemplate
+    this.tagPageTemplate = hubbub.tagPageTemplate
+    this.tagItemTemplate = hubbub.tagItemTemplate
   },
 
   addFilter: function(filter) {

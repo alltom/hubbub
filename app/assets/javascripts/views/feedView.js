@@ -27,7 +27,7 @@ hubbub.FeedPageView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
-    this.template = _.template(options.pageTemplate.html());
+    this.template = _.template(options.pageTemplate);
     this.router = options.router;
   },
 
@@ -118,7 +118,7 @@ hubbub.FeedItemView = Backbone.View.extend({
    * feedItemTemplate - the template to use.
    */
   initialize: function(options) {
-    this.template = _.template(options.feedItemTemplate.html());
+    this.template = _.template(options.feedItemTemplate);
     this.collectionRef = options.collectionRef; //reference to the feed list
   },
 

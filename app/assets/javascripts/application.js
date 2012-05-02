@@ -10,10 +10,13 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require jquery
+//= require jquery_ujs
 //= require_tree ./lib
 //= require hubbub.js
 //= require_tree ./models
 //= require_tree ./views
 //= require stubs.js
 //= require router.js
+//= require templates.js.coffee
 //= require main.js
