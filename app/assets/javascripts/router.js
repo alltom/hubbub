@@ -91,7 +91,6 @@ hubbub.Router = Backbone.Router.extend({
    * Show the filter page.
    */
   filter: function() {
-    console.log('filter router');
     this.changePage(new hubbub.FilterView({
       el: $('<div>', {'class': 'container-fluid'}),
       filterTemplate: this.filterTemplate,
