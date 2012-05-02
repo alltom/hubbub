@@ -1,5 +1,4 @@
 Hubbub::Application.routes.draw do
-  get "hubbub/feed"
   match '/feed', :to => 'hubbub#feed'
   match '/', :to => 'hubbub#feed' # Maybe change this to handle register/login?
 
