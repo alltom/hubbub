@@ -165,7 +165,7 @@ input,
  * Color key:
  * Twitter - (light blue) #80e5ff
  * Gmail - (red) #d56d50
- * Imgur - (yellow) #ffe373
+ * Imgur - (green) #71aa55
  * Facebook - (dark blue) #7373ff
  */
 
@@ -178,13 +178,13 @@ input,
 }
 
 .feedItem.imgur {
-  border-top-color: #ffe373;
+  border-top-color: #71aa55;
 }
 .feedItem.imgur img {
   margin-top: 4px;
 }
 .feedItem.imgur .source {
-  background: #ffe373;
+  background: #71aa55;
   color: black;
 }
 
