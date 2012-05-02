@@ -11,6 +11,5 @@
  * tom: theme required separately so that it comes in before any overriding styles in main.css
  * 
  *= require_self
- *= require testtheme.css
  *= require_tree .
 */
