@@ -12,8 +12,9 @@ gem "rails", "3.2.3"
 
 # gem "jquery-rails"
 
-group :development do
+group :development, :test do
   gem "sqlite3"
+  gem 'rspec-rails', '2.9.0'
 end
 
 group :production do
@@ -28,4 +29,8 @@ group :assets do
   # gem "therubyracer", :platform => :ruby
 
   gem "uglifier", ">= 1.0.3"
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
 end
