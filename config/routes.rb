@@ -1,4 +1,6 @@
 Hubbub::Application.routes.draw do
+  get "hubbub/feed"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
