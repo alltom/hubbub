@@ -179,8 +179,7 @@ hubbub.FeedItemView = Backbone.View.extend({
         width: "100%"
       })
       .appendTo($(this.el));
-    //  $('.feeditem-expand-button',this.el).button();
-	  this.expandButton.html("Expand");
+	  this.expandButton.html("More");
     
     this.expandButton.click(_.bind(function() {
       if(this.collapsed) {
@@ -202,7 +201,7 @@ hubbub.FeedItemView = Backbone.View.extend({
       $(this.el).css({ "height" : realHeight + this.expandButton.innerHeight() });
     }
     
-    this.expandButton.html("Shrink")
+    this.expandButton.html("Less")
     
     this.collapsed = false;
   },
@@ -218,7 +217,7 @@ hubbub.FeedItemView = Backbone.View.extend({
       $(this.el).css({ "height" : "auto", "max-height" : this.collapseHeight });
     }
     
-    this.expandButton.html("Expand")
+    this.expandButton.html("More")
     
     this.collapsed = true;
   }
