@@ -9,4 +9,5 @@ app/assets/javascripts/templates.js.coffee
 
 (I think serving everything through Rails routes/controllers makes more
 sense than using public/ for some web requests and the controllers for
-others. Also, this lets us use partials and ERB helpers like csrf_meta_tags)
+others. Also, this lets us use partials and ERB helpers like csrf_meta_tags,
+and be more flexible with routing and URL names.)
