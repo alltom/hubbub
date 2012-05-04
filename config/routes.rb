@@ -2,6 +2,9 @@ Hubbub::Application.routes.draw do
   match '/feed', :to => 'hubbub#feed'
   match '/', :to => 'hubbub#feed' # Maybe change this to handle register/login?
 
+  # API call to get Twitter items.
+  match '/twitter-items', :to => 'hubbub#twitter_items'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
