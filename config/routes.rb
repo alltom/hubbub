@@ -3,9 +3,12 @@ Hubbub::Application.routes.draw do
   match '/', :to => 'hubbub#feed' # Maybe change this to handle register/login?
 
   # Twitter Omniauth callback
+  # Twitter will go to this URL after taking the user's email and password,
+  # and pass us the oauth_token and oauth_token_secret for that particular user.
   match '/auth/twitter/callback', :to => 'sessions#twitter_callback'
 
-  # API call to get Twitter items.
+  # API call to get Twitter items. Should be called by JavaScript using AJAX.
+  # This will only return items if the user has been authenticated by Twitter.
   match '/twitter-items', :to => 'hubbub#twitter_items'
 
   # The priority is based upon order of creation:

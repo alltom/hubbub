@@ -6,6 +6,19 @@ end
 # Class wrapping the Twitter API to pull feed items from twitter.com
 class TwitterAccess
 
+  # Create a TwitterAccess
+  # Pass in an options hash, which should contain:
+  #   oauth_token: String - an OAuth token for the current user, which should have
+  #       been provided by Twitter when the user went to /auth/twitter.
+  #   oauth_token_secret: String - a secret token for the current user, which
+  #       should have came with oauth_token.
+  #
+  # Optionally, it may contain:
+  #   consumer_key: String - the consumer key for this app (default: the value
+  #       in the configuration file)
+  #   consumer_secret: String - the consumer secret for this app (default: the
+  #       value in the configuration file)
+  # You probably don't need to worry about the last two.
   def initialize(options)
     @oauth_token = options[:oauth_token]
     if @oauth_token.nil?
@@ -23,8 +36,8 @@ class TwitterAccess
         Rails.configuration.twitter_consumer_secret
   end
 
+  # Helper method to pass the keys to Twitter
   def configure
-
     Twitter.configure do |configuration|
       configuration.consumer_key = @consumer_key
       configuration.consumer_secret = @consumer_secret

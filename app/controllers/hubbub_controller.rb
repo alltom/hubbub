@@ -2,20 +2,22 @@ class HubbubController < ApplicationController
   def feed
   end
 
-  def failure_json(message)
-    {
-      :json => {
-        :success => false,
-        :reason => message
-      }
-    }
-  end
-
   # AJAX handler to return Twitter items that can be displayed in the feed.
+  # Returns a JSON object, which will be parsed on the client side. It contains:
+  #   success: Boolean - true if items were fetched from Twitter, false
+  #       otherwise.
+  #   
+  #   If success is false, the JSON will contain:
+  #   reason: String - the reason why finding Twitter posts failed.
+  #
+  #   If success is true, the JSON will contain:
+  #   items: List[Tweet] a list of jsonified Tweets to display.
   def twitter_items
     if session[:token].nil? || session[:secret].nil?
-      render failure_json(
-          "Don't have a Twitter oauth_token, did you authenticate?")
+      render :json => {
+        :success => false,
+        :reason => "Don't have a Twitter oauth_token, did you authenticate?"
+      }
     else
       access = TwitterAccess.new({
         :oauth_token => session[:token],
