@@ -49,14 +49,4 @@ Hubbub::Application.configure do
   # dev.twipler.com is used to stand in for localhost (through DNS)
   # https://pedromtavares.wordpress.com/2010/06/21/integrating-rails-with-twitter/
   config.twitter_callback_url = 'http://dev.twipler.com:3000/twitter/auth'
-
-  # Access tokens for my (Rahul)'s Twitter account, to use for testing until
-  # we get # user authentication set up. I just set one up and followed some
-  # random # suggestions to get data with which to populate our app.
-  
-  # When we get authentication set up, I'll make these tokens expire.
-  config.twitter_access_token =
-      '571125849-xsOLN0u6GxZfhf2V77fE4KYNyyjKMeRX7ANkI5zP'
-  config.twitter_access_token_secret =
-      'QtVlrpNeenrTeaBiSVhiFY1nrsSyMdqy44ymRBHE'
 end
