@@ -43,6 +43,18 @@ hubbub.Router = Backbone.Router.extend({
     this.savedFilterTemplate = hubbub.savedFilterTemplate
     this.tagPageTemplate = hubbub.tagPageTemplate
     this.tagItemTemplate = hubbub.tagItemTemplate
+
+    // See if AJAX requests to the server work.
+    // Yep, it works.
+    $.ajax({
+      url: '/twitter-items',
+      success: function(data) {
+        console.log(data);
+      },
+      error: function() {
+        console.log('ajax request failed, are you online?');
+      }
+    });
   },
 
   addFilter: function(filter) {
