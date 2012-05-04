@@ -34,4 +34,20 @@ Hubbub::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  # Twitter configuration variables
+  # http://stackoverflow.com/questions/1450285/how-to-define-custom-configuration-variables-in-rails/5053882#5053882
+  # TODO Is there a more idiomatic place to put them?
+  # The problem with Rails is, a lot of information on the Web gets invalidated
+  # with every release..
+  
+  # These values will end up on the github repository for now. 
+  # If this code ever ends up being used outside of 6.813, you'll probably want
+  # to generate new keys and move them somewhere more secret.
+  config.twitter_consumer_key = 'GZNfWjptujz5TWBG12IzsQ'
+  config.twitter_consumer_secret = 'ZXy7KnD5z3N79hKUUW2Q1NkRcFVXQrGcsAQi5gEcg'
+  # dev.twipler.com is used to stand in for localhost (through DNS)
+  # https://pedromtavares.wordpress.com/2010/06/21/integrating-rails-with-twitter/
+  config.twitter_callback_url = 'http://dev.twipler.com:3000/twitter/auth'
 end
