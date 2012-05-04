@@ -12,6 +12,7 @@ gem "rails", "3.2.3"
 
 gem "jquery-rails", '2.0.2'
 gem "twitter", '2.2.6'
+gem "omniauth-twitter", '0.0.11'
 
 group :development, :test do
   gem "sqlite3"

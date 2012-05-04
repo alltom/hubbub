@@ -2,6 +2,9 @@ Hubbub::Application.routes.draw do
   match '/feed', :to => 'hubbub#feed'
   match '/', :to => 'hubbub#feed' # Maybe change this to handle register/login?
 
+  # Twitter Omniauth callback
+  match '/auth/twitter/callback', :to => 'sessions#twitter_callback'
+
   # API call to get Twitter items.
   match '/twitter-items', :to => 'hubbub#twitter_items'
 
