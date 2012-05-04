@@ -77,4 +77,14 @@ Hubbub::Application.configure do
   config.twitter_consumer_key = 'GZNfWjptujz5TWBG12IzsQ'
   config.twitter_consumer_secret = 'ZXy7KnD5z3N79hKUUW2Q1NkRcFVXQrGcsAQi5gEcg'
   config.twitter_callback_url = 'http://hubbubub.herokuapp.com/twitter/auth'
+
+  # Access tokens for my (Rahul)'s Twitter account, to use for testing until
+  # we get # user authentication set up. I just set one up and followed some
+  # random # suggestions to get data with which to populate our app.
+  
+  # When we get authentication set up, I'll make these tokens expire.
+  config.twitter_access_token =
+      '571125849-xsOLN0u6GxZfhf2V77fE4KYNyyjKMeRX7ANkI5zP'
+  config.twitter_access_token_secret =
+      'QtVlrpNeenrTeaBiSVhiFY1nrsSyMdqy44ymRBHE'
 end
