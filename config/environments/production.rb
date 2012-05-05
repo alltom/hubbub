@@ -81,4 +81,8 @@ Hubbub::Application.configure do
   # Facebook configuration variables
   config.facebook_consumer_key = '380757778632854'
   config.facebook_consumer_secret = '440f677010714895e9d1824895ecc7a4'
+
+  # Gmail configuration variables
+  config.gmail_consumer_key = '948754190937.apps.googleusercontent.com'
+  config.gmail_consumer_secret = 'qozrzEkwPie_UmevHsfXsiJ4'
 end
