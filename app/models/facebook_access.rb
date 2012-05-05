@@ -1,21 +1,17 @@
 class FacebookAccess
+  # Similar to TwitterAccess, this constructor takes an oauth_token (mandatory)
   def initialize(options)
     @oauth_token = options[:oauth_token]
     if @oauth_token.nil?
       raise InsufficientCredentials, 'No oauth_token was provided.'
     end
 
-    @consumer_key = options[:consumer_key] ||
-        Rails.configuration.facebook_consumer_key
-    @consumer_secret = options[:consumer_secret] ||
-        Rails.configuration.facebook_consumer_secret
-
     @graph = Koala::Facebook::API.new @oauth_token
   end
 
+  # Get news feed items from Facebook, as FacebookPost objects.
   def feed
     # https://developers.facebook.com/docs/reference/fql/stream/
-    
     query = <<END_OF_QUERY
       select post_id, actor_id, target_id, message
       from stream
@@ -27,9 +23,14 @@ END_OF_QUERY
 
     result = @graph.fql_query(query)
 
-    puts "FQL query result"
-    p result
-
-    result
+    # Turn the posts with text into FacebookPost objects and return them.
+    # I'm getting a lot of blank entries for some reason, filter them out
+    # TODO Adjust the query to not get the blanks in the first place!
+    result.select { |post|
+      post['message'] != ''
+    }.map { |post|
+      name = @graph.get_object(post['actor_id'])['name']
+      FacebookPost.new :actor => name, :text => post['message']
+    }
   end
 end
