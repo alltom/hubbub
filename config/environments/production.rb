@@ -77,4 +77,8 @@ Hubbub::Application.configure do
   config.twitter_consumer_key = 'GZNfWjptujz5TWBG12IzsQ'
   config.twitter_consumer_secret = 'ZXy7KnD5z3N79hKUUW2Q1NkRcFVXQrGcsAQi5gEcg'
   config.twitter_callback_url = 'http://hubbubub.herokuapp.com/twitter/auth'
+
+  # Facebook configuration variables
+  config.facebook_consumer_key = '380757778632854'
+  config.facebook_consumer_secret = '440f677010714895e9d1824895ecc7a4'
 end

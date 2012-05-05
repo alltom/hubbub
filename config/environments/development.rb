@@ -50,4 +50,8 @@ Hubbub::Application.configure do
   # dev.twipler.com is used to stand in for localhost (through DNS)
   # https://pedromtavares.wordpress.com/2010/06/21/integrating-rails-with-twitter/
   config.twitter_callback_url = 'http://dev.twipler.com:3000/twitter/auth'
+
+  # Facebook configuration variables
+  config.facebook_consumer_key = '380757778632854'
+  config.facebook_consumer_secret = '440f677010714895e9d1824895ecc7a4'
 end
