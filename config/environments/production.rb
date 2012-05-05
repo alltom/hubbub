@@ -78,9 +78,9 @@ Hubbub::Application.configure do
   config.twitter_consumer_secret = 'ZXy7KnD5z3N79hKUUW2Q1NkRcFVXQrGcsAQi5gEcg'
   config.twitter_callback_url = 'http://hubbubub.herokuapp.com/twitter/auth'
 
-  # Facebook configuration variables
-  config.facebook_consumer_key = '380757778632854'
-  config.facebook_consumer_secret = '440f677010714895e9d1824895ecc7a4'
+  # Facebook configuration variables (Note: Different for production)
+  config.facebook_consumer_key = '307803329297874'
+  config.facebook_consumer_secret = '9d495b81fe51afbc1a36b3d26ac56d8e'
 
   # Gmail configuration variables
   config.google_consumer_key = '948754190937.apps.googleusercontent.com'
