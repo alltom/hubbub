@@ -32,4 +32,12 @@ class SessionsController < ApplicationController
 
     redirect_to '/'
   end
+
+  def google_callback
+    auth = request.env['omniauth.auth']
+
+    session[:gmail_token] = auth[:credentials][:token]
+
+    redirect_to '/'
+  end
 end

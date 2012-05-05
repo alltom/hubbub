@@ -19,10 +19,10 @@ class HubbubController < ApplicationController
         :reason => "Don't have a Twitter oauth_token, did you authenticate?"
       }
     else
-      access = TwitterAccess.new({
+      access = TwitterAccess.new(
         :oauth_token => session[:twitter_token],
         :oauth_token_secret => session[:twitter_secret]
-      })
+      )
       timeline_items = access.timeline 
 
       render :json => {
@@ -39,9 +39,9 @@ class HubbubController < ApplicationController
         :reason => "Don't have a Facebook oauth_token, did you authenticate?"
       }
     else
-      access = FacebookAccess.new({
-        :oauth_token => session[:facebook_token],
-      })
+      access = FacebookAccess.new(
+        :oauth_token => session[:facebook_token]
+      )
       items = access.feed
 
       render :json => {
@@ -49,5 +49,17 @@ class HubbubController < ApplicationController
         :items => items
       }
     end
+  end
+
+  def gmail_items
+    access = GmailAccess.new
+    items = access.emails
+    puts "items"
+    puts items
+
+    render :json => {
+      :success => true,  
+      :items => items
+    }
   end
 end
