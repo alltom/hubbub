@@ -4,5 +4,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   provider :facebook, Rails.configuration.facebook_consumer_key,
       Rails.configuration.facebook_consumer_secret,
-      :scope => 'read_stream'
+      :scope => 'read_stream',
+      :callback_url => '/auth/facebook/callback'
 end

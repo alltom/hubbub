@@ -13,21 +13,40 @@ class HubbubController < ApplicationController
   #   If success is true, the JSON will contain:
   #   items: List[Tweet] a list of jsonified Tweets to display.
   def twitter_items
-    if session[:token].nil? || session[:secret].nil?
+    if session[:twitter_token].nil? || session[:twitter_secret].nil?
       render :json => {
         :success => false,
         :reason => "Don't have a Twitter oauth_token, did you authenticate?"
       }
     else
       access = TwitterAccess.new({
-        :oauth_token => session[:token],
-        :oauth_token_secret => session[:secret]
+        :oauth_token => session[:twitter_token],
+        :oauth_token_secret => session[:twitter_secret]
       })
       timeline_items = access.timeline 
 
       render :json => {
         :success => true,  
         :items => timeline_items
+      }
+    end
+  end
+
+  def facebook_items
+    if session[:facebook_token].nil?
+      render :json => {
+        :success => false,
+        :reason => "Don't have a Facebook oauth_token, did you authenticate?"
+      }
+    else
+      access = FacebookAccess.new({
+        :oauth_token => session[:facebook_token],
+      })
+      items = access.feed
+
+      render :json => {
+        :success => true,  
+        :items => items
       }
     end
   end

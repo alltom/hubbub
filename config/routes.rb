@@ -7,9 +7,19 @@ Hubbub::Application.routes.draw do
   # and pass us the oauth_token and oauth_token_secret for that particular user.
   match '/auth/twitter/callback', :to => 'sessions#twitter_callback'
 
+  # Facebook Omniauth callback
+  # Facebook will go to this URL after taking the user's email and password,
+  # and pass us the oauth_token and oauth_token_secret for that particular user.
+  match 'auth/facebook/callback', :to => 'sessions#facebook_callback'
+
   # API call to get Twitter items. Should be called by JavaScript using AJAX.
   # This will only return items if the user has been authenticated by Twitter.
   match '/twitter-items', :to => 'hubbub#twitter_items'
+
+  # API call to get Facebook items. Should be called by JavaScript using AJAX.
+  # This will only return items if the user has been authenticated by Facebook.
+  match '/facebook-items', :to => 'hubbub#facebook_items'
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
