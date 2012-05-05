@@ -32,17 +32,17 @@ hubbub.Router = Backbone.Router.extend({
     this.resetFilter();
 
     // Eagerly load all templates, since changePage gets rid of them
-    this.feedPageTemplate = hubbub.feedPageTemplate
-    this.feedItemTemplate = hubbub.genericFeedItemTemplate
-    this.gmailItemTemplate = hubbub.gmailItemTemplate
-    this.twitterItemTemplate = hubbub.twitterItemTemplate
-    this.imgurItemTemplate = hubbub.imgurItemTemplate
-    this.facebookItemTemplate = hubbub.facebookItemTemplate
-    this.filterTemplate = hubbub.filterTemplate
-    this.saveFilterTemplate = hubbub.saveFilterTemplate
-    this.savedFilterTemplate = hubbub.savedFilterTemplate
-    this.tagPageTemplate = hubbub.tagPageTemplate
-    this.tagItemTemplate = hubbub.tagItemTemplate
+    this.feedPageTemplate = hubbub.feedPageTemplate;
+    this.feedItemTemplate = hubbub.genericFeedItemTemplate;
+    this.gmailItemTemplate = hubbub.gmailItemTemplate;
+    this.twitterItemTemplate = hubbub.twitterItemTemplate;
+    this.imgurItemTemplate = hubbub.imgurItemTemplate;
+    this.facebookItemTemplate = hubbub.facebookItemTemplate;
+    this.filterTemplate = hubbub.filterTemplate;
+    this.saveFilterTemplate = hubbub.saveFilterTemplate;
+    this.savedFilterTemplate = hubbub.savedFilterTemplate;
+    this.tagPageTemplate = hubbub.tagPageTemplate;
+    this.tagItemTemplate = hubbub.tagItemTemplate;
 
     // See if AJAX requests to the server work.
     // Yep, it works.
@@ -52,7 +52,7 @@ hubbub.Router = Backbone.Router.extend({
       // not contain data)
       success: function(data) {
         if (data.success) {
-          console.log('here are Twitter feed items: ' data);
+          console.log('here are Twitter feed items: ' + data);
         } else {
           console.log("you're online, but not logged in to Twitter");
         }
