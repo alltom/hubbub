@@ -14,7 +14,9 @@ gem "jquery-rails", '2.0.2'
 gem "twitter", '2.2.6'
 gem "koala", :git => "git://github.com/arsduo/koala"
 gem "gmail", '0.4.0'
-gem "imgur", '0.2.0'
+gem "curb"
+gem "json"
+#gem "imgur", '0.2.0'
 
 # Omniauth strategies, to authenticate us to the APIs
 # Not all of the gems have their own OAuth utilities (twitter doesn't), so

@@ -27,6 +27,8 @@ Hubbub::Application.routes.draw do
 
   match '/gmail-items', :to => 'hubbub#gmail_items'
 
+  match '/imgur-items', :to => 'hubbub#imgur_items'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

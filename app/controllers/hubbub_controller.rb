@@ -54,9 +54,17 @@ class HubbubController < ApplicationController
   def gmail_items
     access = GmailAccess.new
     items = access.emails
-    puts "items"
-    puts items
 
+    render :json => {
+      :success => true,  
+      :items => items
+    }
+  end
+
+  def imgur_items
+    access = ImgurAccess.new
+
+    items = access.images
     render :json => {
       :success => true,  
       :items => items
