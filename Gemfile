@@ -13,12 +13,14 @@ gem "rails", "3.2.3"
 gem "jquery-rails", '2.0.2'
 gem "twitter", '2.2.6'
 gem "koala", :git => "git://github.com/arsduo/koala"
+gem "gmail", '0.4.0'
 
 # Omniauth strategies, to authenticate us to the APIs
 # Not all of the gems have their own OAuth utilities (twitter doesn't), so
 # I'm using omniauth on all of them to be consistent.
 gem "omniauth-twitter", '0.0.11'
 gem "omniauth-facebook", '1.2.0'
+gem "omniauth-google-oauth2", '0.1.9'
 
 group :development, :test do
   gem "sqlite3"
