@@ -50,14 +50,14 @@ class TwitterAccess
   # Converts the Twitter::Statuses provided by the API into our own Tweet class
   # that only stores the information that we actually need.
   def timeline
-    configure()
+    configure
     # Twitter.home_timeline returns a list of Twitter::Status
     # We can get the body of a Twitter::Status by writing status.text,
     # The poster's real name via status.user.name
     # and the poster's screen name via status.user.screen_name
     Twitter.home_timeline.map { |item|
-      Tweet.new :text => item.text, :tweeter => item.user.name,
-          :tweeter_screen_name => item.user.screen_name
+      Tweet.create! :text => item.text, :tweeter => item.user.name,
+          :tweeter_screen_name => item.user.screen_name, :published_at => item.created_at
     }
   end
 end
