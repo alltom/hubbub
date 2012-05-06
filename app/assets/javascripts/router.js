@@ -25,10 +25,12 @@ hubbub.Router = Backbone.Router.extend({
    * This happens when the application starts.
    */
   initialize: function() {
-    this.feedItems = hubbub.stubFeedItems();    
+    this.feedItems = new hubbub.FeedItemCollection();
     this.tagItems = hubbub.stubTagItems();
-    this.filters = new hubbub.FilterCollection([]);
+    this.filters = new hubbub.FilterCollection();
     this.firstPage = true;
+    
+    this.feedItems.fetch();
     this.resetFilter();
 
     // Eagerly load all templates, since changePage gets rid of them
@@ -96,10 +98,10 @@ hubbub.Router = Backbone.Router.extend({
       model: feedItems,
       pageTemplate: this.feedPageTemplate,
       feedItemTemplates: {
-        Gmail: this.gmailItemTemplate,
-        Twitter: this.twitterItemTemplate,
-        Imgur: this.imgurItemTemplate,
-        Facebook: this.facebookItemTemplate,
+        gmail: this.gmailItemTemplate,
+        twitter: this.twitterItemTemplate,
+        imgur: this.imgurItemTemplate,
+        facebook: this.facebookItemTemplate,
         generic: this.feedItemTemplate
       },
       router: this

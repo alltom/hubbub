@@ -28,14 +28,8 @@ hubbub.genericFeedItemTemplate = """
     </div>
     <div class="item-body">
       <div class="feedTagSet"></div>
-      <%= body %>
+      <%= text %>
     </div>
-    <!-- 
-      TODO If body is large enough, collapse it. We will need code to
-      detect size and compare it with a threshold. See
-      http://jquerymobile.com/demos/1.1.0-rc.2/docs/content/content-collapsible.html
-      which explains how to write template code that does this.
-    -->
 """
 
 hubbub.gmailItemTemplate = """
@@ -50,7 +44,7 @@ hubbub.gmailItemTemplate = """
           <div><label>From:</label> <%= from %></div>
           <div><label>Subject:</label> <%= subject %></div>
         </div>
-        <%= body %>
+        <%= text %>
       </div>
       <div class="span2">
         <div class="btn-group-vertical feedItemControls">
@@ -70,7 +64,7 @@ hubbub.twitterItemTemplate = """
 
     <div class="row-fluid">
       <div class="item-body span10">
-        <div><b>@<%= username %></b>: <%= body %></div>
+        <div><b>@<%= tweeter_screen_name %></b>: <%= text %></div>
       </div>
       <div class="span2">
         <div class="btn-group-vertical feedItemControls">
@@ -110,7 +104,7 @@ hubbub.facebookItemTemplate = """
 
     <div class="row-fluid">
       <div class="item-body span10">
-        <div><b><%= username %></b>: <%= body %></div>
+        <div><b><%= actor %></b>: <%= text %></div>
       </div>
       <div class="span2">
         <div class="btn-group-vertical feedItemControls">

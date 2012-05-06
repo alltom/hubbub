@@ -1,6 +1,6 @@
 # extend Recent
 module Recent
   def recent
-    all
+    order("published_at DESC").limit(10)
   end
 end

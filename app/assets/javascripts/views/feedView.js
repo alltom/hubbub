@@ -158,7 +158,7 @@ hubbub.FeedItemView = Backbone.View.extend({
     var shouldCollapse = $(this.el).outerHeight() > this.collapseHeight;
     
     // HACK: images may not have loaded yet; assume imgur will need to collapse
-    if(this.model.get("source") == "Imgur") {
+    if(this.model.get("source") == "imgur") {
       shouldCollapse = true;
     }
     

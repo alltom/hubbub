@@ -19,6 +19,7 @@ hubbub.Filter = Backbone.Model.extend({
   apply: function(collection){
     var newCollection = new hubbub.FeedItemCollection();
     var items = collection.filter(this.accepts, this);
+    newCollection.reset(items);
     
     // register for change events
     collection.on("add", function(item) {

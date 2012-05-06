@@ -10,18 +10,50 @@
  * want to create a heirarchy later.
  */
 hubbub.FeedItem = Backbone.Model.extend({
-
+  
   updateTags: function(newtagarr) {
     this.set({tags: newtagarr});
-  }
+  },
 
+});
+
+hubbub.FacebookPost = hubbub.FeedItem.extend({
+  initialize: function() {
+    this.set("source", "facebook");
+  },
+});
+
+hubbub.GmailMessage = hubbub.FeedItem.extend({
+  initialize: function() {
+    this.set("source", "gmail");
+  },
+});
+
+hubbub.ImgurImage = hubbub.FeedItem.extend({
+  initialize: function() {
+    this.set("source", "imgur");
+  },
+});
+
+hubbub.Tweet = hubbub.FeedItem.extend({
+  initialize: function() {
+    this.set("source", "twitter");
+  },
 });
 
 /**
  * Collection of feed items
  */
 hubbub.FeedItemCollection = Backbone.Collection.extend({
-
-  model: hubbub.FeedItem
+  
+  url: "/items",
+  
+  model: function(attributes) {
+    if(attributes.type == "facebook") return new hubbub.FacebookPost(attributes);
+    if(attributes.type == "gmail") return new hubbub.GmailMessage(attributes);
+    if(attributes.type == "imgur") return new hubbub.ImgurImage(attributes);
+    if(attributes.type == "tweet") return new hubbub.Tweet(attributes);
+    throw new Error("unrecognized feed item");
+  },
 
 });
