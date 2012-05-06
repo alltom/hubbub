@@ -15,6 +15,7 @@ hubbub.Router = Backbone.Router.extend({
    */
   routes: {
     '': 'listFeedItems',
+    'services': 'services',
     'feed-items': 'listFeedItems',
     'filter': 'filter',
     'tag/:feedItemIndex': 'listTagItems'
@@ -85,6 +86,16 @@ hubbub.Router = Backbone.Router.extend({
       ])
     }));
     this.isCustomFilter = false;
+  },
+
+  /**
+   * Show the services connection page
+   */
+  services: function() {
+    this.changePage(new hubbub.ServiceConnectView({
+      router: this,
+      el: $("<div>", { class: "container-fluid" }),
+    }))
   },
 
   /**

@@ -6,11 +6,33 @@
 # Putting them here instead of in the HTML avoids a conflict with ERB (they
 # both expect <%= => delimiters), and also eliminates DOM queries.
 
+hubbub.templates = {
+  connectionsTemplate: """
+    <header class="row-fluid">
+      <div class="span12">
+        <a class="btn headerLeftLink" href="#">Back</a>
+        <h1>Services</h1>
+      </div>
+    </header>
+
+    <div data-role="content">
+      <h2>Services</h2>
+      <ul id="service-list">
+        <li><a href="/auth/twitter" class="btn">Connect to Twitter</a></li>
+        <li><a href="/auth/facebook" class="btn">Connect to Facebook</a></li>
+        <li><a href="/auth/imgur" class="btn">Connect to Imgur</a></li>
+        <li><a href="/auth/gmail" class="btn">Connect to Gmail</a></li>
+      </ul>
+    </div>
+  """,
+}
+
 hubbub.feedPageTemplate = """
     <header class="row-fluid">
       <div class="span12">
-        <a class="btn" id="headerLeftLink" href="#filter">Filter</a>
+        <a class="btn headerLeftLink" href="#filter">Filter</a>
         <h1>Hubbub</h1>
+        <a class="btn headerRightLink" href="#services">Setup</a>
       </div>
     </header>
 
@@ -119,7 +141,7 @@ hubbub.facebookItemTemplate = """
 hubbub.filterTemplate = """
     <header class="row-fluid">
       <div class="span12">
-        <a class="btn" id="headerLeftLink" href="#">Back</a>
+        <a class="btn headerLeftLink" href="#">Back</a>
         <h1>Filter</h1>
         <!-- 
           TODO Align these buttons on the right of the header.
