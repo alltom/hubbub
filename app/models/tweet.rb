@@ -9,7 +9,5 @@
 #   tweeter - the (real) name of the person who made the tweet.
 #   tweeter_screen_name - the screen name of the tweeter.
 class Tweet < ActiveRecord::Base
-  attr_accessible :text, :tweeter, :tweeter_screen_name, :published_at
-
   # TODO Override as_json to send only the data that the JavaScript needs.
 end

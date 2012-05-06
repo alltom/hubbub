@@ -5,5 +5,4 @@
 #       Hotlinking might not be nice, but it works for now.
 #       We could try to save a copy later.
 class ImgurImage < ActiveRecord::Base
-  attr_accessible :url, :published_at
 end
