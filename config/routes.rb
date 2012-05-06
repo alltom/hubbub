@@ -1,6 +1,7 @@
 Hubbub::Application.routes.draw do
-  match '/feed', :to => 'hubbub#feed'
-  match '/', :to => 'hubbub#feed' # Maybe change this to handle register/login?
+  match '', :to => 'hubbub#feed'
+  match 'feed', :to => 'hubbub#feed'
+  resources :items
 
   # Twitter Omniauth callback
   # Twitter will go to this URL after taking the user's email and password,

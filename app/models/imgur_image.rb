@@ -6,4 +6,13 @@
 #       We could try to save a copy later.
 #   published_at - timestamp of entry
 class ImgurImage < ActiveRecord::Base
+  extend Recent
+  
+  def as_json options={}
+    {
+      url: url,
+      published_at: published_at,
+      type: "imgur"
+    }
+  end
 end

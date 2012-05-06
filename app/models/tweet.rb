@@ -5,10 +5,20 @@
 # PORO instead of a subclass of ActiveRecord::Base
 #
 # Fields:
-#   text - the text of the tweet.
 #   tweeter - the (real) name of the person who made the tweet.
 #   tweeter_screen_name - the screen name of the tweeter.
+#   text - the text of the tweet.
 #   published_at - timestamp of entry
 class Tweet < ActiveRecord::Base
-  # TODO Override as_json to send only the data that the JavaScript needs.
+  extend Recent
+  
+  def as_json options={}
+    {
+      tweeter: tweeter,
+      tweeter_screen_name: tweeter_screen_name,
+      text: text,
+      published_at: published_at,
+      type: "tweet"
+    }
+  end
 end
