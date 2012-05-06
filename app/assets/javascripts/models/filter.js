@@ -13,12 +13,27 @@ hubbub.Filter = Backbone.Model.extend({
 
   /**
    * Given a FeedItemCollection, returns a FeedItemCollection with
-   * only the accepted items.
+   * only the accepted items. The returned collection will be updated
+   * as the original collection changes.
    */
-   apply: function(items){
-     return new hubbub.FeedItemCollection(items.filter(function(item) {
-       return this.accepts(item);
-     }, this));
+  apply: function(collection){
+    var newCollection = new hubbub.FeedItemCollection();
+    var items = collection.filter(this.accepts, this);
+    
+    // register for change events
+    collection.on("add", function(item) {
+      if(this.accepts(item)) {
+        newCollection.add(item);
+      }
+    }, this);
+    collection.on("remove", function(item) {
+      newCollection.remove(item);
+    }, this);
+    collection.on("reset", function() {
+      newCollection.reset(collection.filter(this.accepts, this))
+    }, this);
+    
+    return newCollection;
    }
 });
 
