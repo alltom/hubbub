@@ -11,26 +11,29 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120505201958) do
+ActiveRecord::Schema.define(:version => 20120506153525) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
     t.string   "actor"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.datetime "published_at", :null => false
   end
 
   create_table "gmail_messages", :force => true do |t|
     t.string   "text"
     t.string   "from"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.datetime "published_at", :null => false
   end
 
   create_table "imgur_images", :force => true do |t|
     t.string   "url"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.datetime "published_at", :null => false
   end
 
   create_table "tweets", :force => true do |t|
@@ -39,14 +42,7 @@ ActiveRecord::Schema.define(:version => 20120505201958) do
     t.string   "tweeter_screen_name"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
-  end
-
-  create_table "twitter_posts", :force => true do |t|
-    t.string   "tweeter_name"
-    t.string   "tweeter_screen_name"
-    t.string   "text"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "published_at",        :null => false
   end
 
 end
