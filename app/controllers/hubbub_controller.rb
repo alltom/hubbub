@@ -52,7 +52,7 @@ class HubbubController < ApplicationController
   end
 
   def gmail_items
-    access = GmailAccess.new
+    access = GmailAccess.create
     items = access.emails
 
     render :json => {
@@ -62,7 +62,7 @@ class HubbubController < ApplicationController
   end
 
   def imgur_items
-    access = ImgurAccess.new
+    access = ImgurAccess.create
 
     items = access.images
     render :json => {

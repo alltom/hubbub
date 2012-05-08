@@ -8,11 +8,17 @@
 #
 # Fallback: Ask the user for their password
 class GmailAccess
-  def initialize
-    @email = 'hubbub83@gmail.com'
-    @password = 'hubbubub'
+  def initialize(gmail)
+    @gmail = gmail
+  end
 
-    @gmail = Gmail.connect(@email, @password)
+  # Factory method (again, to avoid doing work in the constructor)
+  #
+  # Arguments (named to avoid confusion):
+  #   email: String - the email address
+  #   password: String - the password
+  def self.create(email = 'hubbub83@gmail.com', password = 'hubbubub')
+    GmailAccess.new(Gmail.connect(email, password))
   end
 
   def emails

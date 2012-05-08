@@ -1,6 +1,12 @@
 class ImgurAccess
-  def initialize
-    @curl = Curl::Easy.new 'http://imgur.com/api/gallery.json'
+  def initialize(curl)
+    @curl = curl
+  end
+
+  def self.create
+    curl = Curl::Easy.new 'http://imgur.com/api/gallery.json'
+
+    ImgurAccess.new curl
   end
 
   def images
