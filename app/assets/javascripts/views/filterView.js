@@ -59,7 +59,8 @@ hubbub.FilterView = Backbone.View.extend({
     'click .serviceLogo': 'onServiceLogoClick',
     'click #executeFilter': 'onExecute',
     'click #resetFilter': 'onReset',
-    'click #saveFilter': 'onSaveFilter'
+    'click #saveFilter': 'onSaveFilter',
+    'click #filterBackLink': 'onFilterGoBack'
   },
 
   /**
@@ -121,6 +122,10 @@ hubbub.FilterView = Backbone.View.extend({
       service.select();
       target.addClass(this.selectedServiceClass);
     }
+  },
+
+  onFilterGoBack: function(event) {
+    this.router.navigate('#', {trigger: true});
   },
 
   addSourceFilters: function(filters) {

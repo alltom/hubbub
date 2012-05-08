@@ -129,7 +129,8 @@ hubbub.facebookItemTemplate = """
 hubbub.filterTemplate = """
     <header class="row-fluid">
       <div class="span12">
-        <a class="btn headerLeftLink" href="#">Back</a>
+        <input type="button" class="btn headerLeftLink" id="filterBackLink"
+               value="Back" />
         <h1>Filter</h1>
         <!-- 
           TODO Align these buttons on the right of the header.
