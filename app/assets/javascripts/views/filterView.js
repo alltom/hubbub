@@ -3,12 +3,6 @@
  */
 hubbub.uncheckBox = function(input) {
   input.attr('checked', false);
-  var label = input.parent().find('label');
-  label.attr('checked', false);
-  label.removeClass('ui-btn-active').removeClass('ui-checkbox-on').
-      addClass('ui-checkbox-off');
-  label.find('span.ui-icon-checkbox-on').addClass('ui-icon-checkbox-off');
-  label.find('span.ui-icon-checkbox-on').removeClass('ui-icon-checkbox-on');
 };
 
 /**
