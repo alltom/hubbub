@@ -32,9 +32,9 @@ hubbub.feedPageTemplate = """
       <div class="span12">
         <input type="button" class="btn headerLeftLink" id="filterLink"
                value="Filter" />
-        <!--<a class="btn headerLeftLink" href="#filter">Filter</a>-->
         <h1>Hubbub</h1>
-        <a class="btn headerRightLink" href="#services">Setup</a>
+        <input type="button" class="btn headerRightLink" id="servicesLink"
+               value="Setup" />
       </div>
     </header>
 

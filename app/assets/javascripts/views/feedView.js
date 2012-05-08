@@ -14,6 +14,7 @@ hubbub.FeedPageView = Backbone.View.extend({
   events: {
     'click input': 'onButtonClick',
     'click #filterLink': 'onFilterLinkClick',
+    'click #servicesLink': 'onServicesLinkClick',
     'click .hubbub-feeditem-tag-button': 'onTagButtonClick'
   },
 
@@ -70,6 +71,10 @@ hubbub.FeedPageView = Backbone.View.extend({
 
   onFilterLinkClick: function(event) {
     this.router.navigate('#filter', {trigger: true});
+  },
+
+  onServicesLinkClick: function(event) {
+    this.router.navigate('#services', {trigger: true});
   },
 
   onTagButtonClick: function(event) {
