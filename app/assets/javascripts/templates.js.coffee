@@ -176,7 +176,7 @@ hubbub.filterTemplate = """
         </p>
       </div>
 
-      <h3>With all of the following</h3>
+      <h2>With all of the following</h2>
 
       <form action="filter.html" method="post" id="filterSearch">
         <h3>Text</h3>
