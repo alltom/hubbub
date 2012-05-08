@@ -19,9 +19,9 @@ class HubbubController < ApplicationController
         :reason => "Don't have a Twitter oauth_token, did you authenticate?"
       }
     else
-      access = TwitterAccess.new(
-        :oauth_token => session[:twitter_token],
-        :oauth_token_secret => session[:twitter_secret]
+      access = TwitterAccess.create(
+        oauth_token = session[:twitter_token],
+        oauth_token_secret = session[:twitter_secret]
       )
       timeline_items = access.timeline 
 

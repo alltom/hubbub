@@ -7,33 +7,39 @@ end
 class TwitterAccess
 
   # Create a TwitterAccess
-  # Pass in an options hash, which should contain:
+  def initialize(oauth_token, oauth_token_secret, consumer_key, consumer_secret)
+    @oauth_token = oauth_token
+    @oauth_token_secret = oauth_token_secret
+    @consumer_key = consumer_key
+    @consumer_secret = consumer_secret
+  end
+
+  # Factory method, because doing work in the constructor makes code harder to
+  # follow.
+  # Arguments (all named):
   #   oauth_token: String - an OAuth token for the current user, which should have
   #       been provided by Twitter when the user went to /auth/twitter.
   #   oauth_token_secret: String - a secret token for the current user, which
   #       should have came with oauth_token.
   #
-  # Optionally, it may contain:
+  # Optionally, provide:
   #   consumer_key: String - the consumer key for this app (default: the value
   #       in the configuration file)
   #   consumer_secret: String - the consumer secret for this app (default: the
   #       value in the configuration file)
   # You probably don't need to worry about the last two.
-  def initialize(options)
-    @oauth_token = options[:oauth_token]
-    if @oauth_token.nil?
-      raise InsufficientCredentials, 'No oauth_token was provided.'
+  def self.create(oauth_token = nil,
+                  oauth_token_secret = nil,
+                  consumer_key = Rails.configuration.twitter_consumer_key,
+                  consumer_secret = Rails.configuration.twitter_consumer_secret)
+    if oauth_token.nil?
+      raise InsufficientCredentials, 'No oauth_token was provided'
     end
-
-    @oauth_token_secret = options[:oauth_token_secret]
-    if @oauth_token_secret.nil?
-      raise InsufficientCredentials, 'No oauth_token_secret was provided.'
+    if oauth_token_secret.nil?
+      raise InsufficientCredentials, 'No oauth_token_secret was provided'
     end
-
-    @consumer_key = options[:consumer_key] ||
-        Rails.configuration.twitter_consumer_key
-    @consumer_secret = options[:consumer_secret] ||
-        Rails.configuration.twitter_consumer_secret
+    TwitterAccess.new(oauth_token, oauth_token_secret, consumer_key,
+        consumer_secret)
   end
 
   # Helper method to pass the keys to Twitter
