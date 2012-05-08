@@ -39,8 +39,8 @@ class HubbubController < ApplicationController
         :reason => "Don't have a Facebook oauth_token, did you authenticate?"
       }
     else
-      access = FacebookAccess.new(
-        :oauth_token => session[:facebook_token]
+      access = FacebookAccess.create(
+        oauth_token = session[:facebook_token]
       )
       items = access.feed
 

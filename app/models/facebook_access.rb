@@ -1,12 +1,20 @@
 class FacebookAccess
   # Similar to TwitterAccess, this constructor takes an oauth_token (mandatory)
-  def initialize(options)
-    @oauth_token = options[:oauth_token]
-    if @oauth_token.nil?
+  def initialize(graph)
+    @graph = graph
+  end
+
+  # Factory method.
+  #
+  # Arguments (named)
+  #   oauth_token: String - the OAuth token for Facebook.
+  def self.create(oauth_token = nil)
+    if oauth_token.nil?
       raise InsufficientCredentials, 'No oauth_token was provided.'
     end
+    graph = Koala::Facebook::API.new oauth_token
 
-    @graph = Koala::Facebook::API.new @oauth_token
+    FacebookAccess.new graph
   end
 
   # Get news feed items from Facebook, as FacebookPost objects.

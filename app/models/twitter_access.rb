@@ -6,7 +6,7 @@ end
 # Class wrapping the Twitter API to pull feed items from twitter.com
 class TwitterAccess
 
-  # Create a TwitterAccess
+  # Create a TwitterAccess. You should probably use create instead of new.
   def initialize(oauth_token, oauth_token_secret, consumer_key, consumer_secret)
     @oauth_token = oauth_token
     @oauth_token_secret = oauth_token_secret
