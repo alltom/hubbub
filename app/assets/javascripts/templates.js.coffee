@@ -150,8 +150,9 @@ hubbub.filterTemplate = """
       </div>
     </header>
 
-    <div data-role="content">
-      <h2>Services</h2> 
+    <div id="filterForm">
+      <h2>I want items from</h2>
+      <h3>Any of these services</h3>
       <div id="services">
         <!-- 
           TODO Make these images look nicer, and size them beforehand
@@ -175,24 +176,26 @@ hubbub.filterTemplate = """
         </p>
       </div>
 
+      <h3>With all of the following</h3>
+
       <form action="filter.html" method="post" id="filterSearch">
+        <h3>Text</h3>
         <label for="search" class="ui-hidden-accessible">Search</label>
         <input type="search" name="search" class="input-medium search-query"
-               placeholder="Search" />
+               placeholder="Text" />
       </form>
 
-      <h3>More Options</h3>
       <form action="filter.html" method="post">
-        <legend>Tags</legend>
+        <h3>Tags</h3>
         <fieldset id="tagList"></fieldset>
-        <legend>Other</legend>
+        <h3>Other</h3>
         <label class="checkbox">
           <input type="checkbox" name="hyperlink" id="hasHyperlink" />
           Has a Hyperlink
         </label>
       </form>
 
-      <h3>Saved Filters</h3>
+      <h3>And saved filters:</h3>
       <form action="filter.html" method="post" id="savedFilters">
       </form>
     </div>
