@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120506160535) do
+ActiveRecord::Schema.define(:version => 20120508205832) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
