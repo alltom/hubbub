@@ -70,7 +70,7 @@ hubbub.gmailItemTemplate = """
       </div>
       <div class="span2">
         <div class="btn-group-vertical feedItemControls">
-          <a href="#tag" class="btn hubbub-feeditem-tag-button">Tag</a>
+          <input type="button" class="btn hubbub-feeditem-tag-button">Tag</a>
           <input type="button" class="btn" value="Share" />
           <input type="button" class="btn" value="Save" />
         </div>
@@ -90,7 +90,7 @@ hubbub.twitterItemTemplate = """
       </div>
       <div class="span2">
         <div class="btn-group-vertical feedItemControls">
-          <a href="#tag" class="btn hubbub-feeditem-tag-button">Tag</a>
+          <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
           <input type="button" class="btn" value="Share" />
           <input type="button" class="btn" value="Save" />
         </div>
@@ -110,7 +110,7 @@ hubbub.imgurItemTemplate = """
       </div>
       <div class="span2">
         <div class="btn-group-vertical feedItemControls">
-          <a href="#tag" class="btn hubbub-feeditem-tag-button">Tag</a>
+          <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
           <input type="button" class="btn" value="Share" />
           <input type="button" class="btn" value="Save" />
         </div>
@@ -130,7 +130,7 @@ hubbub.facebookItemTemplate = """
       </div>
       <div class="span2">
         <div class="btn-group-vertical feedItemControls">
-          <a href="#tag" class="btn hubbub-feeditem-tag-button">Tag</a>
+          <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
           <input type="button" class="btn" value="Share" />
           <input type="button" class="btn" value="Save" />
         </div>

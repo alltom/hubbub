@@ -13,7 +13,8 @@ hubbub.changeButtonText = function(newText, button) {
 hubbub.FeedPageView = Backbone.View.extend({
   events: {
     'click input': 'onButtonClick',
-    'click #filterLink': 'onFilterLinkClick'
+    'click #filterLink': 'onFilterLinkClick',
+    'click .hubbub-feeditem-tag-button': 'onTagButtonClick'
   },
 
   /**
@@ -69,6 +70,11 @@ hubbub.FeedPageView = Backbone.View.extend({
 
   onFilterLinkClick: function(event) {
     this.router.navigate('#filter', {trigger: true});
+  },
+
+  onTagButtonClick: function(event) {
+    var theHref = $(event.currentTarget).attr('data-href');
+    this.router.navigate(theHref, {trigger: true});
   }
 });
 
@@ -129,8 +135,10 @@ hubbub.FeedItemView = Backbone.View.extend({
   render: function() {
     $(this.el).addClass(this.model.get("source").toLowerCase());
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
+    // Changed href to data-href since it's now a button, the click handler will
+    // read this.
     $('.hubbub-feeditem-tag-button',this.el)
-      .attr('href',"#tag/"+this.collectionRef.indexOf(this.model));
+      .attr('data-href',"#tag/"+this.collectionRef.indexOf(this.model));
     
     this.addTagView();
     
