@@ -256,6 +256,10 @@ ul#service-list li {
   border: 2px solid orange;
 }
 
+#filterForm {
+  padding-left: 5px;
+}
+
 /* First button in the footer */
 #executeFilter,
 #hubbub-tag-ok-button {
