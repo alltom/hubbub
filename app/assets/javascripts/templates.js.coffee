@@ -54,6 +54,16 @@ hubbub.genericFeedItemTemplate = """
     </div>
 """
 
+hubbub.feedItemControlsTemplate = """
+    <div class="span2">
+      <div class="btn-group-vertical feedItemControls">
+        <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
+        <input type="button" class="btn" value="Share" />
+        <input type="button" class="btn" value="Save" />
+      </div>
+    </div>
+"""
+
 hubbub.gmailItemTemplate = """
     <div class="row-fluid">
       <div class="source gmail"><%= source %></div>
@@ -68,13 +78,7 @@ hubbub.gmailItemTemplate = """
         </div>
         <%= text %>
       </div>
-      <div class="span2">
-        <div class="btn-group-vertical feedItemControls">
-          <input type="button" class="btn hubbub-feeditem-tag-button">Tag</a>
-          <input type="button" class="btn" value="Share" />
-          <input type="button" class="btn" value="Save" />
-        </div>
-      </div>
+      #{hubbub.feedItemControlsTemplate}
     </div>
 """
 
@@ -88,13 +92,7 @@ hubbub.twitterItemTemplate = """
       <div class="item-body span10">
         <div><b>@<%= tweeter_screen_name %></b>: <%= text %></div>
       </div>
-      <div class="span2">
-        <div class="btn-group-vertical feedItemControls">
-          <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
-          <input type="button" class="btn" value="Share" />
-          <input type="button" class="btn" value="Save" />
-        </div>
-      </div>
+      #{hubbub.feedItemControlsTemplate}
     </div>
 """
 
@@ -108,13 +106,7 @@ hubbub.imgurItemTemplate = """
       <div class="item-body span10">
         <img src="<%= url %>" />
       </div>
-      <div class="span2">
-        <div class="btn-group-vertical feedItemControls">
-          <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
-          <input type="button" class="btn" value="Share" />
-          <input type="button" class="btn" value="Save" />
-        </div>
-      </div>
+      #{hubbub.feedItemControlsTemplate}
     </div>
 """
 
@@ -128,13 +120,7 @@ hubbub.facebookItemTemplate = """
       <div class="item-body span10">
         <div><b><%= actor %></b>: <%= text %></div>
       </div>
-      <div class="span2">
-        <div class="btn-group-vertical feedItemControls">
-          <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
-          <input type="button" class="btn" value="Share" />
-          <input type="button" class="btn" value="Save" />
-        </div>
-      </div>
+      #{hubbub.feedItemControlsTemplate}
     </div>
 """
 
