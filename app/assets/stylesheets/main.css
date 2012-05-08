@@ -123,7 +123,9 @@ input,
   margin: 0;
 }
 .feeditem-expand-button {
-  width: 92% !important;
+  width: 100% !important;
+  position: absolute;
+  bottom: 0;
 }
 .item-actions {
   font-size: 12px;
