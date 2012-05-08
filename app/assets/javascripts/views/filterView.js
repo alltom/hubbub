@@ -1,5 +1,5 @@
 /**
- * Uncheck a jQuery-enhanced checkbox.
+ * Uncheck a checkbox.
  */
 hubbub.uncheckBox = function(input) {
   input.attr('checked', false);
