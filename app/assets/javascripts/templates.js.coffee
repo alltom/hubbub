@@ -30,7 +30,9 @@ hubbub.templates = {
 hubbub.feedPageTemplate = """
     <header class="row-fluid">
       <div class="span12">
-        <a class="btn headerLeftLink" href="#filter">Filter</a>
+        <input type="button" class="btn headerLeftLink" id="filterLink"
+               value="Filter" />
+        <!--<a class="btn headerLeftLink" href="#filter">Filter</a>-->
         <h1>Hubbub</h1>
         <a class="btn headerRightLink" href="#services">Setup</a>
       </div>
