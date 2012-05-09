@@ -1,8 +1,3 @@
-# Exception indicating a TwitterAccess has been created without necessary
-# credentials.
-class InsufficientCredentials < StandardError
-end
-
 # Class wrapping the Twitter API to pull feed items from twitter.com
 class TwitterAccess
 
