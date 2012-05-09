@@ -42,6 +42,7 @@ class HubbubController < ApplicationController
   end
 
   def facebook_items
+    puts "oauth_token: #{session[:facebook_token]}"
     if session[:facebook_token].nil?
       fail_no_oauth_token 'Facebook'
     else
