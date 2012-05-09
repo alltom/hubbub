@@ -51,7 +51,10 @@ hubbub.TagPageView = Backbone.View.extend({
           tags.push($(this).attr("name"));
         }
       });
-    this.feedItem.set("tags",tags);
+    //this.feedItem.set("tags",tags);
+    this.feedItem.updateTags(tags);
+    //console.log("source: "+this.feedItem.get("source"));
+    //console.log(this.feedItem.get("tags"));
     this.router.navigate('#', {trigger: true});
   },
   

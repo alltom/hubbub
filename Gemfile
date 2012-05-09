@@ -26,6 +26,9 @@ gem "omniauth-twitter", '0.0.11'
 gem "omniauth-facebook", '1.2.0'
 gem "omniauth-google-oauth2", '0.1.9'
 
+# plugin to implement tags
+gem 'acts_as_taggable', :git => 'git://github.com/ivoreis/acts_as_taggable.git'
+
 group :development, :test do
   gem "sqlite3"
   gem "rspec-rails", '2.9.0'
@@ -48,3 +51,4 @@ end
 group :test do
   gem 'capybara', '1.1.2'
 end
+

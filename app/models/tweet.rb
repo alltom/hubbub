@@ -11,14 +11,16 @@
 #   published_at - timestamp of entry
 class Tweet < ActiveRecord::Base
   extend Recent
-  
+  acts_as_taggable  
   def as_json options={}
     {
       tweeter: tweeter,
       tweeter_screen_name: tweeter_screen_name,
       text: text,
       published_at: published_at,
-      type: "tweet"
+      type: "tweet",
+      id: id,
+      tags: tag_list
     }
   end
 end

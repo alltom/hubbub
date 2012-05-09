@@ -13,8 +13,12 @@ hubbub.FeedItem = Backbone.Model.extend({
   
   updateTags: function(newtagarr) {
     this.set({tags: newtagarr});
+    // initial tag update code. work in progress
+    $.ajax({
+      url: '/'+this.get('source')+'-update-tags/'+this.get("id"),
+      data: {tags: newtagarr.join()}
+    });
   },
-
 });
 
 hubbub.FacebookPost = hubbub.FeedItem.extend({
