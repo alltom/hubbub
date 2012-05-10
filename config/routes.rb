@@ -6,7 +6,7 @@ Hubbub::Application.routes.draw do
   # Twitter Omniauth callback
   # Twitter will go to this URL after taking the user's email and password,
   # and pass us the oauth_token and oauth_token_secret for that particular user.
-  match '/auth/twitter/callback', :to => 'sessions#twitter_callback'
+  match 'auth/twitter/callback', :to => 'sessions#twitter_callback'
 
   # Facebook Omniauth callback
   # Facebook will go to this URL after taking the user's email and password,
@@ -20,17 +20,17 @@ Hubbub::Application.routes.draw do
 
   # API call to get Twitter items. Should be called by JavaScript using AJAX.
   # This will only return items if the user has been authenticated by Twitter.
-  match '/twitter-items', :to => 'hubbub#twitter_items'
+  match 'twitter-items', :to => 'hubbub#twitter_items'
 
   # API call to get Facebook items. Should be called by JavaScript using AJAX.
   # This will only return items if the user has been authenticated by Facebook.
-  match '/facebook-items', :to => 'hubbub#facebook_items'
+  match 'facebook-items', :to => 'hubbub#facebook_items'
 
-  match '/gmail-items', :to => 'hubbub#gmail_items'
+  match 'gmail-items', :to => 'hubbub#gmail_items'
 
-  match '/imgur-items', :to => 'hubbub#imgur_items'
+  match 'imgur-items', :to => 'hubbub#imgur_items'
 
-  match '/twitter-update-tags/:id' => 'items#update_tweet_tags'
+  match 'twitter-update-tags/:id' => 'items#update_tweet_tags'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
