@@ -46,25 +46,6 @@ hubbub.Router = Backbone.Router.extend({
     this.savedFilterTemplate = hubbub.savedFilterTemplate;
     this.tagPageTemplate = hubbub.tagPageTemplate;
     this.tagItemTemplate = hubbub.tagItemTemplate;
-
-    // See if AJAX requests to the server work.
-    // Yep, it works.
-    $.ajax({
-      url: '/twitter-items',
-      // called if there is a response from the server (but the response may
-      // not contain data)
-      success: function(data) {
-        if (data.success) {
-          console.log('here are Twitter feed items: ' + data);
-        } else {
-          console.log("you're online, but not logged in to Twitter");
-        }
-      },
-      // called if there is no response from the server
-      error: function() {
-        console.log('ajax request failed, are you online?');
-      }
-    });
   },
 
   addFilter: function(filter) {
