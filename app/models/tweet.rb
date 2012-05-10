@@ -9,9 +9,12 @@
 #   tweeter_screen_name - the screen name of the tweeter.
 #   text - the text of the tweet.
 #   published_at - timestamp of entry
+#   twitter_id - the ID of the tweet on Twitter, should be unique
 class Tweet < ActiveRecord::Base
   extend Recent
   acts_as_taggable  
+
+  validates :twitter_id, uniqueness: true
   def as_json options={}
     {
       tweeter: tweeter,

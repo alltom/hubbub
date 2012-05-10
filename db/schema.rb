@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508214853) do
+ActiveRecord::Schema.define(:version => 20120510021416) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
@@ -19,7 +19,10 @@ ActiveRecord::Schema.define(:version => 20120508214853) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.datetime "published_at", :null => false
+    t.string   "facebook_id",  :null => false
   end
+
+  add_index "facebook_posts", ["facebook_id"], :name => "index_facebook_posts_on_facebook_id", :unique => true
 
   create_table "gmail_messages", :force => true do |t|
     t.string   "text"
@@ -62,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20120508214853) do
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
     t.datetime "published_at",        :null => false
+    t.string   "twitter_id"
   end
 
 end

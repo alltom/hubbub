@@ -51,25 +51,24 @@ class TwitterAccess
   # Converts the Twitter::Statuses provided by the API into our own Tweet class
   # that only stores the information that we actually need.
   #
-  # FIXME: Every time this method is called, it adds duplicates to the database
-  # if Twitter.home_timeline returns tweets that we already got a previous time
-  # this method was called.
+  # As a side effect, saves all retrieved items into the database.
   #
-  # Possible solution: You can do item.id to get a unique ID from Twitter.
-  # We should add this ID to the database, and add a constraint that it's not
-  # duplicated.
-  #
-  # Also, we should implement a similar ID check for the other services too!
+  # This method returns only fresh items (those that have not been saved yet).
+  # You can retrieve older items by querying the database.
   def timeline
     configure
     # Twitter.home_timeline returns a list of Twitter::Status
     # We can get the body of a Twitter::Status by writing status.text,
     # The poster's real name via status.user.name
     # and the poster's screen name via status.user.screen_name
-    Twitter.home_timeline.map { |item|
-      puts "Twitter ID: #{item.id}"
-      Tweet.create! :text => item.text, :tweeter => item.user.name,
-          :tweeter_screen_name => item.user.screen_name, :published_at => item.created_at
+    Arrays.map_partial_function(Twitter.home_timeline) { |item|
+      twitter_id = item.id
+      if not Tweet.find_by_twitter_id twitter_id # Avoid saving duplicates
+        Tweet.create! :text => item.text, :tweeter => item.user.name,
+            :tweeter_screen_name => item.user.screen_name,
+            :published_at => item.created_at,
+            :twitter_id => twitter_id
+      end
     }
   end
 end
