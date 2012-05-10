@@ -29,6 +29,9 @@ gem "omniauth-google-oauth2", '0.1.9'
 # plugin to implement tags
 gem 'acts_as_taggable', :git => 'git://github.com/ivoreis/acts_as_taggable.git'
 
+# user passwords are encrypted
+gem "bcrypt-ruby", "~> 3.0.0"
+
 group :development, :test do
   gem "sqlite3"
   gem "rspec-rails", '2.9.0'
