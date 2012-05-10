@@ -9,16 +9,18 @@ class ImgurAccess
     ImgurAccess.new curl
   end
 
+  def query_imgur
+    @curl.http_get
+
+    JSON.parse(@curl.body_str)['images']
+  end
+
   def images
-    @curl.http_get()
+    images = query_imgur
 
-    images = JSON.parse(@curl.body_str)['images']
-
-    # HACK: Only take some of the images, loading them all is too slow
-    images.keys[0..4].map { |key|
-      value = images[key]
-
-      ImgurImage.new(:url => value['original_image'])
+    images.map { |key, value|
+      ImgurImage.create! :url => value['original_image'],
+          :published_at => Time.zone.parse(value['date_popular'])
     }
   end
 end
