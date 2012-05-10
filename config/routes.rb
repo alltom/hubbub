@@ -1,7 +1,12 @@
 Hubbub::Application.routes.draw do
-  match '', :to => 'hubbub#feed'
+  root :to => 'hubbub#feed'
   match 'feed', :to => 'hubbub#feed'
   resources :items
+  resources :users
+  
+  # route 'sessions/destroy' first so it won't match sessions#show
+  get "sessions/destroy"
+  resources :sessions
 
   # Twitter Omniauth callback
   # Twitter will go to this URL after taking the user's email and password,

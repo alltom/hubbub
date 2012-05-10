@@ -1,0 +1,38 @@
+<header class="row-fluid">
+  <div class="span12">
+    <h1>Hubbub</h1>
+  </div>
+</header>
+
+<div id="content">
+  <h2>New User Sign-Up</h2>
+  
+  <p><%= link_to "Log in instead &rarr;".html_safe, new_session_path, class: "btn btn-info" %></p>
+  
+  <%= form_for @user do |f| %>
+    <% if @user.errors.any? %>
+      <div class="error-messages">
+        <h3>Registration Error:</h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <p>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </p>
+    <p>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </p>
+    <p>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation %>
+    </p>
+    
+    <p><%= f.submit "Sign Up" %></p>
+  <% end %>
+</div>

@@ -282,6 +282,14 @@ ul#service-list li {
   display: none;
 }
 
+/* signup/login */
+
+.error-messages {
+  background: #efcad3;
+  margin: 8px 0;
+  padding: 4px;
+}
+
 /* Adapted from:
  * https://github.com/twitter/bootstrap/issues/2351
  */
