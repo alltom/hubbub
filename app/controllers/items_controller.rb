@@ -23,7 +23,7 @@ class ItemsController < ApplicationController
     refresh # Will this be too slow? Also, should we do it every time?
     #imgur_access = ImgurAccess.create
     respond_to do |format|
-      format.json { render json: Item.recent }
+      format.json { render json: Item.recent(current_user) }
       #format.json { render json: imgur_access.images }
     end
   end
