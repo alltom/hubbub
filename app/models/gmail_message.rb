@@ -9,14 +9,16 @@ class GmailMessage < ActiveRecord::Base
   extend Recent
   
   belongs_to :user
-  
+  acts_as_taggable
   def as_json options={}
     {
       from: from,
       subject: subject,
       text: text,
       published_at: published_at,
-      type: "gmail"
+      type: "gmail",
+      id: id,
+      tags: tag_list
     }
   end
 end

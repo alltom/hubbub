@@ -10,13 +10,15 @@ class ImgurImage < ActiveRecord::Base
   extend Recent
   
   belongs_to :user
-  
+  acts_as_taggable
   validates :imgur_hash, uniqueness: true
   def as_json options={}
     {
       url: url,
       published_at: published_at,
-      type: "imgur"
-    }
+      type: "imgur",
+      id: id,
+      tags: tag_list
+   }
   end
 end

@@ -9,7 +9,7 @@ class FacebookPost < ActiveRecord::Base
   extend Recent
   
   belongs_to :user
-
+  acts_as_taggable
   validates :facebook_id, uniqueness: true
   
   def as_json options={}
@@ -17,7 +17,9 @@ class FacebookPost < ActiveRecord::Base
       actor: actor,
       text: text,
       published_at: published_at,
-      type: "facebook"
-    }
+      type: "facebook",
+      id: id,
+      tags: tag_list
+   }
   end
 end

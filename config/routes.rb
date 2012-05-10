@@ -36,6 +36,9 @@ Hubbub::Application.routes.draw do
   match 'imgur-items', :to => 'hubbub#imgur_items'
 
   match 'twitter-update-tags/:id' => 'items#update_tweet_tags'
+  match 'facebook-update-tags/:id' => 'items#update_facebookpost_tags'
+  match 'imgur-update-tags/:id' => 'items#update_imgurimage_tags'
+  match 'gmail-update-tags/:id' => 'items#update_gmailmessage_tags'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
