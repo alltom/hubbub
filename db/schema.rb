@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510021416) do
+ActiveRecord::Schema.define(:version => 20120510023223) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
@@ -38,7 +38,10 @@ ActiveRecord::Schema.define(:version => 20120510021416) do
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
     t.datetime "published_at", :null => false
+    t.string   "imgur_hash",   :null => false
   end
+
+  add_index "imgur_images", ["imgur_hash"], :name => "index_imgur_images_on_imgur_hash", :unique => true
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

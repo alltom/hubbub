@@ -5,9 +5,11 @@
 #       Hotlinking might not be nice, but it works for now.
 #       We could try to save a copy later.
 #   published_at - timestamp of entry
+#   imgur_hash - the hash for the Imgur URL, which can uniquely ID the image.
 class ImgurImage < ActiveRecord::Base
   extend Recent
   
+  validates :imgur_hash, uniqueness: true
   def as_json options={}
     {
       url: url,
