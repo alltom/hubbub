@@ -1,4 +1,6 @@
 class ItemsController < ApplicationController
+  before_filter :require_login
+  
   # Ping the servers and populate our database with new items.
   def refresh
     if session[:twitter_token] && session[:twitter_secret]
