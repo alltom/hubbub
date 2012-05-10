@@ -36,7 +36,7 @@ END_OF_QUERY
   def feed
     result = query_facebook
 
-    Arrays.map_partial_function(result) { |post|
+    Enumerables.map_partial_function(result) { |post|
       facebook_id = post['post_id']
       if not FacebookPost.find_by_facebook_id facebook_id
         name = @graph.get_object(post['actor_id'])['name']

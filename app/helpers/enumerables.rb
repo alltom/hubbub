@@ -1,4 +1,4 @@
-class Arrays
+class Enumerables
   # Given an array and a block that returns results for some inputs and nils
   # for others (the partial function), returns an array with each element
   # transformed by the block, with the nils removed. i.e. the result array
