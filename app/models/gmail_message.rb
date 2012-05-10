@@ -8,6 +8,8 @@
 class GmailMessage < ActiveRecord::Base
   extend Recent
   
+  belongs_to :user
+  
   def as_json options={}
     {
       from: from,

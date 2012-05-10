@@ -7,6 +7,8 @@
 #   facebook_id - the unique ID Facebook has for the post
 class FacebookPost < ActiveRecord::Base
   extend Recent
+  
+  belongs_to :user
 
   validates :facebook_id, uniqueness: true
   

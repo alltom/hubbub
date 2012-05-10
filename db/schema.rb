@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120510051150) do
+ActiveRecord::Schema.define(:version => 20120510063844) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20120510051150) do
     t.datetime "updated_at",   :null => false
     t.datetime "published_at", :null => false
     t.string   "facebook_id",  :null => false
+    t.integer  "user_id"
   end
 
   add_index "facebook_posts", ["facebook_id"], :name => "index_facebook_posts_on_facebook_id", :unique => true
@@ -31,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20120510051150) do
     t.datetime "updated_at",   :null => false
     t.datetime "published_at", :null => false
     t.string   "subject"
+    t.integer  "user_id"
   end
 
   create_table "imgur_images", :force => true do |t|
@@ -39,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20120510051150) do
     t.datetime "updated_at",   :null => false
     t.datetime "published_at", :null => false
     t.string   "imgur_hash",   :null => false
+    t.integer  "user_id"
   end
 
   add_index "imgur_images", ["imgur_hash"], :name => "index_imgur_images_on_imgur_hash", :unique => true
@@ -69,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120510051150) do
     t.datetime "updated_at",          :null => false
     t.datetime "published_at",        :null => false
     t.string   "twitter_id",          :null => false
+    t.integer  "user_id"
   end
 
   add_index "tweets", ["twitter_id"], :name => "index_tweets_on_twitter_id", :unique => true

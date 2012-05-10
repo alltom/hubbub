@@ -9,6 +9,8 @@
 class ImgurImage < ActiveRecord::Base
   extend Recent
   
+  belongs_to :user
+  
   validates :imgur_hash, uniqueness: true
   def as_json options={}
     {
