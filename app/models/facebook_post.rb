@@ -4,8 +4,11 @@
 #   actor - the name of the person who made the post
 #   text - the content of the post.
 #   published_at - timestamp of entry
+#   facebook_id - the unique ID Facebook has for the post
 class FacebookPost < ActiveRecord::Base
   extend Recent
+
+  validates :facebook_id, uniqueness: true
   
   def as_json options={}
     {
