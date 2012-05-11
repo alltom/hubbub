@@ -350,3 +350,8 @@ ul#service-list li {
 .btn-group-vertical .btn.active {
   z-index: 2;
 }
+
+/* Login and Registration forms */
+#noButtonsHeader {
+  padding-left: 37%;
+}
