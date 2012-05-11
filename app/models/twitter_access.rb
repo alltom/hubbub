@@ -61,7 +61,7 @@ class TwitterAccess
     # We can get the body of a Twitter::Status by writing status.text,
     # The poster's real name via status.user.name
     # and the poster's screen name via status.user.screen_name
-    Enumerables.map_partial_function(Twitter.home_timeline) { |item|
+    Twitter.home_timeline.map { |item|
       twitter_id = item.id
       if not Tweet.find_by_twitter_id twitter_id # Avoid saving duplicates
         Tweet.create! :text => item.text, :tweeter => item.user.name,
@@ -69,6 +69,6 @@ class TwitterAccess
             :published_at => item.created_at,
             :twitter_id => twitter_id
       end
-    }
+    }.compact
   end
 end

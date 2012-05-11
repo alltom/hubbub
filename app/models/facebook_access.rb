@@ -36,7 +36,7 @@ END_OF_QUERY
   def feed
     result = query_facebook
 
-    Enumerables.map_partial_function(result) { |post|
+    result.map { |post|
       facebook_id = post['post_id']
       if not FacebookPost.find_by_facebook_id facebook_id
         name = @graph.get_object(post['actor_id'])['name']
@@ -45,6 +45,6 @@ END_OF_QUERY
         FacebookPost.create! :actor => name, :text => post['message'],
             :published_at => published_at, :facebook_id => facebook_id
       end
-    }
+    }.compact
   end
 end
