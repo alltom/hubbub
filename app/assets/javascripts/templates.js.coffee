@@ -139,7 +139,7 @@ hubbub.filterTemplate = """
       </div>
     </header>
 
-    <div id="filterForm">
+    <div id="contentForm">
       <h2>I want items from</h2>
       <h3>Any of these services</h3>
       <div id="services">
