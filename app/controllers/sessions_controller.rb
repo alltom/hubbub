@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Logged out!"
   end
 
+  # OAuth/callback stuff has moved to the *_oauth_controller.rb classes.
 
   def refresh_imgur
     imgur_access = ImgurAccess.create

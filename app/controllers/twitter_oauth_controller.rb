@@ -14,7 +14,7 @@ class TwitterOauthController < ApplicationController
   # the user. request.env will contain a hash at the key 'omniauth.auth'
   # and that hash will contain a token and secret that can be passed to a
   # TwitterAccess object
-  def twitter_callback
+  def callback
     auth = request.env['omniauth.auth']
 
     # For now, storing in the session, but we'll want to use the database

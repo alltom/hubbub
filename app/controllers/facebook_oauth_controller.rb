@@ -12,7 +12,7 @@ class FacebookOauthController < ApplicationController
   # the user. request.env will contain a hash at the key 'omniauth.auth'
   # and that hash will contain a token that can be passed to a
   # FacebookAccess object
-  def facebook_callback
+  def callback
     auth = request.env['omniauth.auth']
 
     session[:facebook_token] = auth[:credentials][:token]
