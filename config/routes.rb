@@ -19,6 +19,11 @@ Hubbub::Application.routes.draw do
   match 'auth/facebook/callback', :to => 'sessions#facebook_callback'
 
   # Google authentication (not using Omniauth)
+  # When the user clicks the button, we:
+  # 1. Show them a form, by GETting /auth/gmail/form, asking them for their
+  #    gmail address (we need it) The form posts to /auth/gmail.
+  # 2. Validate, then send them to Google, they ask them to authenticate us.
+  # 3. Google calls auth/gmail/callback which logs OAuth tokens. 
   match 'auth/gmail/form', :to => 'sessions#ask_for_gmail'
   match 'auth/gmail', :to => 'sessions#gmail_setup'
   match 'auth/gmail/callback', :to => 'sessions#google_callback'

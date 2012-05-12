@@ -1,12 +1,3 @@
-# Original plan: Use OAuth
-# Problems:
-#   The Gmail gem requires either Xoauth or a email/password combo. OAuth 2.0
-#   doesn't work with it.
-#   Furthermore, the omniauth-google gem which uses OAuth 1 isn't compatible
-#   with the omniauth-twitter gem - they require different versions of the
-#   oauth gem.
-#
-# Fallback: Ask the user for their password
 class GmailAccess
   def initialize(gmail)
     @gmail = gmail
@@ -48,7 +39,9 @@ class GmailAccess
     ))
   end
 
-  # Mostly works, but chokes on really heavily formatted emails.
+  # Mostly works, but chokes on heavily formatted emails.
+  # I couldn't find much documentation for the library. For the most part, I
+  # just grabbed some emails and then poked around the object in the REPL.
   def emails
     # Probably want to filter this somehow (but right now there's only like 4
     # emails in the hubbub83 account inbox)
@@ -64,14 +57,16 @@ class GmailAccess
     emails.map { |email|
       google_id = email.uid
       if not GmailMessage.find_by_google_id google_id
-        # Gmail messages are full HTML documents with <html>, <head>, ...
-        # Parse out the stuff inside the <body> tag, and turn it into a string.
         email_message = email.message
+        # Hm, some emails have a html_part with the text in it, others just
+        # have it in message, not sure why...
         if email_message.html_part.nil?
           email_body_element = email_message.body
         else
           email_body_element = email_message.html_part.body
         end
+        # Gmail messages are full HTML documents with <html>, <head>, ...
+        # Parse out the stuff inside the <body> tag, and turn it into a string.
         email_body = Nokogiri::HTML(email_body_element.to_s).css('body').text
         GmailMessage.create! :from => email.from[0].name,
           :subject => email.subject,
