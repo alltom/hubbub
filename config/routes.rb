@@ -16,7 +16,7 @@ Hubbub::Application.routes.draw do
   # Facebook Omniauth callback
   # Facebook will go to this URL after taking the user's email and password,
   # and pass us the oauth_token and oauth_token_secret for that particular user.
-  match 'auth/facebook/callback', :to => 'sessions#facebook_callback'
+  match 'auth/facebook/callback', :to => 'facebook_oauth#facebook_callback'
 
   # Google authentication (not using Omniauth)
   # When the user clicks the button, we:

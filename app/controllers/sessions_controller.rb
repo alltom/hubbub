@@ -18,14 +18,6 @@ class SessionsController < ApplicationController
     redirect_to root_url, :notice => "Logged out!"
   end
 
-  def refresh_facebook
-    if session[:facebook_token]
-      facebook_access = FacebookAccess.create(
-        oauth_token = session[:facebook_token]
-      )
-      facebook_access.feed
-    end
-  end
 
   def refresh_imgur
     imgur_access = ImgurAccess.create
@@ -39,20 +31,6 @@ class SessionsController < ApplicationController
         oauth_token_secret = session[:gmail_secret]
     )
     access.emails
-  end
-
-  # This function is called by omniauth-facebook after it is done authenticating
-  # the user. request.env will contain a hash at the key 'omniauth.auth'
-  # and that hash will contain a token that can be passed to a
-  # FacebookAccess object
-  def facebook_callback
-    auth = request.env['omniauth.auth']
-
-    session[:facebook_token] = auth[:credentials][:token]
-
-    refresh_facebook
-
-    redirect_to root_url
   end
 
   # Just render the form asking for the user's gmail address.
