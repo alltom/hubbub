@@ -11,7 +11,7 @@ Hubbub::Application.routes.draw do
   # Twitter Omniauth callback
   # Twitter will go to this URL after taking the user's email and password,
   # and pass us the oauth_token and oauth_token_secret for that particular user.
-  match 'auth/twitter/callback', :to => 'sessions#twitter_callback'
+  match 'auth/twitter/callback', :to => 'twitter_oauth#twitter_callback'
 
   # Facebook Omniauth callback
   # Facebook will go to this URL after taking the user's email and password,
