@@ -142,6 +142,9 @@ class SessionsController < ApplicationController
     session[:gmail_token] = access_token.token
     session[:gmail_secret] = access_token.secret
 
+    puts "token: #{session[:gmail_token]}"
+    puts "secret: #{session[:gmail_secret]}"
+
     redirect_to root_url
   end
 

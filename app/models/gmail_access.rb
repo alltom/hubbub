@@ -15,17 +15,45 @@ class GmailAccess
   # Factory method (again, to avoid doing work in the constructor)
   #
   # Arguments (named to avoid confusion):
-  #   email: String - the email address
-  #   password: String - the password
-  def self.create(email = 'hubbub83@gmail.com', password = 'hubbubub')
-    GmailAccess.new(Gmail.connect(email, password))
+  #   user_id - the ID of the currently logged-in user.
+  #   email: String - the user's email address
+  #   oauth_token: String - the OAuth token
+  #   oauth_token_secret: String - the OAuth secret
+  #
+  # Optionally, provide:
+  #   consumer_key: String - the consumer key for this app (default: the value
+  #       in the configuration file)
+  #   consumer_secret: String - the consumer secret for this app (default: the
+  #       value in the configuration file)
+  # You probably don't need to worry about the last two.
+  def self.create(email = nil, oauth_token = nil,
+                  oauth_token_secret = nil,
+                  consumer_key = Rails.configuration.google_consumer_key,
+                  consumer_secret = Rails.configuration.google_consumer_secret)
+    if email.nil?
+      raise InsufficientCredentials, 'No email address was provided'
+    end
+    if oauth_token.nil?
+      raise InsufficientCredentials, 'No OAuth token was provided'
+    end
+    if oauth_token_secret.nil?
+      raise InsufficientCredentials, 'No OAuth secret was provided'
+    end
+
+    GmailAccess.new(Gmail.connect(:xoauth, email,
+        :token => oauth_token,
+        :secret => oauth_token_secret,
+        :consumer_key => consumer_key,
+        :consumer_secret => consumer_secret
+    ))
   end
 
+  # Mostly works, but chokes on really heavily formatted emails.
   def emails
     # Probably want to filter this somehow (but right now there's only like 4
     # emails in the hubbub83 account inbox)
-    emails = @gmail.inbox.emails
-    # Get the HTML body of an email by doing email.message.html_part.body.to_s
+    emails = @gmail.inbox.emails(:after => 1.day.ago)
+    # Get the HTML body of an email by doing email.message.body.to_s
     # and a sender by doing email.from[0].name
     # These accessors are probably inelegant, so it might be worth revisiting
     # this code later
@@ -34,8 +62,23 @@ class GmailAccess
     # markup if we just put it in.
 
     emails.map { |email|
-      GmailMessage.new(:from => email.from[0].name,
-                       :text => email.message.html_part.body.to_s)
-    }
+      google_id = email.uid
+      if not GmailMessage.find_by_google_id google_id
+        # Gmail messages are full HTML documents with <html>, <head>, ...
+        # Parse out the stuff inside the <body> tag, and turn it into a string.
+        email_message = email.message
+        if email_message.html_part.nil?
+          email_body_element = email_message.body
+        else
+          email_body_element = email_message.html_part.body
+        end
+        email_body = Nokogiri::HTML(email_body_element.to_s).css('body').text
+        GmailMessage.create! :from => email.from[0].name,
+          :subject => email.subject,
+          :text => formatted_email_body,
+          :published_at => email.message.date.in_time_zone,
+          :google_id => google_id
+      end
+    }.compact
   end
 end

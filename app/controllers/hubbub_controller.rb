@@ -44,7 +44,6 @@ class HubbubController < ApplicationController
   end
 
   def facebook_items
-    puts "oauth_token: #{session[:facebook_token]}"
     if session[:facebook_token].nil?
       fail_no_oauth_token 'Facebook'
     else
@@ -58,7 +57,15 @@ class HubbubController < ApplicationController
   end
 
   def gmail_items
-    access = GmailAccess.create
+    if session[:gmail_token].nil? || session[:gmail_secret].nil? ||
+       session[:gmail_address].nil?
+      fail_no_oauth_token 'Gmail'
+    end
+    access = GmailAccess.create(
+        email = session[:gmail_address],
+        oauth_token = session[:gmail_token],
+        oauth_token_secret = session[:gmail_secret]
+    )
     items = access.emails
 
     render_json_items items

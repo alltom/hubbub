@@ -27,6 +27,8 @@ class TwitterAccess
                   oauth_token_secret = nil,
                   consumer_key = Rails.configuration.twitter_consumer_key,
                   consumer_secret = Rails.configuration.twitter_consumer_secret)
+    puts "oauth_token: #{oauth_token}"
+    puts "oauth_token_secret: #{oauth_token_secret}"
     if oauth_token.nil?
       raise InsufficientCredentials, 'No oauth_token was provided'
     end

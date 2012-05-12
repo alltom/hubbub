@@ -16,7 +16,7 @@ gem "koala", :git => "git://github.com/arsduo/koala"
 gem "gmail", '0.4.0'
 gem "curb"
 gem "json"
-#gem "imgur", '0.2.0'
+gem "nokogiri"
 gem "strong_parameters"
 
 # Omniauth strategies, to authenticate us to the APIs

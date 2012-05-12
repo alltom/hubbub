@@ -5,11 +5,14 @@
 #   subject: String - the subject of the message
 #   text: String - the text of the message
 #   published_at: Datetime - timestamp of entry
+#   google_id: String - the unique ID Google has for the message
 class GmailMessage < ActiveRecord::Base
   extend Recent
   
   belongs_to :user
   acts_as_taggable
+
+  validates :google_id, uniqueness: true
   def as_json options={}
     {
       from: from,
