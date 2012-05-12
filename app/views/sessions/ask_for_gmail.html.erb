@@ -1,0 +1,26 @@
+<header class="row-fluid">
+  <!-- TODO Copypasted from new, turn this header into a partial! -->
+  <div class="span12">
+    <h1 id="noButtonsHeader">Hubbub</h1>
+  </div>
+</header>
+
+<div id="contentForm">
+  <% if flash.alert %>
+    <div class="error-messages">
+      <h3>Errors:</h3>
+      <%= flash.alert %>
+    </div>
+  <% end %>
+
+  <%= form_tag '/auth/gmail', method: "POST" do %>
+    <legend>
+      Tell us your Gmail address, then you'll be sent to Google to
+      authenticate us.
+    </legend>
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email], required: "required" %>
+    <p><%= submit_tag "Submit", class: "btn" %></p>
+  <% end %>
+  
+</div>

@@ -18,10 +18,10 @@ Hubbub::Application.routes.draw do
   # and pass us the oauth_token and oauth_token_secret for that particular user.
   match 'auth/facebook/callback', :to => 'sessions#facebook_callback'
 
-  # Google Omniauth callback
-  # Google will go to this URL after taking the user's email and password,
-  # and pass us the oauth_token and oauth_token_secret for that particular user.
-  match 'auth/google_oauth2/callback', :to => 'sessions#google_callback'
+  # Google authentication (not using Omniauth)
+  match 'auth/gmail/form', :to => 'sessions#ask_for_gmail'
+  match 'auth/gmail', :to => 'sessions#gmail_setup'
+  match 'auth/gmail/callback', :to => 'sessions#google_callback'
 
   # Imgur doesn't actually require authentication, but we can fake it for now.
   # Through this, the user is explicitly saying that they want to see Imgur

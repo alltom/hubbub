@@ -21,7 +21,7 @@ hubbub.templates = {
         <li><a href="/auth/twitter" class="btn">Connect to Twitter</a></li>
         <li><a href="/auth/facebook" class="btn">Connect to Facebook</a></li>
         <li><a href="/auth/imgur" class="btn">Connect to Imgur</a></li>
-        <li><a href="/auth/gmail" class="btn">Connect to Gmail</a></li>
+        <li><a href="/auth/gmail/form" class="btn">Connect to Gmail</a></li>
       </ul>
     </div>
   """,
