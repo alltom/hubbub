@@ -34,16 +34,10 @@ Hubbub::Application.routes.draw do
   # want to show Imgur items without prompting first.
   match 'auth/imgur', :to => 'imgur_oauth#imgur_setup'
 
-  # API call to get Twitter items. Should be called by JavaScript using AJAX.
-  # This will only return items if the user has been authenticated by Twitter.
+  # API call to get items. Mostly used for testing.
   match 'twitter-items', :to => 'hubbub#twitter_items'
-
-  # API call to get Facebook items. Should be called by JavaScript using AJAX.
-  # This will only return items if the user has been authenticated by Facebook.
   match 'facebook-items', :to => 'hubbub#facebook_items'
-
   match 'gmail-items', :to => 'hubbub#gmail_items'
-
   match 'imgur-items', :to => 'hubbub#imgur_items'
 
   match 'twitter-update-tags/:id' => 'items#update_tweet_tags'
