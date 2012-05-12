@@ -15,7 +15,7 @@ hubbub.FeedPageView = Backbone.View.extend({
     'click input': 'onButtonClick',
     'click #filterLink': 'onFilterLinkClick',
     'click #servicesLink': 'onServicesLinkClick',
-    'click .hubbub-feeditem-tag-button': 'onTagButtonClick'
+    'click .hubbub-feeditem-tag-button': 'onTagButtonClick',
   },
 
   /**
@@ -94,6 +94,20 @@ hubbub.FeedListView = Backbone.View.extend({
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
     this.model.bind('reset', this.render, this);
+    
+    _.bindAll(this,'checkForReadItems');
+    $(window).scroll(this.checkForReadItems);
+    
+    this.viewList = []; // store a list of the views
+    this.model.each(function(feedItem) {
+      var item = new hubbub.FeedItemView({
+        model: feedItem,
+        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] ||
+            this.feedItemTemplates["generic"],
+        collectionRef: this.model
+      });
+      this.viewList.push(item);
+    }, this);
   },
 
   /*
@@ -101,7 +115,7 @@ hubbub.FeedListView = Backbone.View.extend({
    * render that item.
    */
   render: function(eventName) {
-    $(this.el).empty();
+    $(this.el).empty();/*
     this.model.each(function(feedItem) {
       var item = new hubbub.FeedItemView({
         model: feedItem,
@@ -110,8 +124,25 @@ hubbub.FeedListView = Backbone.View.extend({
         collectionRef: this.model
       }).render().el;
       $(this.el).append(item);
-    }, this);
+    }, this);*/
+    for(var i = 0; i < this.viewList.length; i++){
+      $(this.el).append(this.viewList[i].render().el);
+    }
     return this;
+  },
+  checkForReadItems: function() {
+    var scrolltop = $(document).scrollTop();
+    //find the read items
+    var items = this.viewList.filter(function(item) {
+      return ((scrolltop - $(item.el).offset().top
+        - $(item.el).height()) > 200)
+        && !item.model.get('read');
+    }).map(function(item){
+      item.model.updateRead(true);
+      $(item.el).addClass('read');
+      return this;
+    });
+    console.log('# items read: '+items.length);
   }
 });
 
@@ -140,6 +171,9 @@ hubbub.FeedItemView = Backbone.View.extend({
   render: function() {
     $(this.el).addClass(this.model.get("source").toLowerCase());
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
+    if(this.model.get('read') && !(this.el).hasClass('read')) {
+      $(this.el).addClass('read');
+    }
     // Changed href to data-href since it's now a button, the click handler will
     // read this.
     $('.hubbub-feeditem-tag-button',this.el)
