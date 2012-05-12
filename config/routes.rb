@@ -32,7 +32,7 @@ Hubbub::Application.routes.draw do
   # Through this, the user is explicitly saying that they want to see Imgur
   # items. We could remove this (and call refresh_imgur elsewhere) if we just
   # want to show Imgur items without prompting first.
-  match 'auth/imgur', :to => 'sessions#imgur_setup'
+  match 'auth/imgur', :to => 'imgur_oauth#imgur_setup'
 
   # API call to get Twitter items. Should be called by JavaScript using AJAX.
   # This will only return items if the user has been authenticated by Twitter.

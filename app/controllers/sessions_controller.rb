@@ -20,11 +20,6 @@ class SessionsController < ApplicationController
 
   # OAuth/callback stuff has moved to the *_oauth_controller.rb classes.
 
-  def refresh_imgur
-    imgur_access = ImgurAccess.create
-    imgur_access.images
-  end
-
   def refresh_gmail
     access = GmailAccess.create(
         email = session[:gmail_address],
@@ -102,12 +97,6 @@ class SessionsController < ApplicationController
     session[:gmail_secret] = access_token.secret
 
     refresh_gmail
-
-    redirect_to root_url
-  end
-
-  def imgur_setup
-    refresh_imgur
 
     redirect_to root_url
   end
