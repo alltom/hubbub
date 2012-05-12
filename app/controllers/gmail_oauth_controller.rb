@@ -9,7 +9,7 @@ class GmailOauthController < ApplicationController
   # Basically, you create an OAuth::Consumer, use it to get a request token,
   # then use the request token to get an access token, which is what the
   # Gmail gem needs.
-  def gmail_setup
+  def setup
     # Hey, is there an idiomatic way to do validations without a model?
     # I'm just doing it manually here.
     email = params[:email] 
@@ -53,7 +53,7 @@ class GmailOauthController < ApplicationController
     access.emails
   end
 
-  def google_callback
+  def callback
     # TODO Extract shared code to a before_filter
     consumer_key = Rails.configuration.google_consumer_key
     consumer_secret = Rails.configuration.google_consumer_secret
