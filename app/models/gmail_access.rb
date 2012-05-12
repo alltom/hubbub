@@ -75,7 +75,7 @@ class GmailAccess
         email_body = Nokogiri::HTML(email_body_element.to_s).css('body').text
         GmailMessage.create! :from => email.from[0].name,
           :subject => email.subject,
-          :text => formatted_email_body,
+          :text => email_body,
           :published_at => email.message.date.in_time_zone,
           :google_id => google_id
       end

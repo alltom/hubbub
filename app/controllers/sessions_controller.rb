@@ -43,6 +43,15 @@ class SessionsController < ApplicationController
     imgur_access.images
   end
 
+  def refresh_gmail
+    access = GmailAccess.create(
+        email = session[:gmail_address],
+        oauth_token = session[:gmail_token],
+        oauth_token_secret = session[:gmail_secret]
+    )
+    access.emails
+  end
+
   # This function is called by omniauth-twitter after it is done authenticating
   # the user. request.env will contain a hash at the key 'omniauth.auth'
   # and that hash will contain a token and secret that can be passed to a
@@ -142,8 +151,7 @@ class SessionsController < ApplicationController
     session[:gmail_token] = access_token.token
     session[:gmail_secret] = access_token.secret
 
-    puts "token: #{session[:gmail_token]}"
-    puts "secret: #{session[:gmail_secret]}"
+    refresh_gmail
 
     redirect_to root_url
   end
