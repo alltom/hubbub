@@ -3,6 +3,19 @@ class GmailOauthController < ApplicationController
   def ask_for_gmail
   end
 
+  # Helper method to get an OAuth::Consumer
+  def consumer
+    consumer_key = Rails.configuration.google_consumer_key
+    consumer_secret = Rails.configuration.google_consumer_secret
+    
+    consumer = OAuth::Consumer.new(consumer_key, consumer_secret,
+      :site => "https://www.google.com",
+      :request_token_path => '/accounts/OAuthGetRequestToken?scope=https://mail.google.com/%20https://www.googleapis.com/auth/userinfo%23email',
+      :access_token_path => '/accounts/OAuthGetAccessToken',
+      :authorize_path => '/accounts/OAuthAuthorizeToken'
+    )
+  end
+
   # Can't use Omniauth, so this is a bit more manual..
   # Adapted from:
   # https://github.com/nfo/gmail-oauth-sinatra/blob/master/app.rb
@@ -15,7 +28,7 @@ class GmailOauthController < ApplicationController
     email = params[:email] 
     email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
     if email_regex.match(email).nil? # Failed
-      flash[:alert] = "This doesn't seem to be an email."
+      flash[:alert] = "This doesn't seem to be an email address."
       redirect_to '/auth/gmail/form' and return
     end
     split_on_at = email.split '@'
@@ -25,16 +38,6 @@ class GmailOauthController < ApplicationController
     end
 
     session[:gmail_address] = email
-
-    consumer_key = Rails.configuration.google_consumer_key
-    consumer_secret = Rails.configuration.google_consumer_secret
-    
-    consumer = OAuth::Consumer.new(consumer_key, consumer_secret,
-      :site => "https://www.google.com",
-      :request_token_path => '/accounts/OAuthGetRequestToken?scope=https://mail.google.com/%20https://www.googleapis.com/auth/userinfo%23email',
-      :access_token_path => '/accounts/OAuthGetAccessToken',
-      :authorize_path => '/accounts/OAuthAuthorizeToken'
-    )
 
     request_token = consumer.get_request_token(
         :oauth_callback => 'http://localhost:3000/auth/gmail/callback')
@@ -54,17 +57,6 @@ class GmailOauthController < ApplicationController
   end
 
   def callback
-    # TODO Extract shared code to a before_filter
-    consumer_key = Rails.configuration.google_consumer_key
-    consumer_secret = Rails.configuration.google_consumer_secret
-    
-    consumer = OAuth::Consumer.new(consumer_key, consumer_secret,
-      :site => "https://www.google.com",
-      :request_token_path => '/accounts/OAuthGetRequestToken?scope=https://mail.google.com/%20https://www.googleapis.com/auth/userinfo%23email',
-      :access_token_path => '/accounts/OAuthGetAccessToken',
-      :authorize_path => '/accounts/OAuthAuthorizeToken'
-    )
-
     request_token = OAuth::RequestToken.new(consumer,
         session[:gmail_request_token], session[:gmail_request_secret])
 
