@@ -24,9 +24,9 @@ Hubbub::Application.routes.draw do
   #    gmail address (we need it) The form posts to /auth/gmail.
   # 2. Validate, then send them to Google, they ask them to authenticate us.
   # 3. Google calls auth/gmail/callback which logs OAuth tokens. 
-  match 'auth/gmail/form', :to => 'sessions#ask_for_gmail'
-  match 'auth/gmail', :to => 'sessions#gmail_setup'
-  match 'auth/gmail/callback', :to => 'sessions#google_callback'
+  match 'auth/gmail/form', :to => 'gmail_oauth#ask_for_gmail'
+  match 'auth/gmail', :to => 'gmail_oauth#gmail_setup'
+  match 'auth/gmail/callback', :to => 'gmail_oauth#google_callback'
 
   # Imgur doesn't actually require authentication, but we can fake it for now.
   # Through this, the user is explicitly saying that they want to see Imgur
