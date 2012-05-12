@@ -23,6 +23,12 @@ Hubbub::Application.routes.draw do
   # and pass us the oauth_token and oauth_token_secret for that particular user.
   match 'auth/google_oauth2/callback', :to => 'sessions#google_callback'
 
+  # Imgur doesn't actually require authentication, but we can fake it for now.
+  # Through this, the user is explicitly saying that they want to see Imgur
+  # items. We could remove this (and call refresh_imgur elsewhere) if we just
+  # want to show Imgur items without prompting first.
+  match 'auth/imgur', :to => 'sessions#imgur_setup'
+
   # API call to get Twitter items. Should be called by JavaScript using AJAX.
   # This will only return items if the user has been authenticated by Twitter.
   match 'twitter-items', :to => 'hubbub#twitter_items'
