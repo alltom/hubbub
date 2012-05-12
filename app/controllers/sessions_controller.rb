@@ -58,7 +58,7 @@ class SessionsController < ApplicationController
 
     refresh_twitter
 
-    redirect_to '/'
+    redirect_to root_url
   end
 
   # This function is called by omniauth-facebook after it is done authenticating
@@ -72,7 +72,7 @@ class SessionsController < ApplicationController
 
     refresh_facebook
 
-    redirect_to '/'
+    redirect_to root_url
   end
 
   def google_callback
@@ -80,12 +80,12 @@ class SessionsController < ApplicationController
 
     session[:gmail_token] = auth[:credentials][:token]
 
-    redirect_to '/'
+    redirect_to root_url
   end
 
   def imgur_setup
     refresh_imgur
 
-    redirect_to '/'
+    redirect_to root_url
   end
 end
