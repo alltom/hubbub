@@ -53,8 +53,8 @@ class SessionsController < ApplicationController
     # For now, storing in the session, but we'll want to use the database
     # so the user doesn't have to provide a token every time they
     # close and reopen the browser
-    session[:twitter_token] = auth['credentials']['token']
-    session[:twitter_secret] = auth['credentials']['secret']
+    session[:twitter_token] = auth[:credentials][:token]
+    session[:twitter_secret] = auth[:credentials][:secret]
 
     refresh_twitter
 
