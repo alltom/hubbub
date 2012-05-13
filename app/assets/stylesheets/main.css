@@ -49,22 +49,6 @@ h1 {
   margin-bottom: 5px;
 }
 
-h1,
-h2,
-h3 {
-  font-family: "Droid Serif", Georgia, "Times New Roman", serif;
-}
-
-span,
-div,
-label,
-p,
-input,
-.ui-btn-text,
-.ui-input-search input.ui-input-text {
-  font-family: "Droid Sans", Helvetica, Arial, sans-serif;
-}
-
 #tagTitle {
   padding-left: 40%;
 }
