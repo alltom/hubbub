@@ -195,7 +195,8 @@ hubbub.filterTemplate = """
 
 hubbub.savedFilterTemplate = """
     <label class="checkbox">
-      <input type="checkbox" name="filter" /><%= name %>
+      <input type="checkbox" name="filter" />
+      <span class="filterName"><%= name %></span>
     </label>
 """
 

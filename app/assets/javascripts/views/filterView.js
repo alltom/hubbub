@@ -95,6 +95,25 @@ hubbub.FilterView = Backbone.View.extend({
     });
     this.listView.render();
     this.savedFilterListView.render();
+
+    // Probably not the best way to do this...
+    var view = this;
+    $.ajax({
+      url: '/filters',
+      success: function(data) {
+        var filtersJson = data.filters;
+        view.filters = new hubbub.FilterCollection([]);
+        _(filtersJson).each(function(json) {
+          view.filters.push(hubbub.jsonToFilter(JSON.parse(json)));
+        });
+        view.savedFilterListView.model = view.filters
+        view.savedFilterListView.render();
+      },
+      error: function() {
+        console.log('getting filters from the server failed!');
+      }
+    })
+
     return this;
   },
 
@@ -191,7 +210,7 @@ hubbub.FilterView = Backbone.View.extend({
     var existingFilters = this.filters;
     $('#savedFilters').find('input').each(function(index) {
       if ($(this).attr('checked') === 'checked') {
-        var filterName = $(this).parent().find('.ui-btn-text').html().trim();
+        var filterName = $(this).parent().find('.filterName').html().trim();
         var matchingFilter = existingFilters.where({'name': filterName})[0];
         filters.push(matchingFilter);
       }
@@ -319,8 +338,22 @@ hubbub.SaveFilterView = Backbone.View.extend({
       alert('Please input a name for the filter');
     }
 
+    // Optimistically add the filter, then notify the server.
     this.filter.set('name', name);
     this.router.addFilter(this.filter);
+
+    // send the filter to the server to be persisted
+    $.ajax({
+      type: 'POST',
+      url: '/filters',
+      data: {filter: hubbub.filterToJson(this.filter)},
+      success: function() {
+        // don't need to do anything here..
+      },
+      error: function() {
+        console.log('Sending the filter to the server failed!');
+      }
+    });
 
     this.router.filter();
   },

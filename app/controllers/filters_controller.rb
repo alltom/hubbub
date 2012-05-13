@@ -1,4 +1,4 @@
-class FilterController < ApplicationController
+class FiltersController < ApplicationController
 
   # Return all filters as JSON
   # TODO Parameterize by logged-in users
@@ -15,5 +15,9 @@ class FilterController < ApplicationController
   # params[:filter] should contain JSON for a new filter.
   def create
     Filter.create! :json_contents => params[:filter]
+
+    render json: {
+      success: true
+    }
   end
 end
