@@ -58,5 +58,4 @@ hubbub.FeedItemCollection = Backbone.Collection.extend({
     if(attributes.type == "tweet") return new hubbub.Tweet(attributes);
     throw new Error("unrecognized feed item");
   },
-
 });
