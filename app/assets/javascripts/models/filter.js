@@ -7,7 +7,7 @@ hubbub.Filter = Backbone.Model.extend({
   /**
    * Given a FeedItem, returns true if that item passes the filter, false otherwise.
    */
-  accepts: function (unused_item) {
+  accepts: function(unused_item) {
     throw new Error('Abstract!');
   },
 
@@ -35,6 +35,12 @@ hubbub.Filter = Backbone.Model.extend({
     }, this);
     
     return newCollection;
+   },
+
+   // override toJSON so the filters can be persisted.
+   // Don't call this directly, use JSON.stringify() instead
+   toJSON: function() {
+     throw new Error('Abstract!');
    }
 });
 
@@ -43,8 +49,22 @@ hubbub.AllPassFilter = hubbub.Filter.extend({
 
   accepts: function(item) {
     return true;   
+  },
+
+  toJSON: function() {
+    return {
+      'class': 'AllPassFilter'
+    }
   }
 });
+
+hubbub.AllPassFilter.fromJson = function(json) {
+  if (json['class'] !== 'AllPassFilter') {
+    throw new Error('Wrong class: expected AllPassFilter but got ' +
+        json['class']);
+  }
+  return new hubbub.AllPassFilter();
+};
 
 /**
  * Filter that accepts FeedItems only from a specific source.
@@ -55,6 +75,13 @@ hubbub.SourceFilter = hubbub.Filter.extend({
 
   accepts: function(item) {
     return item.get('source') === this.get('source');
+  },
+
+  toJSON: function() {
+    return {
+      'class': 'SourceFilter',
+      source: this.get('source')
+    };
   }
 });
 
