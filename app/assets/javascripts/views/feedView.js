@@ -16,7 +16,7 @@ hubbub.FeedPageView = Backbone.View.extend({
     'click input': 'onButtonClick',
     'click #filterLink': 'onFilterLinkClick',
     'click #servicesLink': 'onServicesLinkClick',
-    'click .hubbub-feeditem-tag-button': 'onTagButtonClick',
+    'click .hubbub-feeditem-tag-button': 'onTagButtonClick'
   },
 
   /**
