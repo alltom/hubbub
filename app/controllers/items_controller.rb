@@ -10,16 +10,12 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find_by_id_and_source(params[:id], params[:source])
     
-    if(params.has_key?(:tags))
-      @item.update_attribute(:tag_list, params[:tags])
-    end
+    attrs = params.require(:item).permit(:tags, :read)
     
-    if(params.has_key?(:read))
-      puts "updating read status"
-      @item.update_attribute(:read, params[:read])
-      @item.read = params[:read]
-      @item.save
-    end
+    # we expose "tag_list" as "tags" in the JSON, so correct that on the way back in
+    attrs[:tag_list] = attrs.delete(:tags) if attrs.has_key? :tags
+    
+    @item.update_attributes!(attrs)
     
     render json: { success: true }
   end
