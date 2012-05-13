@@ -95,21 +95,11 @@ hubbub.FeedListView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
-    this.model.bind('reset', this.render, this);
+    this.model.bind('reset', this.populateViewList, this);
     
     $(window).scroll(_.bind(this.checkForReadItems, this));
     
     this.viewList = []; // store a list of the views
-    // populate view list
-    this.model.each(function(feedItem) {
-      var item = new hubbub.FeedItemView({
-        model: feedItem,
-        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] ||
-            this.feedItemTemplates["generic"],
-        collectionRef: this.model
-      });
-      this.viewList.push(item);
-    }, this);
   },
 
   /*
@@ -137,6 +127,19 @@ hubbub.FeedListView = Backbone.View.extend({
       return this;
     });
   },
+  populateViewList: function() {
+    this.viewList = [];
+    for(var i = 0; i < this.model.length; i++) {
+      var feedItem = this.model.at(i);
+      this.viewList.push(new hubbub.FeedItemView({
+        model: feedItem,
+        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] ||
+          this.feedItemTemplates["generic"],
+        collectionRef: this.model
+      }));
+    }
+    this.render();
+  }
 });
 
 /**
