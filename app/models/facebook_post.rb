@@ -7,9 +7,10 @@
 #   facebook_id - the unique ID Facebook has for the post
 class FacebookPost < ActiveRecord::Base
   extend Recent
+  acts_as_taggable
   
   belongs_to :user
-  acts_as_taggable
+  
   validates :facebook_id, uniqueness: true
   
   def as_json options={}

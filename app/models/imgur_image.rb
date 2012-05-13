@@ -8,10 +8,12 @@
 #   imgur_hash - the hash for the Imgur URL, which can uniquely ID the image.
 class ImgurImage < ActiveRecord::Base
   extend Recent
+  acts_as_taggable
   
   belongs_to :user
-  acts_as_taggable
+  
   validates :imgur_hash, uniqueness: true
+  
   def as_json options={}
     {
       url: url,
