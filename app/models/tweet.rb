@@ -1,8 +1,5 @@
 # Model for Tweets pulled from Twitter. We might need to store some stuff
-# on our end to keep track of tags, and maybe also serve some posts to users
-# while we poll the server for more. TODO Decide how to architect this.
-# If we end up not saving them on our site, we can downgrade this class to a
-# PORO instead of a subclass of ActiveRecord::Base
+# on our end to keep track of tags, and maybe also serve some posts to users.
 #
 # Fields:
 #   tweeter - the (real) name of the person who made the tweet.
