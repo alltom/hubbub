@@ -8,11 +8,12 @@
 #   google_id: String - the unique ID Google has for the message
 class GmailMessage < ActiveRecord::Base
   extend Recent
+  acts_as_taggable
   
   belongs_to :user
-  acts_as_taggable
-
+  
   validates :google_id, uniqueness: true
+  
   def as_json options={}
     {
       from: from,
@@ -21,7 +22,8 @@ class GmailMessage < ActiveRecord::Base
       published_at: published_at,
       type: "gmail",
       id: id,
-      tags: tag_list
+      tags: tag_list,
+      read: read
     }
   end
 end

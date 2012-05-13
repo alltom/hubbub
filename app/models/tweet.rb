@@ -12,12 +12,12 @@
 #   twitter_id - the ID of the tweet on Twitter, should be unique
 class Tweet < ActiveRecord::Base
   extend Recent
+  acts_as_taggable
   
   belongs_to :user
   
-  acts_as_taggable
-
   validates :twitter_id, uniqueness: true
+  
   def as_json options={}
     {
       tweeter: tweeter,
@@ -26,7 +26,8 @@ class Tweet < ActiveRecord::Base
       published_at: published_at,
       type: "tweet",
       id: id,
-      tags: tag_list
+      tags: tag_list,
+      read: read
     }
   end
 end

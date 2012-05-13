@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512013409) do
+ActiveRecord::Schema.define(:version => 20120513172734) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
     t.string   "actor"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.datetime "published_at", :null => false
-    t.string   "facebook_id",  :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.datetime "published_at",                    :null => false
+    t.string   "facebook_id",                     :null => false
     t.integer  "user_id"
+    t.boolean  "read",         :default => false, :null => false
   end
 
   add_index "facebook_posts", ["facebook_id"], :name => "index_facebook_posts_on_facebook_id", :unique => true
@@ -28,23 +29,25 @@ ActiveRecord::Schema.define(:version => 20120512013409) do
   create_table "gmail_messages", :force => true do |t|
     t.string   "text"
     t.string   "from"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.datetime "published_at", :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.datetime "published_at",                    :null => false
     t.string   "subject"
     t.integer  "user_id"
-    t.string   "google_id",    :null => false
+    t.string   "google_id",                       :null => false
+    t.boolean  "read",         :default => false, :null => false
   end
 
   add_index "gmail_messages", ["google_id"], :name => "index_gmail_messages_on_google_id", :unique => true
 
   create_table "imgur_images", :force => true do |t|
     t.string   "url"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-    t.datetime "published_at", :null => false
-    t.string   "imgur_hash",   :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.datetime "published_at",                    :null => false
+    t.string   "imgur_hash",                      :null => false
     t.integer  "user_id"
+    t.boolean  "read",         :default => false, :null => false
   end
 
   add_index "imgur_images", ["imgur_hash"], :name => "index_imgur_images_on_imgur_hash", :unique => true
@@ -71,11 +74,12 @@ ActiveRecord::Schema.define(:version => 20120512013409) do
     t.string   "text"
     t.string   "tweeter"
     t.string   "tweeter_screen_name"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.datetime "published_at",        :null => false
-    t.string   "twitter_id",          :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.datetime "published_at",                           :null => false
+    t.string   "twitter_id",                             :null => false
     t.integer  "user_id"
+    t.boolean  "read",                :default => false, :null => false
   end
 
   add_index "tweets", ["twitter_id"], :name => "index_tweets_on_twitter_id", :unique => true
