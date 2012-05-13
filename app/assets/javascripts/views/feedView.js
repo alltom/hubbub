@@ -11,6 +11,7 @@ hubbub.changeButtonText = function(newText, button) {
  * View class for the whole feed page. Uses the template feedPageTemplate.
  */
 hubbub.FeedPageView = Backbone.View.extend({
+  
   events: {
     'click input': 'onButtonClick',
     'click #filterLink': 'onFilterLinkClick',
@@ -87,6 +88,7 @@ hubbub.FeedPageView = Backbone.View.extend({
  * View class for a list of feed items.
  */
 hubbub.FeedListView = Backbone.View.extend({
+  
   /**
    * Additional parameters in options:
    * feedItemTemplates - the hash table of item templates (see FeedPageView)
@@ -95,8 +97,7 @@ hubbub.FeedListView = Backbone.View.extend({
     this.feedItemTemplates = options.feedItemTemplates;
     this.model.bind('reset', this.render, this);
     
-    _.bindAll(this,'checkForReadItems');
-    $(window).scroll(this.checkForReadItems);
+    $(window).scroll(_.bind(this.checkForReadItems, this));
     
     this.viewList = []; // store a list of the views
     // populate view list
@@ -122,6 +123,7 @@ hubbub.FeedListView = Backbone.View.extend({
     }
     return this;
   },
+  
   checkForReadItems: function() {
     var scrolltop = $(document).scrollTop();
     //find the read items
@@ -134,14 +136,13 @@ hubbub.FeedListView = Backbone.View.extend({
       $(item.el).addClass('read');
       return this;
     });
-  }
+  },
 });
 
 /**
  * View class for a single feed item.
  */
 hubbub.FeedItemView = Backbone.View.extend({
-
 
   className: 'feedItem',
   collapseHeight: 135,
@@ -253,5 +254,5 @@ hubbub.FeedItemView = Backbone.View.extend({
     this.expandButton.attr('value', 'More')
     
     this.collapsed = true;
-  }
+  },
 });
