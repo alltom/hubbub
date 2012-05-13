@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512013409) do
+ActiveRecord::Schema.define(:version => 20120513005435) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20120512013409) do
     t.datetime "published_at", :null => false
     t.string   "facebook_id",  :null => false
     t.integer  "user_id"
+    t.boolean  "read"
   end
 
   add_index "facebook_posts", ["facebook_id"], :name => "index_facebook_posts_on_facebook_id", :unique => true
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120512013409) do
     t.string   "subject"
     t.integer  "user_id"
     t.string   "google_id",    :null => false
+    t.boolean  "read"
   end
 
   add_index "gmail_messages", ["google_id"], :name => "index_gmail_messages_on_google_id", :unique => true
@@ -45,6 +47,7 @@ ActiveRecord::Schema.define(:version => 20120512013409) do
     t.datetime "published_at", :null => false
     t.string   "imgur_hash",   :null => false
     t.integer  "user_id"
+    t.boolean  "read"
   end
 
   add_index "imgur_images", ["imgur_hash"], :name => "index_imgur_images_on_imgur_hash", :unique => true
@@ -76,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20120512013409) do
     t.datetime "published_at",        :null => false
     t.string   "twitter_id",          :null => false
     t.integer  "user_id"
+    t.boolean  "read"
   end
 
   add_index "tweets", ["twitter_id"], :name => "index_tweets_on_twitter_id", :unique => true

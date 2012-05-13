@@ -10,12 +10,11 @@
  * want to create a heirarchy later.
  */
 hubbub.FeedItem = Backbone.Model.extend({
-/*
   defaults: {
-    'read':false,
+    'read':'unread',
     'source':'',
     'tags':[]
-  },*/
+  },
   updateRead: function(newread) {
     this.set({read: newread});
   },
