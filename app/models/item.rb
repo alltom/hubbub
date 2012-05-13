@@ -6,4 +6,17 @@ class Item
             Tweet.recent.limit(limit)
     items.sort_by(&:published_at).reverse.first(limit)
   end
+  
+  def self.model_for_source source
+    HashWithIndifferentAccess.new({
+      facebook: FacebookPost,
+      twitter: Tweet,
+      imgur: ImgurImage,
+      gmail: GmailMessage,
+    })[source]
+  end
+  
+  def self.find_by_id_and_source id, source
+    model_for_source(source).try(:find_by_id, id)
+  end
 end
