@@ -145,19 +145,19 @@ hubbub.filterTemplate = """
         -->
         <p class="serviceLogo">
           <img alt="Twitter logo" src="/assets/twitter-logo8.png"
-               width="50" height="50" data-name="Twitter" />
+               width="50" height="50" data-name="twitter" />
         </p>
         <p class="serviceLogo">
           <img alt="Facebook logo" src="/assets/facebook-logo.png"
-               width="50" height="50" data-name="Facebook" />
+               width="50" height="50" data-name="facebook" />
         </p>
         <p class="serviceLogo">
           <img alt="Imgur logo" src="/assets/Imgur_Logo_Icon.png"
-               width="50" height="50" data-name="Imgur" />
+               width="50" height="50" data-name="imgur" />
         </p>
         <p class="serviceLogo">
           <img alt="Gmail logo" src="/assets/gmail-logo.png"
-               width="50" height="50" data-name="Gmail" />
+               width="50" height="50" data-name="gmail" />
         </p>
       </div>
 

@@ -26,16 +26,16 @@ hubbub.stubTagItems = function() {
 hubbub.stubServices = function() {
   return new hubbub.ServiceCollection([
     new hubbub.Service({
-      name: 'Twitter'
+      name: 'twitter'
     }),
     new hubbub.Service({
-      name: 'Facebook'
+      name: 'facebook'
     }),
     new hubbub.Service({
-      name: 'Imgur'
+      name: 'imgur'
     }),
     new hubbub.Service({
-      name: 'Gmail'
+      name: 'gmail'
     })
   ]);
 };
