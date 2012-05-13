@@ -61,11 +61,7 @@ hubbub.Router = Backbone.Router.extend({
   },
   
   resetFilter: function() {
-    this.setFilter(new hubbub.AndFilter({
-      filters: new hubbub.FilterCollection([
-        new hubbub.AllPassFilter({name: 'AllPass'})
-      ])
-    }));
+    this.setFilter(new hubbub.AllPassFilter({name: 'AllPass'}));
     this.isCustomFilter = false;
   },
 
