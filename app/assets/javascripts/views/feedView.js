@@ -100,16 +100,6 @@ hubbub.FeedListView = Backbone.View.extend({
     $(window).scroll(_.bind(this.checkForReadItems, this));
     
     this.viewList = []; // store a list of the views
-    // populate view list
-    this.model.each(function(feedItem) {
-      var item = new hubbub.FeedItemView({
-        model: feedItem,
-        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] ||
-            this.feedItemTemplates["generic"],
-        collectionRef: this.model
-      });
-      this.viewList.push(item);
-    }, this);
   },
 
   /*
