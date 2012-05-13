@@ -21,7 +21,7 @@ class FacebookPost < ActiveRecord::Base
       type: "facebook",
       id: id,
       tags: tag_list,
-      read: read
+      read: read?
    }
   end
 end

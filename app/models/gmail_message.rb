@@ -23,7 +23,7 @@ class GmailMessage < ActiveRecord::Base
       type: "gmail",
       id: id,
       tags: tag_list,
-      read: read
+      read: read?
     }
   end
 end

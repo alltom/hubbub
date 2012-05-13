@@ -21,7 +21,7 @@ class ImgurImage < ActiveRecord::Base
       type: "imgur",
       id: id,
       tags: tag_list,
-      read: read
+      read: read?
    }
   end
 end
