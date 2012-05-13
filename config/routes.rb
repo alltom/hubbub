@@ -3,6 +3,7 @@ Hubbub::Application.routes.draw do
   match 'feed', :to => 'hubbub#feed'
   resources :items
   resources :users
+  resources :filters, :only => [:index, :create]
   
   # route 'sessions/destroy' first so it won't match sessions#show
   get "sessions/destroy"
