@@ -177,9 +177,9 @@ input,
  * Imgur - (green) #71aa55
  * Facebook - (dark blue) #7373ff
  */
- .feedItem.read {
+.feedItem.read {
   background: #e0e0e0;
- }
+}
 
 .feedItem.twitter {
   border-top-color: #80e5ff;
