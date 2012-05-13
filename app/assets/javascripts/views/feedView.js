@@ -164,9 +164,7 @@ hubbub.FeedItemView = Backbone.View.extend({
     $(this.el).addClass(this.model.get("source").toLowerCase());
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
     
-    if(this.model.get('read') && !$(this.el).hasClass('read')) {
-      $(this.el).addClass('read');
-    }
+    $(this.el).toggleClass('read', this.model.get('read'));
 
     // Changed href to data-href since it's now a button, the click handler will
     // read this.
