@@ -1,7 +1,6 @@
 /**
  * Model class representing services listed on the Filter page.
  * Keeps track of whether it is selected in a given filter being constructed.
- * TODO Make a Filter model (a composite of this and the other options)
  */
 hubbub.Service = Backbone.Model.extend({
 
