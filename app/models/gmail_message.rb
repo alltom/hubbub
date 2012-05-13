@@ -21,7 +21,8 @@ class GmailMessage < ActiveRecord::Base
       published_at: published_at,
       type: "gmail",
       id: id,
-      tags: tag_list
+      tags: tag_list,
+      read: read
     }
   end
 end

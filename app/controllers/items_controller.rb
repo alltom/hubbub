@@ -8,31 +8,34 @@ class ItemsController < ApplicationController
       format.json { render json: Item.recent }
     end
   end
-
-  def update_tags(item,tags)
-    item.tag_list = tags
-    item.save
+  
+  def update
+    if(params.has_key?(:source))
+      if(params[:source] == "facebook")
+        @item = FacebookPost.find(params[:id])
+      elsif(params[:source] == "twitter")
+        @item = Tweet.find(params[:id])
+      elsif(params[:source] == "imgur")
+        @item = ImgurImage.find(params[:id])
+      elsif(params[:source] == "gmail")
+        @item = GmailMessage.find(params[:id])
+      else
+        raise "unrecognized source!"
+      end
+      
+      if(params.has_key?(:tags))
+        @item.update_attribute(:tag_list, params[:tags])
+      end
+      if(params.has_key?(:read))
+        puts "updating read status"
+        @item.update_attribute(:read, params[:read])
+        @item.read = params[:read]
+        @item.save
+      end
+    else
+      raise "no source parameter in request!"
+    end
+    
     render :json => {:success => true}
-  end
-
-  #updates the tags for the given tweet specified by id
-  def update_tweet_tags
-    @tweet = Tweet.find(params[:id])
-    update_tags @tweet,params[:tags]
-  end
-
-  def update_facebookpost_tags
-    @post = FacebookPost.find(params[:id])
-    update_tags @post,params[:tags]
-  end
-
-  def update_imgurimage_tags
-    @image = ImgurImage.find(params[:id])
-    update_tags @image,params[:tags]
-  end
-
-  def update_gmailmessage_tags
-    @message = GmailMessage.find(params[:id])
-    update_tags @message,params[:tags]
   end
 end

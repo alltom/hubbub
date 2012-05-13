@@ -26,7 +26,8 @@ class Tweet < ActiveRecord::Base
       published_at: published_at,
       type: "tweet",
       id: id,
-      tags: tag_list
+      tags: tag_list,
+      read: read
     }
   end
 end

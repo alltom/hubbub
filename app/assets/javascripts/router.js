@@ -145,6 +145,7 @@ hubbub.Router = Backbone.Router.extend({
    * 2. appends that view's element to the <body> element
    */
   changePage: function(pageView) {
+    // remove scroll listener so it doesn't spill over to other views
     $(window).unbind('scroll');
     pageView.render();
     $('body').empty().append(pageView.$el);

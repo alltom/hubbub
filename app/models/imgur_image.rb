@@ -18,7 +18,8 @@ class ImgurImage < ActiveRecord::Base
       published_at: published_at,
       type: "imgur",
       id: id,
-      tags: tag_list
+      tags: tag_list,
+      read: read
    }
   end
 end

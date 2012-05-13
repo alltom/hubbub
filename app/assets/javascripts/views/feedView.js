@@ -99,6 +99,7 @@ hubbub.FeedListView = Backbone.View.extend({
     $(window).scroll(this.checkForReadItems);
     
     this.viewList = []; // store a list of the views
+    // populate view list
     this.model.each(function(feedItem) {
       var item = new hubbub.FeedItemView({
         model: feedItem,
@@ -115,16 +116,7 @@ hubbub.FeedListView = Backbone.View.extend({
    * render that item.
    */
   render: function(eventName) {
-    $(this.el).empty();/*
-    this.model.each(function(feedItem) {
-      var item = new hubbub.FeedItemView({
-        model: feedItem,
-        feedItemTemplate: this.feedItemTemplates[feedItem.get("source")] ||
-            this.feedItemTemplates["generic"],
-        collectionRef: this.model
-      }).render().el;
-      $(this.el).append(item);
-    }, this);*/
+    $(this.el).empty();
     for(var i = 0; i < this.viewList.length; i++){
       $(this.el).append(this.viewList[i].render().el);
     }
@@ -142,7 +134,6 @@ hubbub.FeedListView = Backbone.View.extend({
       $(item.el).addClass('read');
       return this;
     });
-    console.log('# items read: '+items.length);
   }
 });
 
@@ -171,9 +162,11 @@ hubbub.FeedItemView = Backbone.View.extend({
   render: function() {
     $(this.el).addClass(this.model.get("source").toLowerCase());
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
+    
     if(this.model.get('read') && !$(this.el).hasClass('read')) {
       $(this.el).addClass('read');
     }
+
     // Changed href to data-href since it's now a button, the click handler will
     // read this.
     $('.hubbub-feeditem-tag-button',this.el)
