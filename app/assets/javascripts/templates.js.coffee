@@ -132,10 +132,6 @@ hubbub.filterTemplate = """
         <input type="button" class="btn headerLeftLink" id="filterBackLink"
                value="Back" />
         <h1>Filter</h1>
-        <!-- 
-          TODO Align these buttons on the right of the header.
-          Seems to be tricky in jQuery Mobile, but a navbar looks OK too.
-        -->
       </div>
     </header>
 
@@ -225,7 +221,9 @@ hubbub.saveFilterTemplate = """
 hubbub.tagPageTemplate = """
     <header class="row-fluid">
       <div class="span12">
-        <h1 id="tagTitle">Tag</h1>
+        <input type="button" class="btn headerLeftLink" id="tagBackLink"
+               value="Back" />
+        <h1>Tag</h1>
       </div>
     </header>
 
@@ -244,8 +242,6 @@ hubbub.tagPageTemplate = """
       <div class="span12">
         <input type="button" class="btn" id="hubbub-tag-ok-button"
                value="OK" />
-        <input type="button" class="btn" id="hubbub-tag-cancel-button"
-               value="Cancel" />
       </div>
     </footer>
 """

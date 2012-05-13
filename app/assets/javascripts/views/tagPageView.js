@@ -6,7 +6,7 @@ hubbub.TagPageView = Backbone.View.extend({
   events: {
      'click #hubbub-tag-ok-button': 'updateTags',
      'click #hubbub-new-tag-submit': 'addTag',
-     'click #hubbub-tag-cancel-button': 'cancelTagging'
+     'click #tagBackLink': 'cancelTagging'
    },
   /**
    * Views take constructor parameters as named arguments inside the options
