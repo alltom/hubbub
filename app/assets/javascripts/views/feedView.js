@@ -40,12 +40,10 @@ hubbub.FeedPageView = Backbone.View.extend({
   render: function(eventName) {
     $(this.el).html(this.template(this.model.toJSON()));
     
-    var header = $(this.el).find(".header");
-    if(this.router.isCustomFilter) {
-      header.append("<a href='#filter'>Change Filter</a>");
-    } else {
-      header.append("<a href='#filter'>Filter</a>");
-    }
+    var filterLink = this.$el.find("#filterLink");
+    var filterLinkValue = this.router.isCustomFilter ?
+        'Change Filter' : 'Filter';
+    filterLink.attr('value', filterLinkValue);
     
     this.listView = new hubbub.FeedListView({
       el: $('#feedList', this.el),
