@@ -79,6 +79,10 @@ h1 {
 
 /* feed items */
 
+div#feedList {
+  padding-bottom: 200%;
+}
+
 .feedItem {
   clear: both;
   position: relative;
