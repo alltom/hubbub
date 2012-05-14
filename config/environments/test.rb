@@ -57,6 +57,7 @@ Hubbub::Application.configure do
   # Gmail configuration variables
   config.google_consumer_key = '948754190937.apps.googleusercontent.com'
   config.google_consumer_secret = 'qozrzEkwPie_UmevHsfXsiJ4'
+  config.google_callback_url = 'http://localhost:3000/auth/gmail/callback'
 
   # For Imgur I'm using the anonymous API to pull from the gallery.
   config.imgur_api_key = '28d29b7605570dd6775475daeb8088b4'

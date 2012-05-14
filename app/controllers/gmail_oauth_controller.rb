@@ -40,7 +40,7 @@ class GmailOauthController < ApplicationController
     session[:gmail_address] = email
 
     request_token = consumer.get_request_token(
-        :oauth_callback => 'http://localhost:3000/auth/gmail/callback')
+        :oauth_callback => Rails.configuration.google_callback_url)
     session[:gmail_request_token] = request_token.token
     session[:gmail_request_secret] = request_token.secret
 

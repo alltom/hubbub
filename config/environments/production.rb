@@ -85,6 +85,7 @@ Hubbub::Application.configure do
   # Gmail configuration variables (Different for production)
   config.google_consumer_key = '948754190937-hicn6nt84an3cegfebt63mbcp7iukil8.apps.googleusercontent.com'
   config.google_consumer_secret = '8pIqM-s-aoH6q3qTaNbp6Cml'
+  config.google_callback_url = 'http://hubbubub.herokuapp.com/auth/gmail/callback'
 
   # For Imgur I'm using the anonymous API to pull from the gallery.
   config.imgur_api_key = '28d29b7605570dd6775475daeb8088b4'
