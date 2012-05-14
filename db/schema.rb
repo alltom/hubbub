@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514041513) do
+ActiveRecord::Schema.define(:version => 20120514090749) do
 
   create_table "facebook_posts", :force => true do |t|
     t.string   "text"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(:version => 20120514041513) do
   end
 
   create_table "tweets", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
     t.string   "tweeter"
     t.string   "tweeter_screen_name"
     t.datetime "created_at",                             :null => false
