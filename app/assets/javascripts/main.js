@@ -18,6 +18,6 @@ $(function() {
     window.location.hash = '';
   }
 
-  var router = new hubbub.Router();
+  hubbub.router = new hubbub.Router();
   Backbone.history.start();
 });

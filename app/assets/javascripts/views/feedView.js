@@ -168,7 +168,7 @@ hubbub.FeedListView = Backbone.View.extend({
     var reset = _.debounce(_.bind(function() {
       this.refreshButton.attr("value", "Refresh...");
     }, this), 300);
-    this.model.fetch({ success: reset, error: reset });
+    hubbub.router.feedItems.fetch({ success: reset, error: reset });
   }
 });
 
