@@ -11,10 +11,10 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514090749) do
+ActiveRecord::Schema.define(:version => 20120514170731) do
 
   create_table "facebook_posts", :force => true do |t|
-    t.string   "text"
+    t.text     "text"
     t.string   "actor"
     t.datetime "created_at",                      :null => false
     t.datetime "updated_at",                      :null => false
