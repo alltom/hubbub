@@ -239,7 +239,7 @@ hubbub.tagPageTemplate = """
         <input type="submit" class="btn" id="hubbub-new-tag-submit" value="New" />
       </fieldset>
 
-      <fieldset id="tagList">
+      <fieldset id="tagPageTagList">
       </fieldset>
     </form>
 
