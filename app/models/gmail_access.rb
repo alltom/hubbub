@@ -53,7 +53,7 @@ class GmailAccess
     # markup if we just put it in.
 
     emails.map { |email|
-      google_id = email.uid
+      google_id = email.uid.to_s
       if not GmailMessage.find_by_google_id google_id
         email_message = email.message
         # Hm, some emails have a html_part with the text in it, others just
