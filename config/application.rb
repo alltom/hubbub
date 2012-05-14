@@ -56,5 +56,10 @@ module Hubbub
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # prevent Rails initialization during asset precompile
+    # tom: added this so that heroku can pre-compile assets instead of serving them dynamically
+    #      see https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar#troubleshooting
+    config.assets.initialize_on_precompile = false
   end
 end
