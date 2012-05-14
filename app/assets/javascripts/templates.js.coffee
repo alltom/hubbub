@@ -143,24 +143,24 @@ hubbub.filterTemplate = """
           <div class="serviceLogo span6">
             <img alt="Twitter logo" src="/assets/twitter-logo8.png"
                 width="50" height="50" data-name="twitter" />
-            <input type="checkbox" id="twitterCheckbox" />
+            <input type="checkbox" />
           </div>
           <div class="serviceLogo span6">
             <img alt="Facebook logo" src="/assets/facebook-logo.png"
                 width="50" height="50" data-name="facebook" />
-            <input type="checkbox" id="facebookCheckbox" />
+            <input type="checkbox" />
           </div>
         </div>
         <div class="row-fluid">
           <div class="serviceLogo span6">
             <img alt="Imgur logo" src="/assets/Imgur_Logo_Icon.png"
                 width="50" height="50" data-name="imgur" />
-            <input type="checkbox" id="imgurCheckbox" />
+            <input type="checkbox" />
           </div>
           <div class="serviceLogo span6">
             <img alt="Gmail logo" src="/assets/gmail-logo.png"
                 width="50" height="50" data-name="gmail" />
-            <input type="checkbox" id="gmailCheckbox" />
+            <input type="checkbox" />
           </div>
         </div>
       </div>
