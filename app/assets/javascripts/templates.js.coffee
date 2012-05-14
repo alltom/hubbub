@@ -165,17 +165,17 @@ hubbub.filterTemplate = """
         </div>
       </div>
 
-      <h2>With all of the following</h2>
+      <h2>And they should</h2>
 
       <form action="filter.html" method="post" id="filterSearch">
-        <h3>Text</h3>
+        <h3>Contain this text</h3>
         <label for="search" class="ui-hidden-accessible">Search</label>
         <input type="search" name="search" class="input-medium search-query"
                placeholder="Text" />
       </form>
 
       <form action="filter.html" method="post">
-        <h3>Tags</h3>
+        <h3>Be tagged with</h3>
         <fieldset id="tagList"></fieldset>
         <h3>Other</h3>
         <label class="checkbox">
@@ -184,7 +184,7 @@ hubbub.filterTemplate = """
         </label>
       </form>
 
-      <h3>And saved filters:</h3>
+      <h3>And pass these saved filters</h3>
       <form action="filter.html" method="post" id="savedFilters">
       </form>
     </div>
