@@ -115,7 +115,7 @@ hubbub.FeedListView = Backbone.View.extend({
     this.refreshButton = $("<input type='button' class='btn refresh-button' value='Refresh...' />");
     this.refreshDom = $("<div style='width: 100%; text-align: center'></div>").append(this.refreshButton);
     
-    $(window).scroll(_.bind(this.checkForReadItems, this));
+    $(window).scroll(_.debounce(_.bind(this.checkForReadItems, this), 100));
     
     this.populateViewList();
   },
