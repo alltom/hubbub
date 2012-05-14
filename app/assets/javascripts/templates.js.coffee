@@ -136,7 +136,7 @@ hubbub.filterTemplate = """
     </header>
 
     <div id="contentForm">
-      <h2>I want items from</h2>
+      <h2 class="filterHelp">I want items from</h2>
       <h3 class="filterHelp">Any of these services</h3>
       <div id="services">
         <div class="row-fluid">
@@ -165,7 +165,7 @@ hubbub.filterTemplate = """
         </div>
       </div>
 
-      <h2>And they should</h2>
+      <h2 class="filterHelp">And they should</h2>
 
       <form action="filter.html" method="post" id="filterSearch">
         <h3 class="filterHelp">Contain this text</h3>
