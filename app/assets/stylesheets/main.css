@@ -152,6 +152,10 @@ h1 {
   margin-top: 3px;
 }
 
+.feed-tag-set-item:hover {
+  cursor: pointer;
+}
+
 .feedTagSet .feed-tag-set-item.last {
   float: none;
   display: inline-block;

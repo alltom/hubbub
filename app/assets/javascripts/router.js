@@ -121,6 +121,21 @@ hubbub.Router = Backbone.Router.extend({
     }));
   },
 
+  filterWithTagSelected: function(tag) {
+    var filterView = new hubbub.FilterView({
+      el: $('<div>', {'class': 'container-fluid'}),
+      filterTemplate: this.filterTemplate,
+      savedFilterTemplate: this.savedFilterTemplate,
+      tagItems: this.tagItems,
+      tagItemTemplate: this.tagItemTemplate,
+      services: hubbub.stubServices(),
+      filters: this.filters,
+      router: this
+    });
+    this.changePage(filterView);
+    filterView.selectTag(tag);
+  },
+
   listTagItems: function(feedItemIndex) {
     this.changePage(new hubbub.TagPageView({
       el: $('<div>', {'class': 'container-fluid'}),

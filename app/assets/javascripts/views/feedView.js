@@ -16,7 +16,8 @@ hubbub.FeedPageView = Backbone.View.extend({
     'click input': 'onButtonClick',
     'click #filterLink': 'onFilterLinkClick',
     'click #servicesLink': 'onServicesLinkClick',
-    'click .hubbub-feeditem-tag-button': 'onTagButtonClick'
+    'click .hubbub-feeditem-tag-button': 'onTagButtonClick',
+    'click .feed-tag-set-item': 'onTagClick'
   },
 
   /**
@@ -79,6 +80,15 @@ hubbub.FeedPageView = Backbone.View.extend({
   onTagButtonClick: function(event) {
     var theHref = $(event.currentTarget).attr('data-href');
     this.router.navigate(theHref, {trigger: true});
+  },
+
+  // Sacha's suggestion: on click of a tag, do opportunistic filtering.
+  // i.e. bring the user to the filter page, with that particular tag
+  // selected
+  onTagClick: function(event) {
+    var tagHtml = $(event.currentTarget).html();
+    this.router.filterWithTagSelected(tagHtml);
+    this.router.navigate('#filter', {trigger: false});
   }
 });
 
