@@ -71,7 +71,7 @@ class GmailAccess
         truncated_email_body = email_body[0..2455] + '...'
         GmailMessage.create! :from => email.from[0].name,
           :subject => email.subject,
-          :text => email_body,
+          :text => truncated_email_body,
           :published_at => email.message.date.in_time_zone,
           :google_id => google_id,
           :user => @user
