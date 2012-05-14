@@ -66,6 +66,9 @@ class GmailAccess
         # Gmail messages are full HTML documents with <html>, <head>, ...
         # Parse out the stuff inside the <body> tag, and turn it into a string.
         email_body = sanitize(Nokogiri::HTML(email_body_element.to_s).css('body').inner_html)
+        # HACK: If email_body is too long, truncate it or Postgres
+        # will throw an error.
+        truncated_email_body = email_body[0..2455] + '...'
         GmailMessage.create! :from => email.from[0].name,
           :subject => email.subject,
           :text => email_body,
