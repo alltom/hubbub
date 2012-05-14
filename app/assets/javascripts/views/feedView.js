@@ -58,7 +58,7 @@ hubbub.FeedPageView = Backbone.View.extend({
   onButtonClick: function(event) {
     var button = $(event.currentTarget);
     var value = button.attr('value');
-    if(value === 'Save') {
+    if(value.indexOf("Save") != -1) {
       this.onSaveButtonClick(button);
     } else if (value === 'Share') {
       this.onShareButtonClick(button);
@@ -66,9 +66,8 @@ hubbub.FeedPageView = Backbone.View.extend({
   },
 
   onSaveButtonClick: function(button) {
-    var model = button.data("model");
-    hubbub.changeButtonText("Saving...", button);
-    model.save({ read: false }, { wait: true });
+    var view = button.data("view");
+    view.toggleRead();
   },
 
   onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
@@ -130,7 +129,7 @@ hubbub.FeedListView = Backbone.View.extend({
     var scrolltop = $(document).scrollTop();
     //find the read items
     var items = this.viewList.filter(function(item) {
-      return scrolltop > $(item.el).offset().top && !item.model.get('read');
+      return !item.saved && scrolltop > $(item.el).offset().top && !item.model.get('read');
     }).map(function(item){
       item.model.updateRead(true);
       $(item.el).addClass('read');
@@ -186,9 +185,9 @@ hubbub.FeedItemView = Backbone.View.extend({
     $('.hubbub-feeditem-tag-button',this.el)
       .attr('data-href',"#tag/"+this.collectionRef.indexOf(this.model));
     
-    $(".hubbub-feeditem-save-button", this.el).data("model", this.model);
+    this.saveButton().data("view", this);
     if(this.model.hasChanged("read") && !this.model.get("read")) {
-      hubbub.changeButtonText("Saved!", $(".hubbub-feeditem-save-button", this.el));
+      hubbub.changeButtonText("Saved!", this.saveButton());
     }
     
     this.addTagView();
@@ -197,6 +196,22 @@ hubbub.FeedItemView = Backbone.View.extend({
     //      wait a bit, then check the height to see whether we should collapse.
     setTimeout(_.bind(this.checkShouldCollapse, this), 10);
     return this;
+  },
+  
+  saveButton: function() {
+    return $(".hubbub-feeditem-save-button", this.el)
+  },
+  
+  toggleRead: function() {
+    if(this.saved) {
+      this.saved = false;
+      hubbub.changeButtonText("Unsaving...", this.saveButton());
+      this.model.save({ read: true }, { wait: true });
+    } else {
+      this.saved = true;
+      hubbub.changeButtonText("Saving...", this.saveButton());
+      this.model.save({ read: false }, { wait: true });
+    }
   },
   
   addTagView: function() {
