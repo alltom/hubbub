@@ -63,7 +63,7 @@ class TwitterAccess
     # The poster's real name via status.user.name
     # and the poster's screen name via status.user.screen_name
     Twitter.home_timeline.map { |item|
-      twitter_id = item.id
+      twitter_id = item.id.to_s
       if not Tweet.find_by_twitter_id twitter_id # Avoid saving duplicates
         Tweet.create! :text => item.text, :tweeter => item.user.name,
             :tweeter_screen_name => item.user.screen_name,

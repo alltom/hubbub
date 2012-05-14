@@ -82,9 +82,9 @@ Hubbub::Application.configure do
   config.facebook_consumer_key = '307803329297874'
   config.facebook_consumer_secret = '9d495b81fe51afbc1a36b3d26ac56d8e'
 
-  # Gmail configuration variables
-  config.google_consumer_key = '948754190937.apps.googleusercontent.com'
-  config.google_consumer_secret = 'qozrzEkwPie_UmevHsfXsiJ4'
+  # Gmail configuration variables (Different for production)
+  config.google_consumer_key = '948754190937-hicn6nt84an3cegfebt63mbcp7iukil8.apps.googleusercontent.com'
+  config.google_consumer_secret = '8pIqM-s-aoH6q3qTaNbp6Cml'
 
   # For Imgur I'm using the anonymous API to pull from the gallery.
   config.imgur_api_key = '28d29b7605570dd6775475daeb8088b4'
