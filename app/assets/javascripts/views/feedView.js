@@ -126,15 +126,14 @@ hubbub.FeedListView = Backbone.View.extend({
     var scrolltop = $(document).scrollTop();
     //find the read items
     var items = this.viewList.filter(function(item) {
-      return ((scrolltop - $(item.el).offset().top
-        - $(item.el).height()) > 200)
-        && !item.model.get('read');
+      return scrolltop > $(item.el).offset().top && !item.model.get('read');
     }).map(function(item){
       item.model.updateRead(true);
       $(item.el).addClass('read');
       return this;
     });
   },
+  
   populateViewList: function() {
     this.viewList = [];
     for(var i = 0; i < this.model.length; i++) {
