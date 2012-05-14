@@ -159,6 +159,7 @@ hubbub.FeedListView = Backbone.View.extend({
         collectionRef: this.model
       }));
     }
+    $(window).scrollTop(0);
     this.render();
   },
   
