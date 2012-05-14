@@ -49,7 +49,7 @@ hubbub.feedPageTemplate = """
 hubbub.genericFeedItemTemplate = """
     <div data-role="controlgroup" class="item-actions float">
       <a data-role="button" class="hubbub-feeditem-tag-button" href="#tag">Tag</a>
-      <input type="button" data-role="button" value="Share" />
+      <!-- <input type="button" data-role="button" value="Share" /> -->
       <input type="button" value="Save" />
     </div>
     <div class="item-body">
@@ -62,7 +62,7 @@ hubbub.feedItemControlsTemplate = """
     <div class="span2">
       <div class="btn-group-vertical feedItemControls">
         <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
-        <input type="button" class="btn" value="Share" />
+        <!-- <input type="button" class="btn" value="Share" /> -->
         <input type="button" class="btn hubbub-feeditem-save-button" value="Save" />
       </div>
     </div>
