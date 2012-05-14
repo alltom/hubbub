@@ -132,6 +132,8 @@ hubbub.filterTemplate = """
         <input type="button" class="btn headerLeftLink" id="filterBackLink"
                value="Back" />
         <h1>Filter</h1>
+        <input type="button" class="btn headerRightLink" id="resetFilter"
+               value="Remove Filter" />
       </div>
     </header>
 
@@ -191,7 +193,6 @@ hubbub.filterTemplate = """
     <footer class="row-fluid">
       <div class="span12">
         <input type="button" class="btn" id="executeFilter" value="Execute" />
-        <input type="button" class="btn" id="resetFilter" value="Reset" />
         <input type="button" class="btn" id="saveFilter" value="Save Filter" />
       </div>
     </footer>

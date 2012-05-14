@@ -241,6 +241,11 @@ h1 {
   padding-left: 4%;
 }
 
+#saveFilter {
+  float: right;
+  margin-right: 5px;
+}
+
 #services img {
   opacity: 0.4;
   border: 2px solid white;
