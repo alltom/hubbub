@@ -162,6 +162,8 @@ hubbub.FeedListView = Backbone.View.extend({
       }));
     }
     $(window).scrollTop(0);
+    // if there are view items to read, tell the user how it works
+    $('#hubbub-feedpage-info').toggleClass('reveal', this.viewList.length > 0);
     this.render();
   },
   

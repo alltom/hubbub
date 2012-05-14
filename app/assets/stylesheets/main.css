@@ -78,6 +78,13 @@ h1 {
 }
 
 /* feed items */
+#hubbub-feedpage-info {
+  display: none;
+}
+
+#hubbub-feedpage-info.reveal {
+  display: block;
+}
 
 div#feedList {
   padding-bottom: 200%;

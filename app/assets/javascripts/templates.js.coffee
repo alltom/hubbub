@@ -54,6 +54,7 @@ hubbub.feedPageTemplate = """
     </header>
 
     <div id="content">
+      <p id='hubbub-feedpage-info' style='margin: 4px'>Scroll down to read items. Items will be marked read as you go.</p>
       <!--  FeedItems go inside this list -->
       <div id="feedList"></div>
     </div>
