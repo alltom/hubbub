@@ -110,10 +110,11 @@ hubbub.FeedListView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
-    this.model.bind('reset', this.populateViewList, this);
+    this.model.bind('reset', this.collectionReset, this);
     
     $(window).scroll(_.debounce(_.bind(this.checkForReadItems, this), 100));
     
+    this.loaded = this.model.length > 0;
     this.populateViewList();
   },
 
@@ -128,7 +129,11 @@ hubbub.FeedListView = Backbone.View.extend({
       $(this.el).append(this.viewList[i].render().el);
     }
     
-    this.$el.append(hubbub.templates.loadMoreTemplate);
+    if(this.loaded) {
+      this.$el.append(hubbub.templates.loadMoreTemplate);
+    } else {
+      this.$el.append(hubbub.templates.loadingMoreTemplate);
+    }
     
     return this;
   },
@@ -147,7 +152,7 @@ hubbub.FeedListView = Backbone.View.extend({
   
   populateViewList: function() {
     this.viewList = [];
-    for(var i = 0; i < this.model.length; i++) {
+    for(var i = 0; i < this.model.length && i < hubbub.perPageLimit; i++) {
       var feedItem = this.model.at(i);
       this.viewList.push(new hubbub.FeedItemView({
         model: feedItem,
@@ -158,6 +163,11 @@ hubbub.FeedListView = Backbone.View.extend({
     }
     $(window).scrollTop(0);
     this.render();
+  },
+  
+  collectionReset: function() {
+    this.loaded = true;
+    this.populateViewList();
   },
   
   refreshButtonClicked: function() {
