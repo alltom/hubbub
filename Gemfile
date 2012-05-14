@@ -18,6 +18,7 @@ gem "curb"
 gem "json"
 gem "nokogiri"
 gem "strong_parameters"
+gem "twitter-text"
 
 # Omniauth strategies, to authenticate us to the APIs
 # Not all of the gems have their own OAuth utilities (twitter doesn't), so
