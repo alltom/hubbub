@@ -61,7 +61,7 @@ hubbub.feedItemControlsTemplate = """
       <div class="btn-group-vertical feedItemControls">
         <input type="button" class="btn hubbub-feeditem-tag-button" value="Tag" />
         <input type="button" class="btn" value="Share" />
-        <input type="button" class="btn" value="Save" />
+        <input type="button" class="btn hubbub-feeditem-save-button" value="Save" />
       </div>
     </div>
 """

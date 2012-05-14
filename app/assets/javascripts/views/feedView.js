@@ -65,7 +65,11 @@ hubbub.FeedPageView = Backbone.View.extend({
     }
   },
 
-  onSaveButtonClick: _.bind(hubbub.changeButtonText, null, 'Saved!'),
+  onSaveButtonClick: function(button) {
+    var model = button.data("model");
+    hubbub.changeButtonText("Saving...", button);
+    model.save({ read: false }, { wait: true });
+  },
 
   onShareButtonClick: _.bind(hubbub.changeButtonText, null, 'Shared!'),
 
@@ -164,6 +168,7 @@ hubbub.FeedItemView = Backbone.View.extend({
   initialize: function(options) {
     this.template = _.template(options.feedItemTemplate);
     this.collectionRef = options.collectionRef; //reference to the feed list
+    this.model.on("change", this.render, this);
   },
 
   /*
@@ -180,6 +185,11 @@ hubbub.FeedItemView = Backbone.View.extend({
     // read this.
     $('.hubbub-feeditem-tag-button',this.el)
       .attr('data-href',"#tag/"+this.collectionRef.indexOf(this.model));
+    
+    $(".hubbub-feeditem-save-button", this.el).data("model", this.model);
+    if(this.model.hasChanged("read") && !this.model.get("read")) {
+      hubbub.changeButtonText("Saved!", $(".hubbub-feeditem-save-button", this.el));
+    }
     
     this.addTagView();
     
