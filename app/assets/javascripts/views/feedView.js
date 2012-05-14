@@ -99,7 +99,7 @@ hubbub.FeedListView = Backbone.View.extend({
     
     $(window).scroll(_.bind(this.checkForReadItems, this));
     
-    this.viewList = []; // store a list of the views
+    this.populateViewList();
   },
 
   /*
