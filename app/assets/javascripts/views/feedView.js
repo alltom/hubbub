@@ -193,8 +193,8 @@ hubbub.FeedItemView = Backbone.View.extend({
     
     this.addTagView();
     
-    // XXX: we're not yet in the DOM, so wait a bit,
-    //      then check the height to see whether we should collapse
+    // XXX: we're not yet in the DOM so we can't tell our height yet.
+    //      wait a bit, then check the height to see whether we should collapse.
     setTimeout(_.bind(this.checkShouldCollapse, this), 10);
     return this;
   },
