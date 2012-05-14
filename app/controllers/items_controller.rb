@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   
   def index
     respond_to do |format|
-      format.json { render json: Item.recent }
+      format.json { render json: Item.recent(current_user) }
     end
   end
   

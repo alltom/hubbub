@@ -10,10 +10,10 @@ class Item
     # 
     # Sorting tends to bunch up services. Do you think this is a problem?
     from_each = limit / 4
-    items = FacebookPost.recent.limit(from_each) +
-            GmailMessage.recent.limit(from_each) +
-            ImgurImage.recent.limit(from_each) +
-            Tweet.recent.limit(from_each)
+    items = user.facebook_posts.recent.limit(from_each) +
+            user.gmail_messages.recent.limit(from_each) +
+            user.imgur_images.recent.limit(from_each) +
+            user.tweets.recent.limit(from_each)
     items.sort_by(&:published_at).reverse
   end
   
