@@ -232,7 +232,7 @@ hubbub.tagPageTemplate = """
       </div>
     </header>
 
-    <form action="#tag/0" id="hubbub-tag-form" method="post">
+    <form action="#tag/0" id="contentForm" method="post">
       <fieldset class="control-group" id="newTagFields">
         <label for="tagName" class="ui-hidden-accessible">Tag Name</label>
         <input type="text" class="input-large" name="tagName" id="hubbub-new-tag-text" placeholder="Tag Name" />

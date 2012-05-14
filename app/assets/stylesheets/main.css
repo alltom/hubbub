@@ -49,8 +49,18 @@ h1 {
   margin-bottom: 5px;
 }
 
+/* Tag Page */
+
+#tagList {
+  margin-left: -9px; /* Align it on the left with the new tag input box */
+}
+
 #tagTitle {
   padding-left: 40%;
+}
+
+#hubbub-new-tag-text {
+  padding-right: 15%;
 }
 
 #hubbub-new-tag-submit {
@@ -61,15 +71,6 @@ h1 {
 /* Put some space between the new tag form and the existing tags */
 #newTagFields {
   padding-bottom: 20px;
-}
-
-@media all and (max-width: 480px) {
-  #newTagFields .ui-input-text {
-    width: 100%;
-  }
-  #newTagFields > .ui-btn {
-    width: 100%;
-  }
 }
 
 /* feed items */
