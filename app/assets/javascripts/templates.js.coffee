@@ -29,6 +29,18 @@ hubbub.templates = {
       </ul>
     </div>
   """,
+  
+  loadMoreTemplate: """
+    <div class="refresh-button-container">
+      <input type="button" class="btn refresh-button" value="Load More Items..." />
+    </div>
+  """,
+  
+  loadingMoreTemplate: """
+    <div class="refresh-button-container">
+      <img src="/assets/spinner.gif" />
+    </div>
+  """,
 }
 
 hubbub.feedPageTemplate = """

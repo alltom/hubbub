@@ -112,9 +112,6 @@ hubbub.FeedListView = Backbone.View.extend({
     this.feedItemTemplates = options.feedItemTemplates;
     this.model.bind('reset', this.populateViewList, this);
     
-    this.refreshButton = $("<input type='button' class='btn refresh-button' value='Refresh...' />");
-    this.refreshDom = $("<div style='width: 100%; text-align: center'></div>").append(this.refreshButton);
-    
     $(window).scroll(_.debounce(_.bind(this.checkForReadItems, this), 100));
     
     this.populateViewList();
@@ -131,7 +128,7 @@ hubbub.FeedListView = Backbone.View.extend({
       $(this.el).append(this.viewList[i].render().el);
     }
     
-    this.$el.append(this.refreshDom);
+    this.$el.append(hubbub.templates.loadMoreTemplate);
     
     return this;
   },
@@ -164,11 +161,8 @@ hubbub.FeedListView = Backbone.View.extend({
   },
   
   refreshButtonClicked: function() {
-    this.refreshButton.attr("value", "Refreshing...");
-    var reset = _.debounce(_.bind(function() {
-      this.refreshButton.attr("value", "Refresh...");
-    }, this), 300);
-    hubbub.router.feedItems.fetch({ success: reset, error: reset });
+    this.$el.find(".refresh-button-container").replaceWith(hubbub.templates.loadingMoreTemplate);
+    hubbub.router.feedItems.fetch();
   }
 });
 
@@ -193,6 +187,7 @@ hubbub.FeedItemView = Backbone.View.extend({
   changed: function(model, ev) {
     if(this.model.hasChanged("read")) {
       hubbub.changeButtonText(this.model.get("read") ? "Save" : "Saved!", this.saveButton());
+      $(this.el).toggleClass('read', this.model.get('read'));
     }
   },
 
