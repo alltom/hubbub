@@ -232,6 +232,15 @@ h1 {
   padding-bottom: 20px;
 }
 
+#filterSearch input {
+  margin-left: 3%;
+  padding-right: 45%;
+}
+
+.filterHelp {
+  padding-left: 4%;
+}
+
 #services img {
   opacity: 0.4;
   border: 2px solid white;

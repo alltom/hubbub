@@ -137,7 +137,7 @@ hubbub.filterTemplate = """
 
     <div id="contentForm">
       <h2>I want items from</h2>
-      <h3>Any of these services</h3>
+      <h3 class="filterHelp">Any of these services</h3>
       <div id="services">
         <div class="row-fluid">
           <div class="serviceLogo span6">
@@ -168,23 +168,23 @@ hubbub.filterTemplate = """
       <h2>And they should</h2>
 
       <form action="filter.html" method="post" id="filterSearch">
-        <h3>Contain this text</h3>
+        <h3 class="filterHelp">Contain this text</h3>
         <label for="search" class="ui-hidden-accessible">Search</label>
         <input type="search" name="search" class="input-medium search-query"
                placeholder="Text" />
       </form>
 
       <form action="filter.html" method="post">
-        <h3>Be tagged with</h3>
+        <h3 class="filterHelp">Be tagged with</h3>
         <fieldset id="tagList"></fieldset>
-        <h3>Other</h3>
+        <h3 class="filterHelp">Other</h3>
         <label class="checkbox">
           <input type="checkbox" name="hyperlink" id="hasHyperlink" />
           Has a Hyperlink
         </label>
       </form>
 
-      <h3>And pass these saved filters</h3>
+      <h3 class="filterHelp">And pass these saved filters</h3>
       <form action="filter.html" method="post" id="savedFilters">
       </form>
     </div>
