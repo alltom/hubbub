@@ -16,7 +16,9 @@ hubbub.templates = {
     </header>
 
     <div data-role="content">
-      <h2>Services</h2>
+      <h2 style='margin: 4px'>Services</h2>
+      <p style='margin: 4px'>Tap the button for each service you'd like to read in Hubbub.</p>
+      <p style='margin: 4px'>In this prototype, new posts are not imported over time; they will only be added when you press a button below.</p>
       <ul id="service-list">
         <li><a href="/auth/twitter" class="btn">Connect to Twitter</a></li>
         <li><a href="/auth/facebook" class="btn">Connect to Facebook</a></li>
