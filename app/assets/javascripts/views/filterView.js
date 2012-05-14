@@ -31,7 +31,7 @@ hubbub.SavedFilterListView = Backbone.View.extend({
   render: function() {
     $(this.el).empty();
     if (this.model.length === 0) {
-      $(this.el).append('<p>No filters created yet.</p>');
+      $(this.el).append('<p class="filterHelp">No filters created yet.</p>');
     } else {
       this.model.each(function(filter) {
         var view = new hubbub.SavedFilterView({
