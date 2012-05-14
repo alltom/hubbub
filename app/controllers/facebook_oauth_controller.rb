@@ -2,7 +2,8 @@ class FacebookOauthController < ApplicationController
   def refresh_facebook
     if session[:facebook_token]
       facebook_access = FacebookAccess.create(
-        oauth_token = session[:facebook_token]
+        oauth_token: session[:facebook_token],
+        user: current_user
       )
       facebook_access.feed
     end

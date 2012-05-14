@@ -34,8 +34,9 @@ class HubbubController < ApplicationController
       fail_no_oauth_token 'Twitter'
     else
       access = TwitterAccess.create(
-        oauth_token = session[:twitter_token],
-        oauth_token_secret = session[:twitter_secret]
+        oauth_token: session[:twitter_token],
+        oauth_token_secret: session[:twitter_secret],
+        user: current_user
       )
       timeline_items = access.timeline 
 
@@ -48,7 +49,8 @@ class HubbubController < ApplicationController
       fail_no_oauth_token 'Facebook'
     else
       access = FacebookAccess.create(
-        oauth_token = session[:facebook_token]
+        oauth_token: session[:facebook_token],
+        user: current_user
       )
       items = access.feed
 
@@ -72,7 +74,7 @@ class HubbubController < ApplicationController
   end
 
   def imgur_items
-    access = ImgurAccess.create
+    access = ImgurAccess.create user: current_user
 
     items = access.images
     render_json_items items

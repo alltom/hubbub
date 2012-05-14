@@ -1,6 +1,6 @@
 class ImgurOauthController < ApplicationController
   def refresh_imgur
-    imgur_access = ImgurAccess.create
+    imgur_access = ImgurAccess.create user: current_user
     imgur_access.images
   end
 
