@@ -187,6 +187,7 @@ hubbub.FeedItemView = Backbone.View.extend({
   changed: function(model, ev) {
     if(this.model.hasChanged("read")) {
       hubbub.changeButtonText(this.model.get("read") ? "Save" : "Saved!", this.saveButton());
+      $(this.el).toggleClass('read', this.model.get('read'));
     }
   },
 
