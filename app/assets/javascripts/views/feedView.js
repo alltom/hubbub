@@ -187,7 +187,13 @@ hubbub.FeedItemView = Backbone.View.extend({
   initialize: function(options) {
     this.template = _.template(options.feedItemTemplate);
     this.collectionRef = options.collectionRef; //reference to the feed list
-    this.model.on("change", this.render, this);
+    this.model.on("change", this.changed, this);
+  },
+  
+  changed: function(model, ev) {
+    if(this.model.hasChanged("read")) {
+      hubbub.changeButtonText(this.model.get("read") ? "Save" : "Saved!", this.saveButton());
+    }
   },
 
   /*
@@ -206,9 +212,6 @@ hubbub.FeedItemView = Backbone.View.extend({
       .attr('data-href',"#tag/"+this.collectionRef.indexOf(this.model));
     
     this.saveButton().data("view", this);
-    if(this.model.hasChanged("read") && !this.model.get("read")) {
-      hubbub.changeButtonText("Saved!", this.saveButton());
-    }
     
     this.addTagView();
     
