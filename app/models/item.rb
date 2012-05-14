@@ -1,5 +1,5 @@
 class Item
-  def self.recent limit=12
+  def self.recent user, limit=12
     # Grabbing the limit most recent items regardless of table tends to produce
     # an unbalanced feed of mostly Twitter posts and a little Facebook.
     # Instead, grab a minimum from each source, because we want to demonstrate
