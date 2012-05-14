@@ -20,6 +20,6 @@ class FacebookOauthController < ApplicationController
 
     refresh_facebook
 
-    redirect_to root_url
+    redirect_to '/#services'
   end
 end
