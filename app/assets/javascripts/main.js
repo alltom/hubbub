@@ -17,6 +17,9 @@ $(function() {
     // we are coming here after a redirect from /auth/facebook/callback
     window.location.hash = '';
   }
+  
+  // the number of items to show per page
+  hubbub.perPageLimit = 15;
 
   hubbub.router = new hubbub.Router();
   Backbone.history.start();

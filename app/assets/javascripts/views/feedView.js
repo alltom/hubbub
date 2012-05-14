@@ -147,7 +147,7 @@ hubbub.FeedListView = Backbone.View.extend({
   
   populateViewList: function() {
     this.viewList = [];
-    for(var i = 0; i < this.model.length; i++) {
+    for(var i = 0; i < this.model.length && i < hubbub.perPageLimit; i++) {
       var feedItem = this.model.at(i);
       this.viewList.push(new hubbub.FeedItemView({
         model: feedItem,
