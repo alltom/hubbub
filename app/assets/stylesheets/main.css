@@ -171,7 +171,8 @@ h1 {
  * Facebook - (dark blue) #7373ff
  */
 .feedItem.read {
-  background: #e0e0e0;
+  color: #999;
+  background: #f0f0f0;
 }
 
 .feedItem.twitter {
@@ -190,7 +191,7 @@ h1 {
 }
 .feedItem.imgur .source {
   background: #71aa55;
-  color: black;
+  color: white;
 }
 
 .feedItem.gmail {
@@ -198,6 +199,7 @@ h1 {
 }
 .feedItem.gmail .source {
   background: #d56d50;
+  color: white;
 }
 
 .feedItem.facebook {
@@ -206,6 +208,7 @@ h1 {
 
 .feedItem.facebook .source {
   background: #7373ff;
+  color: white;
 }
 
 /* Service list page styles */
