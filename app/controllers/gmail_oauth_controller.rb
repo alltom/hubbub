@@ -70,6 +70,6 @@ class GmailOauthController < ApplicationController
 
     refresh_gmail
 
-    redirect_to root_url
+    redirect_to '/#services'
   end
 end

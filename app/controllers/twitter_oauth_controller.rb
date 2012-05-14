@@ -24,6 +24,6 @@ class TwitterOauthController < ApplicationController
 
     refresh_twitter
 
-    redirect_to root_url
+    redirect_to '/#services'
   end
 end

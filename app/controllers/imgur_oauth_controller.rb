@@ -7,6 +7,6 @@ class ImgurOauthController < ApplicationController
   def imgur_setup
     refresh_imgur
 
-    redirect_to root_url
+    redirect_to '/#services'
   end
 end
