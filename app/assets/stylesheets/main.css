@@ -145,6 +145,10 @@ div#feedList {
   width: 143% !important;
 }
 
+.refresh-button {
+  margin-top: 40px;
+}
+
 /* styles for tag view items in a feed */
 
 .feedTagSet .feed-tag-set-item {

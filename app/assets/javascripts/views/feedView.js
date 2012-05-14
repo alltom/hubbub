@@ -100,6 +100,10 @@ hubbub.FeedPageView = Backbone.View.extend({
  */
 hubbub.FeedListView = Backbone.View.extend({
   
+  events: {
+    "click .refresh-button" : "refreshButtonClicked"
+  },
+  
   /**
    * Additional parameters in options:
    * feedItemTemplates - the hash table of item templates (see FeedPageView)
@@ -107,6 +111,9 @@ hubbub.FeedListView = Backbone.View.extend({
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
     this.model.bind('reset', this.populateViewList, this);
+    
+    this.refreshButton = $("<input type='button' class='btn refresh-button' value='Refresh...' />");
+    this.refreshDom = $("<div style='width: 100%; text-align: center'></div>").append(this.refreshButton);
     
     $(window).scroll(_.bind(this.checkForReadItems, this));
     
@@ -119,9 +126,13 @@ hubbub.FeedListView = Backbone.View.extend({
    */
   render: function(eventName) {
     $(this.el).empty();
+    
     for(var i = 0; i < this.viewList.length; i++){
       $(this.el).append(this.viewList[i].render().el);
     }
+    
+    this.$el.append(this.refreshDom);
+    
     return this;
   },
   
@@ -149,6 +160,14 @@ hubbub.FeedListView = Backbone.View.extend({
       }));
     }
     this.render();
+  },
+  
+  refreshButtonClicked: function() {
+    this.refreshButton.attr("value", "Refreshing...");
+    var reset = _.debounce(_.bind(function() {
+      this.refreshButton.attr("value", "Refresh...");
+    }, this), 300);
+    this.model.fetch({ success: reset, error: reset });
   }
 });
 
