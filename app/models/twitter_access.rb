@@ -65,11 +65,12 @@ class TwitterAccess
     Twitter.home_timeline.map { |item|
       twitter_id = item.id.to_s
       if not Tweet.find_by_twitter_id twitter_id # Avoid saving duplicates
-        Tweet.create! :text => item.text, :tweeter => item.user.name,
-            :tweeter_screen_name => item.user.screen_name,
-            :published_at => item.created_at,
-            :twitter_id => twitter_id,
-            :user => @user
+        Tweet.create! :text => item.text,
+                      :tweeter => item.user.name,
+                      :tweeter_screen_name => item.user.screen_name,
+                      :published_at => item.created_at,
+                      :twitter_id => twitter_id,
+                      :user => @user
       end
     }.compact
   end
