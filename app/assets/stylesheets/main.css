@@ -145,8 +145,14 @@ div#feedList {
   width: 143% !important;
 }
 
-.refresh-button {
+.refresh-button-container {
+  width: 100%;
+  text-align: center;
   margin-top: 40px;
+}
+
+.refresh-button-container img {
+  padding-top: 7px;
 }
 
 /* styles for tag view items in a feed */
