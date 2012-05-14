@@ -139,26 +139,30 @@ hubbub.filterTemplate = """
       <h2>I want items from</h2>
       <h3>Any of these services</h3>
       <div id="services">
-        <!-- 
-          TODO Make these images look nicer, and size them beforehand
-          instead of doing it in the browser.
-        -->
-        <p class="serviceLogo">
-          <img alt="Twitter logo" src="/assets/twitter-logo8.png"
-               width="50" height="50" data-name="twitter" />
-        </p>
-        <p class="serviceLogo">
-          <img alt="Facebook logo" src="/assets/facebook-logo.png"
-               width="50" height="50" data-name="facebook" />
-        </p>
-        <p class="serviceLogo">
-          <img alt="Imgur logo" src="/assets/Imgur_Logo_Icon.png"
-               width="50" height="50" data-name="imgur" />
-        </p>
-        <p class="serviceLogo">
-          <img alt="Gmail logo" src="/assets/gmail-logo.png"
-               width="50" height="50" data-name="gmail" />
-        </p>
+        <div class="row-fluid">
+          <div class="serviceLogo span6">
+            <img alt="Twitter logo" src="/assets/twitter-logo8.png"
+                width="50" height="50" data-name="twitter" />
+            <input type="checkbox" id="twitterCheckbox" />
+          </div>
+          <div class="serviceLogo span6">
+            <img alt="Facebook logo" src="/assets/facebook-logo.png"
+                width="50" height="50" data-name="facebook" />
+            <input type="checkbox" id="facebookCheckbox" />
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="serviceLogo span6">
+            <img alt="Imgur logo" src="/assets/Imgur_Logo_Icon.png"
+                width="50" height="50" data-name="imgur" />
+            <input type="checkbox" id="imgurCheckbox" />
+          </div>
+          <div class="serviceLogo span6">
+            <img alt="Gmail logo" src="/assets/gmail-logo.png"
+                width="50" height="50" data-name="gmail" />
+            <input type="checkbox" id="gmailCheckbox" />
+          </div>
+        </div>
       </div>
 
       <h2>With all of the following</h2>

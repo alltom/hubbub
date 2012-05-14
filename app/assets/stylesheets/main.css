@@ -199,26 +199,10 @@ h1 {
   background: #7373ff;
 }
 
-/* Service list page styles */
-
-ul#service-list {
-  padding: 0;
-  margin: 0;
-}
-ul#service-list li {
-  margin: 10px;
-  padding: 0;
-  list-style-type: none;
-}
-
 /* Filter page styles */
 
 #services {
   padding-bottom: 30px;
-}
-
-.serviceLogo {
-  display: inline;
 }
 
 .checkbox {

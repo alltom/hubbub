@@ -135,11 +135,13 @@ hubbub.FilterView = Backbone.View.extend({
 
     var service = found[0];
     if (service.get('selected')) {
-      service.unselect(); 
+      service.unselect();
       target.removeClass(this.selectedServiceClass);
+      target.find('input').attr('checked', false);
     } else {
       service.select();
       target.addClass(this.selectedServiceClass);
+      target.find('input').attr('checked', true);
     }
   },
 
