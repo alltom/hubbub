@@ -10,7 +10,9 @@ hubbub.templates = {
   connectionsTemplate: """
     <header class="row-fluid">
       <div class="span12">
-        <a class="btn headerLeftLink" href="#">Back</a>
+        <input type="button" class="btn headerLeftLink" id="connectionsBack"
+               value="Back" />
+        <!--<a class="btn headerLeftLink" href="#">Back</a>-->
         <h1>Services</h1>
       </div>
     </header>
