@@ -1,6 +1,6 @@
 class ChangeGmailMessageTextFromStringToText < ActiveRecord::Migration
   def up
-    change_column :gmail_messages, :text, :text, :limit => 2500
+    change_column :gmail_messages, :text, :text, :limit => nil
   end
 
   def down

@@ -33,15 +33,15 @@ ActiveRecord::Schema.define(:version => 20120514041513) do
   end
 
   create_table "gmail_messages", :force => true do |t|
-    t.text     "text",         :limit => 2500
+    t.text     "text"
     t.string   "from"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.datetime "published_at",                                    :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.datetime "published_at",                    :null => false
     t.string   "subject"
     t.integer  "user_id"
-    t.string   "google_id",                                       :null => false
-    t.boolean  "read",                         :default => false, :null => false
+    t.string   "google_id",                       :null => false
+    t.boolean  "read",         :default => false, :null => false
   end
 
   add_index "gmail_messages", ["google_id"], :name => "index_gmail_messages_on_google_id", :unique => true
