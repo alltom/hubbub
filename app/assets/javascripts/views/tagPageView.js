@@ -30,7 +30,7 @@ hubbub.TagPageView = Backbone.View.extend({
   render: function(eventName) {
     $(this.el).html(this.template());
     this.listView = new hubbub.TagListView({
-      el: $('#tagList', this.el),
+      el: $('#tagPageTagList', this.el),
       model: this.model,
       tagItemTemplate: this.tagItemTemplate,
       feedItem: this.feedItem
@@ -131,7 +131,6 @@ hubbub.TagListView = Backbone.View.extend({
       }
       $(this.el).append(item);
     }, this);
-    //$('#tagList').listview('refresh');
     return this;
   },
   

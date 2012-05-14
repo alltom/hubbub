@@ -117,6 +117,14 @@ hubbub.FilterView = Backbone.View.extend({
     return this;
   },
 
+  // Check a tag's checkbox
+  selectTag: function(tag) {
+    var theTag = this.$el.find('.tagItem input').filter(function() {
+      return $(this).attr('name') === tag;
+    });
+    theTag.attr('checked', true);
+  },
+
   /**
    * Callback fired when one of the service logo images is cliced.
    * event is the event object, and event.currentTarget is the clicked element.
@@ -135,11 +143,13 @@ hubbub.FilterView = Backbone.View.extend({
 
     var service = found[0];
     if (service.get('selected')) {
-      service.unselect(); 
+      service.unselect();
       target.removeClass(this.selectedServiceClass);
+      target.find('input').attr('checked', false);
     } else {
       service.select();
       target.addClass(this.selectedServiceClass);
+      target.find('input').attr('checked', true);
     }
   },
 
