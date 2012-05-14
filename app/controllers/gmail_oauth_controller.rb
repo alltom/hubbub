@@ -49,10 +49,11 @@ class GmailOauthController < ApplicationController
 
   def refresh_gmail
     access = GmailAccess.create(
-        email = session[:gmail_address],
-        oauth_token = session[:gmail_token],
-        oauth_token_secret = session[:gmail_secret]
-    )
+      email: session[:gmail_address],
+      oauth_token: session[:gmail_token],
+      oauth_token_secret: session[:gmail_secret],
+      user: current_user
+      )
     access.emails
   end
 

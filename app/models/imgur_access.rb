@@ -1,12 +1,15 @@
 class ImgurAccess
-  def initialize(curl)
+  def initialize(curl, options={})
     @curl = curl
+    @user = options[:user]
   end
 
-  def self.create
+  def self.create options={}
+    user = options[:user]
+    
     curl = Curl::Easy.new 'http://imgur.com/api/gallery.json'
 
-    ImgurAccess.new curl
+    ImgurAccess.new curl, user: user
   end
 
   def query_imgur
@@ -24,7 +27,7 @@ class ImgurAccess
       if not ImgurImage.find_by_imgur_hash imgur_hash
         ImgurImage.create! :url => value['original_image'],
             :published_at => Time.zone.parse(value['date_popular']),
-            :imgur_hash => imgur_hash
+            :imgur_hash => imgur_hash, :user => @user
       end
     }.compact
   end

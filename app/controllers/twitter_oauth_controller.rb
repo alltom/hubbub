@@ -2,10 +2,9 @@ class TwitterOauthController < ApplicationController
   # Ping the servers and populate our database with new items.
   def refresh_twitter
     if session[:twitter_token] && session[:twitter_secret]
-      twitter_access = TwitterAccess.create(
-        oauth_token = session[:twitter_token],
-        oauth_token_secret = session[:twitter_secret]
-      )
+      twitter_access = TwitterAccess.create(oauth_token: session[:twitter_token],
+                                            oauth_token_secret: session[:twitter_secret],
+                                            user: current_user)
       twitter_access.timeline
     end
   end

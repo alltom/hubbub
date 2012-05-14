@@ -1,20 +1,21 @@
 class FacebookAccess
   # Similar to TwitterAccess, this constructor takes an oauth_token (mandatory)
-  def initialize(graph)
+  def initialize(graph, options)
     @graph = graph
+    @user = options[:user]
   end
 
   # Factory method.
   #
   # Arguments (named)
   #   oauth_token: String - the OAuth token for Facebook.
-  def self.create(oauth_token = nil)
-    if oauth_token.nil?
-      raise InsufficientCredentials, 'No oauth_token was provided.'
-    end
+  def self.create options={}
+    oauth_token = options[:oauth_token] or raise InsufficientCredentials, 'No oauth_token was provided.'
+    user = options[:user]
+    
     graph = Koala::Facebook::API.new oauth_token
 
-    FacebookAccess.new graph
+    FacebookAccess.new graph, user: user
   end
 
   def query_facebook
@@ -43,7 +44,8 @@ END_OF_QUERY
         # Convert the Facebook seconds-since-epoch to an ActiveSupport::TimeWithZone
         published_at = Time.zone.at(post['created_time'])
         FacebookPost.create! :actor => name, :text => post['message'],
-            :published_at => published_at, :facebook_id => facebook_id
+            :published_at => published_at, :facebook_id => facebook_id,
+            :user => @user
       end
     }.compact
   end

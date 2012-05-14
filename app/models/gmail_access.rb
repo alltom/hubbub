@@ -1,9 +1,11 @@
 class GmailAccess
-  def initialize(gmail)
+  def initialize(gmail, options)
     @gmail = gmail
+    @user = options[:user]
   end
 
   # Factory method (again, to avoid doing work in the constructor)
+  #                (tom: why?)
   #
   # Arguments (named to avoid confusion):
   #   user_id - the ID of the currently logged-in user.
@@ -17,26 +19,20 @@ class GmailAccess
   #   consumer_secret: String - the consumer secret for this app (default: the
   #       value in the configuration file)
   # You probably don't need to worry about the last two.
-  def self.create(email = nil, oauth_token = nil,
-                  oauth_token_secret = nil,
-                  consumer_key = Rails.configuration.google_consumer_key,
-                  consumer_secret = Rails.configuration.google_consumer_secret)
-    if email.nil?
-      raise InsufficientCredentials, 'No email address was provided'
-    end
-    if oauth_token.nil?
-      raise InsufficientCredentials, 'No OAuth token was provided'
-    end
-    if oauth_token_secret.nil?
-      raise InsufficientCredentials, 'No OAuth secret was provided'
-    end
+  def self.create options={}
+    email = options[:email] or raise InsufficientCredentials, 'No email address was provided'
+    oauth_token = options[:oauth_token] or raise InsufficientCredentials, 'No OAuth token was provided'
+    oauth_token_secret = options[:oauth_token_secret] or raise InsufficientCredentials, 'No OAuth secret was provided'
+    consumer_key = options[:consumer_key] || Rails.configuration.google_consumer_key
+    consumer_secret = options[:consumer_secret] || Rails.configuration.google_consumer_secret
+    user = options[:user]
 
     GmailAccess.new(Gmail.connect(:xoauth, email,
         :token => oauth_token,
         :secret => oauth_token_secret,
         :consumer_key => consumer_key,
         :consumer_secret => consumer_secret
-    ))
+    ), user: user)
   end
 
   # Mostly works, but chokes on heavily formatted emails.
@@ -72,7 +68,8 @@ class GmailAccess
           :subject => email.subject,
           :text => email_body,
           :published_at => email.message.date.in_time_zone,
-          :google_id => google_id
+          :google_id => google_id,
+          :user => @user
       end
     }.compact
   end
