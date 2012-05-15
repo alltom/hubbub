@@ -116,7 +116,7 @@ hubbub.FeedListView = Backbone.View.extend({
     
     $(window).scroll(_.debounce(_.bind(this.checkForReadItems, this), 100));
     
-    this.loaded = this.model.length > 0;
+    this.loaded = this.model.length > 0 || this.router.isCustomFilter;
     this.populateViewList();
   },
 
@@ -130,14 +130,12 @@ hubbub.FeedListView = Backbone.View.extend({
     for(var i = 0; i < this.viewList.length; i++){
       $(this.el).append(this.viewList[i].render().el);
     }
-    
-    $('#hubbub-feedpage-info').toggleClass('reveal', this.viewList.length > 0);
-    $('#hubbub-feedpage-no-new').toggleClass('reveal',
-      !this.router.isCustomFilter && 
-      (this.viewList.length == 0));
+
+    $('#hubbub-feedpage-info').toggleClass('reveal', this.model.length > 0);
+    $('#hubbub-feedpage-no-new')
+      .toggleClass('reveal', !this.router.isCustomFilter && (this.model.length == 0));
     $('#hubbub-feedpage-no-results')
-      .toggleClass('reveal', this.router.isCustomFilter && 
-      (this.viewList.length == 0));
+      .toggleClass('reveal', this.router.isCustomFilter && (this.model.length == 0));
       
     if(this.loaded) {
       this.$el.append(hubbub.templates.loadMoreTemplate);
@@ -152,7 +150,6 @@ hubbub.FeedListView = Backbone.View.extend({
     var scrolltop = $(document).scrollTop();
     //find the read items
     var items = this.viewList.filter(function(item) {
-      console.log(item.model.get('user_set'));
       return !item.saved && scrolltop > $(item.el).offset().top && !item.model.get('read')
         && !item.model.get('user_set');
     }).map(function(item){
