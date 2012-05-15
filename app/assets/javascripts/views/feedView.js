@@ -152,7 +152,9 @@ hubbub.FeedListView = Backbone.View.extend({
     var scrolltop = $(document).scrollTop();
     //find the read items
     var items = this.viewList.filter(function(item) {
-      return !item.saved && scrolltop > $(item.el).offset().top && !item.model.get('read');
+      console.log(item.model.get('user_set'));
+      return !item.saved && scrolltop > $(item.el).offset().top && !item.model.get('read')
+        && !item.model.get('user_set');
     }).map(function(item){
       item.model.updateRead(true);
       $(item.el).addClass('read');
@@ -246,11 +248,11 @@ hubbub.FeedItemView = Backbone.View.extend({
     if(this.saved) {
       this.saved = false;
       hubbub.changeButtonText("Unsaving...", this.saveButton());
-      this.model.save({ read: true }, { wait: true });
+      this.model.save({ read: true, user_set: false }, { wait: true });
     } else {
       this.saved = true;
       hubbub.changeButtonText("Saving...", this.saveButton());
-      this.model.save({ read: false }, { wait: true });
+      this.model.save({ read: false, user_set: true }, { wait: true });
     }
   },
   

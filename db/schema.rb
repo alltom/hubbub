@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120514170731) do
+ActiveRecord::Schema.define(:version => 20120515034748) do
 
   create_table "facebook_posts", :force => true do |t|
     t.text     "text"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20120514170731) do
     t.string   "facebook_id",                     :null => false
     t.integer  "user_id"
     t.boolean  "read",         :default => false, :null => false
+    t.boolean  "user_set",     :default => false, :null => false
   end
 
   add_index "facebook_posts", ["facebook_id"], :name => "index_facebook_posts_on_facebook_id", :unique => true
@@ -42,6 +43,7 @@ ActiveRecord::Schema.define(:version => 20120514170731) do
     t.integer  "user_id"
     t.string   "google_id",                       :null => false
     t.boolean  "read",         :default => false, :null => false
+    t.boolean  "user_set",     :default => false, :null => false
   end
 
   add_index "gmail_messages", ["google_id"], :name => "index_gmail_messages_on_google_id", :unique => true
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(:version => 20120514170731) do
     t.string   "imgur_hash",                      :null => false
     t.integer  "user_id"
     t.boolean  "read",         :default => false, :null => false
+    t.boolean  "user_set",     :default => false, :null => false
   end
 
   add_index "imgur_images", ["imgur_hash"], :name => "index_imgur_images_on_imgur_hash", :unique => true
@@ -86,6 +89,7 @@ ActiveRecord::Schema.define(:version => 20120514170731) do
     t.string   "twitter_id",                             :null => false
     t.integer  "user_id"
     t.boolean  "read",                :default => false, :null => false
+    t.boolean  "user_set",            :default => false, :null => false
   end
 
   add_index "tweets", ["twitter_id"], :name => "index_tweets_on_twitter_id", :unique => true
