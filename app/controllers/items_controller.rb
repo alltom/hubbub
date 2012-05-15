@@ -2,8 +2,15 @@ class ItemsController < ApplicationController
   before_filter :require_login
   
   def index
+    items = Item.recent(current_user)
+    
+    if items.length == 0
+      refresh_all_services
+      items = Item.recent(current_user)
+    end
+    
     respond_to do |format|
-      format.json { render json: Item.recent(current_user) }
+      format.json { render json: items }
     end
   end
   
