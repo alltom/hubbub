@@ -149,7 +149,7 @@ hubbub.ContainsTextFilter = hubbub.Filter.extend({
   // fields: name, text
   
   accepts: function(item) {
-    return item.get('body').indexOf(this.get('text')) !== -1; 
+    return item.get("text") && item.get("text").toLowerCase().indexOf(this.get('text').toLowerCase()) !== -1;
   },
 
   type: function() {

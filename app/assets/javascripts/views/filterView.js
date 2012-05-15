@@ -180,7 +180,7 @@ hubbub.FilterView = Backbone.View.extend({
     if (searchText.trim().length > 0) {
       filters.push(new hubbub.ContainsTextFilter({
         name: 'ContainsText',
-        test: searchText
+        text: searchText
       }));
     }
   },
