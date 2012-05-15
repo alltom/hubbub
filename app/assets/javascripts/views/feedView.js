@@ -49,7 +49,8 @@ hubbub.FeedPageView = Backbone.View.extend({
     this.listView = new hubbub.FeedListView({
       el: $('#feedList', this.el),
       model: this.model,
-      feedItemTemplates: this.feedItemTemplates
+      feedItemTemplates: this.feedItemTemplates,
+      router: this.router
     });
     this.listView.render();
     return this;
@@ -110,6 +111,7 @@ hubbub.FeedListView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
+    this.router = options.router;
     this.model.bind('reset', this.collectionReset, this);
     
     $(window).scroll(_.debounce(_.bind(this.checkForReadItems, this), 100));
@@ -129,6 +131,11 @@ hubbub.FeedListView = Backbone.View.extend({
       $(this.el).append(this.viewList[i].render().el);
     }
     
+    $('#hubbub-feedpage-info').toggleClass('reveal', this.viewList.length > 0);
+    $('#hubbub-feedpage-no-results')
+      .toggleClass('reveal', this.router.isCustomFilter && 
+      (this.viewList.length == 0));
+      
     if(this.loaded) {
       this.$el.append(hubbub.templates.loadMoreTemplate);
     } else {
@@ -163,7 +170,6 @@ hubbub.FeedListView = Backbone.View.extend({
     }
     $(window).scrollTop(0);
     // if there are view items to read, tell the user how it works
-    $('#hubbub-feedpage-info').toggleClass('reveal', this.viewList.length > 0);
     this.render();
   },
   

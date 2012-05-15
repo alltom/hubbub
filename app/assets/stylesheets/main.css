@@ -78,11 +78,13 @@ h1 {
 }
 
 /* feed items */
-#hubbub-feedpage-info {
+#hubbub-feedpage-info,
+#hubbub-feedpage-no-results {
   display: none;
 }
 
-#hubbub-feedpage-info.reveal {
+#hubbub-feedpage-info.reveal,
+#hubbub-feedpage-no-results.reveal {
   display: block;
 }
 
