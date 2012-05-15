@@ -132,6 +132,9 @@ hubbub.FeedListView = Backbone.View.extend({
     }
     
     $('#hubbub-feedpage-info').toggleClass('reveal', this.viewList.length > 0);
+    $('#hubbub-feedpage-no-new').toggleClass('reveal',
+      !this.router.isCustomFilter && 
+      (this.viewList.length == 0));
     $('#hubbub-feedpage-no-results')
       .toggleClass('reveal', this.router.isCustomFilter && 
       (this.viewList.length == 0));
