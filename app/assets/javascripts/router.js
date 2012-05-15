@@ -31,7 +31,6 @@ hubbub.Router = Backbone.Router.extend({
     this.filters = new hubbub.FilterCollection();
     this.firstPage = true;
     
-    this.feedItems.fetch();
     this.resetFilter();
 
     // Eagerly load all templates, since changePage gets rid of them

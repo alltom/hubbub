@@ -118,6 +118,8 @@ hubbub.FeedListView = Backbone.View.extend({
     
     this.loaded = this.model.length > 0 || this.router.isCustomFilter;
     this.populateViewList();
+    
+    hubbub.router.feedItems.fetch();
   },
 
   /*
