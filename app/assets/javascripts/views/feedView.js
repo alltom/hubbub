@@ -223,6 +223,10 @@ hubbub.FeedItemView = Backbone.View.extend({
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
     
     $(this.el).toggleClass('read', this.model.get('read'));
+    
+    //some items may start out saved
+    this.saved = !this.model.get("read") && this.model.get("user_set");
+    hubbub.changeButtonText(this.saved ? "Saved!" : "Save", this.saveButton());
 
     // Changed href to data-href since it's now a button, the click handler will
     // read this.
