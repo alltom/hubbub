@@ -150,7 +150,11 @@ hubbub.FeedListView = Backbone.View.extend({
       .toggleClass('reveal', this.router.isCustomFilter && (this.model.length == 0));
       
     if(this.loaded) {
-      this.$el.append(hubbub.templates.loadMoreTemplate);
+      if(this.router.isCustomFilter && (this.model.length == 0)) {
+        this.$el.append(hubbub.templates.searchAgainTemplate);
+      } else {
+        this.$el.append(hubbub.templates.loadMoreTemplate);
+      }
     } else {
       this.$el.append(hubbub.templates.loadingMoreTemplate);
     }

@@ -35,6 +35,12 @@ hubbub.templates = {
     </div>
   """,
   
+  searchAgainTemplate: """
+    <div class="refresh-button-container">
+      <input type="button" class="btn refresh-button" value="Search Again..." />
+    </div>
+  """,
+  
   loadingMoreTemplate: """
     <div class="refresh-button-container">
       <img src="/assets/spinner.gif" />
