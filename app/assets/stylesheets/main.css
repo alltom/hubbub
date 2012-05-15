@@ -78,6 +78,17 @@ h1 {
 }
 
 /* feed items */
+#hubbub-feedpage-info,
+#hubbub-feedpage-no-results,
+#hubbub-feedpage-no-new {
+  display: none;
+}
+
+#hubbub-feedpage-info.reveal,
+#hubbub-feedpage-no-results.reveal,
+#hubbub-feedpage-no-new.reveal {
+  display: block;
+}
 
 div#feedList {
   padding-bottom: 200%;

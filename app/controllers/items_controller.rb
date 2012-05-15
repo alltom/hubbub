@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find_by_id_and_source(params[:id], params[:source])
     
-    attrs = params.require(:item).permit(:tags, :read)
+    attrs = params.require(:item).permit(:tags, :read,:user_set)
     
     # we expose "tag_list" as "tags" in the JSON, so correct that on the way back in
     attrs[:tag_list] = attrs.delete(:tags) if attrs.has_key? :tags

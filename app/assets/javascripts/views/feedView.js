@@ -49,7 +49,8 @@ hubbub.FeedPageView = Backbone.View.extend({
     this.listView = new hubbub.FeedListView({
       el: $('#feedList', this.el),
       model: this.model,
-      feedItemTemplates: this.feedItemTemplates
+      feedItemTemplates: this.feedItemTemplates,
+      router: this.router
     });
     this.listView.render();
     return this;
@@ -110,11 +111,12 @@ hubbub.FeedListView = Backbone.View.extend({
    */
   initialize: function(options) {
     this.feedItemTemplates = options.feedItemTemplates;
+    this.router = options.router;
     this.model.bind('reset', this.collectionReset, this);
     
     $(window).scroll(_.debounce(_.bind(this.checkForReadItems, this), 100));
     
-    this.loaded = this.model.length > 0;
+    this.loaded = this.model.length > 0 || this.router.isCustomFilter;
     this.populateViewList();
   },
 
@@ -128,7 +130,13 @@ hubbub.FeedListView = Backbone.View.extend({
     for(var i = 0; i < this.viewList.length; i++){
       $(this.el).append(this.viewList[i].render().el);
     }
-    
+
+    $('#hubbub-feedpage-info').toggleClass('reveal', this.model.length > 0);
+    $('#hubbub-feedpage-no-new')
+      .toggleClass('reveal', !this.router.isCustomFilter && (this.model.length == 0));
+    $('#hubbub-feedpage-no-results')
+      .toggleClass('reveal', this.router.isCustomFilter && (this.model.length == 0));
+      
     if(this.loaded) {
       this.$el.append(hubbub.templates.loadMoreTemplate);
     } else {
@@ -142,7 +150,8 @@ hubbub.FeedListView = Backbone.View.extend({
     var scrolltop = $(document).scrollTop();
     //find the read items
     var items = this.viewList.filter(function(item) {
-      return !item.saved && scrolltop > $(item.el).offset().top && !item.model.get('read');
+      return !item.saved && scrolltop > $(item.el).offset().top && !item.model.get('read')
+        && !item.model.get('user_set');
     }).map(function(item){
       item.model.updateRead(true);
       $(item.el).addClass('read');
@@ -162,6 +171,7 @@ hubbub.FeedListView = Backbone.View.extend({
       }));
     }
     $(window).scrollTop(0);
+    // if there are view items to read, tell the user how it works
     this.render();
   },
   
@@ -192,11 +202,16 @@ hubbub.FeedItemView = Backbone.View.extend({
     this.template = _.template(options.feedItemTemplate);
     this.collectionRef = options.collectionRef; //reference to the feed list
     this.model.on("change", this.changed, this);
+    
+    //some items start out saved
+    this.saved = !this.model.get("read") && this.model.get("user_set");
   },
   
   changed: function(model, ev) {
-    if(this.model.hasChanged("read")) {
-      hubbub.changeButtonText(this.model.get("read") ? "Save" : "Saved!", this.saveButton());
+    if(this.model.hasChanged("read")
+      || this.model.hasChanged("user_set")) {
+      hubbub.changeButtonText(!this.model.get("read")
+        && this.model.get("user_set") ? "Saved!" : "Save", this.saveButton());
       $(this.el).toggleClass('read', this.model.get('read'));
     }
   },
@@ -210,6 +225,9 @@ hubbub.FeedItemView = Backbone.View.extend({
     $(this.el).html(this.template(_.defaults(this.model.toJSON(), { body: "Template Missing" })));
     
     $(this.el).toggleClass('read', this.model.get('read'));
+    
+    //in case this is before the user hits any buttons
+    hubbub.changeButtonText(this.saved ? "Saved!" : "Save", this.saveButton());
 
     // Changed href to data-href since it's now a button, the click handler will
     // read this.
@@ -235,11 +253,11 @@ hubbub.FeedItemView = Backbone.View.extend({
     if(this.saved) {
       this.saved = false;
       hubbub.changeButtonText("Unsaving...", this.saveButton());
-      this.model.save({ read: true }, { wait: true });
+      this.model.save({ read: true, user_set: false }, { wait: true });
     } else {
       this.saved = true;
       hubbub.changeButtonText("Saving...", this.saveButton());
-      this.model.save({ read: false }, { wait: true });
+      this.model.save({ read: false, user_set: true }, { wait: true });
     }
   },
   
