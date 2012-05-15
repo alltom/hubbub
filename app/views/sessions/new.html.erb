@@ -15,7 +15,7 @@
   <%= form_tag sessions_path do %>
     <p>
       <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email] %>
+      <%= text_field_tag :email, params[:email], { autocorrect: "off", autocapitalize: "off" } %>
     </p>
     <p>
       <%= label_tag :password %>

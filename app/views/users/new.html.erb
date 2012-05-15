@@ -18,7 +18,7 @@
     <% end %>
     <p>
       <%= f.label :email %>
-      <%= f.text_field :email %>
+      <%= f.text_field :email, { autocorrect: "off", autocapitalize: "off" } %>
     </p>
     <p>
       <%= f.label :password %>
