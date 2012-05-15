@@ -34,6 +34,12 @@ hubbub.FeedPageView = Backbone.View.extend({
     this.template = _.template(options.pageTemplate);
     this.router = options.router;
   },
+  
+  leave: function() {
+    if(this.listView) {
+      this.listView.leave();
+    }
+  },
 
   /*
    * Renders a header div, and a content div which is handled by FeedListView.
@@ -120,6 +126,10 @@ hubbub.FeedListView = Backbone.View.extend({
     this.populateViewList();
     
     hubbub.router.feedItems.fetch();
+  },
+  
+  leave: function() {
+    this.model.unbind('reset', this.collectionReset, this);
   },
 
   /*
