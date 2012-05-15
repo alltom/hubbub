@@ -205,11 +205,16 @@ hubbub.FeedItemView = Backbone.View.extend({
     this.template = _.template(options.feedItemTemplate);
     this.collectionRef = options.collectionRef; //reference to the feed list
     this.model.on("change", this.changed, this);
+    
+    //some items start out saved
+    this.saved = !this.model.get("read") && this.model.get("user_set");
   },
   
   changed: function(model, ev) {
-    if(this.model.hasChanged("read")) {
-      hubbub.changeButtonText(this.model.get("read") ? "Save" : "Saved!", this.saveButton());
+    if(this.model.hasChanged("read")
+      || this.model.hasChanged("user_set")) {
+      hubbub.changeButtonText(!this.model.get("read")
+        && this.model.get("user_set") ? "Saved!" : "Save", this.saveButton());
       $(this.el).toggleClass('read', this.model.get('read'));
     }
   },
@@ -224,8 +229,7 @@ hubbub.FeedItemView = Backbone.View.extend({
     
     $(this.el).toggleClass('read', this.model.get('read'));
     
-    //some items may start out saved
-    this.saved = !this.model.get("read") && this.model.get("user_set");
+    //in case this is before the user hits any buttons
     hubbub.changeButtonText(this.saved ? "Saved!" : "Save", this.saveButton());
 
     // Changed href to data-href since it's now a button, the click handler will
