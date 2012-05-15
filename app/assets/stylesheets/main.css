@@ -88,6 +88,7 @@ h1 {
 #hubbub-feedpage-no-results.reveal,
 #hubbub-feedpage-no-new.reveal {
   display: block;
+  margin: 4px 4px 8px 4px;
 }
 
 div#feedList {
